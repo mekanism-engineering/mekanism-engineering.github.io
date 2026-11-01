@@ -90,9 +90,10 @@ const MEK_TEXT = {
 };
 const fixMekanismRange = (md, lng = 'en') => {
   const T = MEK_TEXT[lng], range = mekanismRange();
-  const row = /^\| Mekanism \| [^|\n]*\|$/m;
+  // the table has one column per Minecraft version since the 1.2.1 wiki: only the first range (1.21.1) is rewritten, the cells after it are kept
+  const row = /^\| Mekanism \| [^|\n]*\|(.*)$/m;
   if (!row.test(md)) throw new Error(`Home (${lng}): no Mekanism row in the table of requirements`);
-  md = md.replace(row, T.row(range));
+  md = md.replace(row, (all, rest) => T.row(range) + rest);
   return range.below === FORK_BELOW && !md.includes('Overclocked') ? md.replace(T.after, s => s + T.note) : md;
 };
 // the overview names both Minecraft versions, and its table of requirements gets a column for each
