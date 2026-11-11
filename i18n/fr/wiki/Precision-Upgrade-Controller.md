@@ -1,4 +1,4 @@
-<!-- source: b84a5b5f0d966e3898d3c4532b2c03cf244ec9e6 -->
+<!-- source: 503805f4841edd82b58812b015e8df4a85655d04 -->
 # Contrôleur d'améliorations de précision
 
 > Stocke les améliorations Mekanism de toute une usine et les pose dans chaque machine autour de lui.
@@ -9,6 +9,7 @@
 |---|---|
 | Type | Machine |
 | Taille | 1 bloc |
+| Taille de pile | 1 (en 1.21.1 depuis la 1.2.1, comme en 1.20.1 ; les piles déjà présentes dans un monde gardent leur nombre) |
 | Énergie | 400 J/t pendant un scan ou une application (`upgrade_controller.energyUsage`) ; stocke 200 000 J (`upgrade_controller.energyStorage`) |
 | Améliorations | Vitesse, Énergie (n'agissent que sur la vitesse de scan et d'application du Contrôleur et sur son coût en énergie) |
 | Configuration des faces | Oui (Mekanism) : objets et énergie |

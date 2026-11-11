@@ -1,9 +1,9 @@
-<!-- source: a8a721147c558925214edf324e7e5977128214ff -->
+<!-- source: 9d78c9b91ccff3a2d340aff416a8a53da99dbb7d -->
 # Mekanism: Engineering
 
-> Des outils d'ingénierie pour les usines Mekanism : minage à distance, raffinage du minerai sur toute la chaîne, distribution précise des objets, améliorations d'usine, pompage de fluides à grande échelle et synthèse de roches.
+> Des outils d'ingénierie pour les usines Mekanism : minage à distance, raffinage du minerai sur toute la chaîne, distribution précise des objets, améliorations d'usine, pompage de fluides à grande échelle, synthèse de roches, forge d'alliages et de circuits, et suraccélération des machines.
 
-**Mekanism: Engineering** est un addon **non officiel** de [Mekanism](https://www.curseforge.com/minecraft/mc-mods/mekanism), pour Minecraft 1.21.1 avec NeoForge. Il n'est ni affilié à l'équipe de Mekanism, ni approuvé ni produit par elle ; il ajoute de nouveaux blocs et objets qui fonctionnent aux côtés de ceux de Mekanism.
+**Mekanism: Engineering** est un addon **non officiel** de [Mekanism](https://www.curseforge.com/minecraft/mc-mods/mekanism), pour Minecraft 1.21.1 avec NeoForge et pour Minecraft 1.20.1 avec Forge ou NeoForge. Il n'est ni affilié à l'équipe de Mekanism, ni approuvé ni produit par elle ; il ajoute de nouveaux blocs et objets qui fonctionnent aux côtés de ceux de Mekanism.
 
 ## Installation
 
@@ -11,25 +11,26 @@ Télécharger la dernière version sur [CurseForge](https://www.curseforge.com/m
 
 Installer ces éléments **à la fois sur le client et sur le serveur** : ce n'est pas un addon réservé au serveur ou au client.
 
-| Composant | Plage acceptée |
-|---|---|
-| Minecraft Java Edition | 1.21.1 exactement |
-| Java | 21 |
-| NeoForge | 21.1.200 jusqu'à 21.2 exclu |
-| Mekanism | 10.7.15 jusqu'à 10.7.24 exclu |
+| Composant | Minecraft 1.21.1 | Minecraft 1.20.1 |
+|---|---|---|
+| Minecraft Java Edition | 1.21.1 exactement | 1.20.1 exactement |
+| Java | 21 | 17 |
+| Chargeur | NeoForge 21.1.200 jusqu'à 21.2 exclu | Forge 47.2.0 ou plus récent, ou NeoForge 47.1.106 (Forge 47.1.x n'est pas pris en charge) |
+| Mekanism | 10.7.15 jusqu'à 10.7.24 exclu | 10.4.13 à 10.4.16 |
 
+Chaque version de Minecraft a son propre fichier. Le fichier 1.21.1 ne vise que NeoForge, comme Mekanism.
 
-Mettre les jars de Mekanism et de Mekanism: Engineering dans `mods/`. Ne garder qu'une seule version de chaque mod. Mekanism Generators, Tools et Additions sont facultatifs. Une version de Mekanism hors de la plage acceptée est refusée au démarrage au lieu d'être chargée.
+Mettre les jars de Mekanism et de Mekanism: Engineering dans `mods/`. Ne garder qu'une seule version de chaque mod. Mekanism Generators, Tools et Additions sont facultatifs. Une version de Mekanism hors de la plage acceptée est refusée au démarrage au lieu d'être chargée. En 1.21.1, les cinq builds officielles, de la 10.7.15 à la 10.7.19, sont celles qui sont prises en charge ; la 10.7.20 à la 10.7.23 est l'édition non officielle Mekanism Overclocked, qui se charge aussi : ces versions sont acceptées, mais sans garantie.
 
-La prise en charge de [JEI, Jade et WTHIT](JEI-Jade-WTHIT.md) est **facultative** elle aussi : si l'un d'eux est installé, l'addon y ajoute ses recettes et ses affichages ; sans eux, rien ne change.
+La prise en charge de [JEI, EMI, Jade et WTHIT](JEI-Jade-WTHIT.md) est **facultative** elle aussi : si l'un d'eux est installé, l'addon y ajoute ses recettes et ses affichages ; sans eux, rien ne change.
 
-Notes de version : les [notes de la 1.2.0](../releases/1.2.md) listent ce qui a changé dans la version actuelle ; les [notes de la 1.1.0](../releases/1.1.0.md) listent les builds de Mekanism, JEI, Jade et WTHIT avec lesquels cette version a été testée. Les [notes de la 1.0.0](../releases/1.0.0.md) retracent la première version stable.
+Notes de version : les [notes de la 1.2.1](../releases/1.2.1.md) listent ce qui a changé dans la version actuelle, et les [notes de la 1.2.0](../releases/1.2.md) celle d'avant ; les [notes de la 1.1.0](../releases/1.1.0.md) listent les builds de Mekanism, JEI, Jade et WTHIT avec lesquels cette version a été testée. Les [notes de la 1.0.0](../releases/1.0.0.md) retracent la première version stable.
 
 ## Ce qu'il ajoute
 
 ### Minage
 
-- **[Quantum Digital Miner](Quantum-Digital-Miner.md)** : le successeur de fin de jeu du Mineur digital : mêmes filtres et réglages, rayon jusqu'à 128, vitesse de minage multipliée par quatre, et énergie ou objets acheminés par les fréquences quantiques.
+- **[Quantum Digital Miner](Quantum-Digital-Miner.md)** : le successeur de fin de jeu du Mineur digital : mêmes filtres et réglages, rayon jusqu'à 128, vitesse de minage multipliée par huit, et énergie ou objets acheminés par les fréquences quantiques.
 - **[Digital Miner Companion](Digital-Miner-Companion.md)** : lier un Mineur digital ou un Quantum Digital Miner, préparer ses filtres et sa configuration, et le démarrer, le mettre en pause ou le réinitialiser à distance, tant que son chunk est chargé et que les permissions le permettent.
 
 ### Raffinage du minerai
@@ -57,6 +58,12 @@ Notes de version : les [notes de la 1.2.0](../releases/1.2.md) listent ce qui a 
 - **[Petrogenic Synthesizer](Petrogenic-Synthesizer.md)** : fabrique de la pierre, de l'obsidienne, du basalte, du granite et d'autres roches à partir d'eau et de lave, un produit à la fois.
 - **[Petrogenic Synthesis Plant](Petrogenic-Synthesis-Plant.md)** : fait tourner huit lignes de synthèse à la fois ; ses modules Hydro Condenser Upgrade et Magma Synthesizer Upgrade peuvent produire sa propre eau et sa propre lave à partir d'énergie.
 
+### Forges et suraccélération
+
+- **[Alloy Forge](Alloy-Forge.md)** *(Ajoutée en 1.3)* : un Infuseur métallurgique renforcé pour les alliages : un lingot de cuivre devient un alliage infusé, puis renforcé, puis atomique dans une seule machine, avec trois réservoirs à remplir. Quatre usines font tourner 3, 5, 7 ou 9 lignes.
+- **[Circuit Forge](Circuit-Forge.md)** *(Ajoutée en 1.3)* : fabrique les quatre circuits de contrôle de Mekanism à partir de lingots d'osmium, de redstone et des trois alliages, et garde les alliages en réserve dans la machine. Quatre usines font tourner 3, 5, 7 ou 9 lignes.
+- **[Basic Time Overclocker](Time-Overclocker.md)** *(Ajouté en 1.3)* : le poser à côté d'une machine, et la machine tourne seize fois plus vite (jusqu'à 1 024 fois avec le palier Supraquantum), contre de l'énergie.
+
 ### Logistique d'usine
 
 - **[Precision Logistical Distributor](Precision-Logistical-Distributor.md)** : répartit les objets de son tampon vers ses faces de sortie, en parts exactes, équilibrées ou pondérées.
@@ -64,7 +71,7 @@ Notes de version : les [notes de la 1.2.0](../releases/1.2.md) listent ce qui a 
 
 ### Intégrations facultatives
 
-- **[JEI, Jade et WTHIT](JEI-Jade-WTHIT.md)** *(Ajouté en 1.1.0)* : des catégories de recettes et des pages d'informations dans JEI, et un affichage compact sur chaque machine dans Jade et WTHIT. Les trois sont facultatifs.
+- **[JEI, EMI, Jade et WTHIT](JEI-Jade-WTHIT.md)** *(Ajouté en 1.1.0 ; EMI en 1.3)* : des catégories de recettes et des pages d'informations dans JEI et dans EMI, et un affichage compact sur chaque machine dans Jade et WTHIT. Les quatre sont facultatifs.
 
 ## Premiers pas
 

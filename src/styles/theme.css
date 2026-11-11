@@ -688,6 +688,12 @@ starlight-lang-select select { width: 8.4rem; }
   .me-news-body > :last-child { margin-bottom: 1.15rem; align-self: end; }
   .me-news-body > .me-btn { justify-self: start; }
 }
+.me-news-also { margin-top: 1rem; display: grid; gap: 0.8rem; }
+@media (min-width: 48rem) { .me-news-also { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+.me-news-also > div { background: var(--me-f-card); border: 1px solid var(--me-t-line); border-radius: 16px; padding: 0.9rem 1rem; }
+.me-news-also .me-eyebrow { display: flex; flex-wrap: wrap; align-items: center; gap: 0.3rem 0.55rem; font-size: 0.66rem; letter-spacing: 0.12em; }
+.me-news-also h4 { margin: 0.3rem 0 0.2rem; font: 650 1rem/1.25 var(--me-head); color: var(--sl-color-white); }
+.me-news-also p { margin: 0; color: var(--me-card-text); font-size: 0.84rem; line-height: 1.5; }
 .me-news-all { display: flex; width: fit-content; margin: 1rem auto 0; padding: 0.45rem 0.9rem; border-radius: 99px; border: 1px solid var(--me-f-line);
   font: 600 0.78rem var(--sl-font-mono); letter-spacing: 0.04em; color: var(--sl-color-accent); text-decoration: none; background: var(--me-glass); transition: border-color 0.15s, transform 0.15s; }
 .me-news-all:hover { border-color: var(--me-teal); transform: translateY(-1px); color: var(--sl-color-accent); }

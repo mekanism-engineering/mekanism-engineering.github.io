@@ -1,15 +1,18 @@
-<!-- source: c56bf8f30031a4cedb2873cdcb4279432103983c -->
+<!-- source: 5843ffb791145ab90dd7382d4cd58c8ac8b79386 -->
 # Premiers pas
 
 Les règles qui s'appliquent à toutes les machines de Mekanism: Engineering, pas seulement à l'une d'elles.
 
 ## Configuration des faces
 
-Chaque machine du mod dispose de la configuration des faces de Mekanism (clic droit avec le Configurateur, ou ouvrir l'écran de la machine), **sauf** quatre :
+Chaque machine du mod dispose de la configuration des faces de Mekanism (clic droit avec le Configurateur, ou ouvrir l'écran de la machine), **sauf** cinq :
 
 - le **Quantum Digital Miner** et la **Petrogenic Synthesis Plant**, qui ont des ports fixes, comme le Mineur digital de Mekanism ;
-- la **Quantum Ore Refinery**, dont les portes sont les blocs de port de sa structure (huit sur le plan) (un Configurateur fait passer un Port d'entrée entre objets, fluides et gaz) ;
-- le **Contrôleur de réseau quantique**, un écran en lecture seule sans aucun port (la Tablette de réseau quantique est un objet).
+- la **Quantum Ore Refinery**, dont les portes sont les blocs de port de sa structure (huit sur le plan) (accroupi + clic droit sur un Port d'entrée avec un Configurateur le fait passer entre objets, fluides et gaz ; un simple clic droit affiche son mode) ;
+- le **Contrôleur de réseau quantique**, un écran en lecture seule sans aucun port (la Tablette de réseau quantique est un objet) ;
+- le **[Basic Time Overclocker](Time-Overclocker.md)**, dont les six faces sont les faces de son écran : on active ou on coupe chacune depuis cet écran.
+
+L'[Alloy Forge](Alloy-Forge.md) et la [Circuit Forge](Circuit-Forge.md), avec leurs usines, disposent de la configuration des faces de Mekanism pour les objets et l'énergie ; leurs faces orange sont celles qui prennent les objets des réservoirs.
 
 Sur une machine multibloc (par exemple l'Industrial Fluid Pump ou la Petrogenic Synthesis Plant), le Configurateur agit sur **n'importe quelle face visible**, y compris les blocs extérieurs de la structure, pas seulement sur le bloc principal : cliquer sur un bloc de la structure revient à cliquer sur la machine elle-même.
 
@@ -17,7 +20,7 @@ Sur une machine multibloc (par exemple l'Industrial Fluid Pump ou la Petrogenic 
 
 Installer une amélioration Mekanism (vitesse, énergie, filtre, ancrage, etc.) en faisant un **clic droit accroupi** sur la machine, l'amélioration en main : le même geste que pour les machines de Mekanism. Cela fonctionne sur n'importe quel bloc de la machine, y compris les blocs extérieurs d'un multibloc.
 
-Certains objets s'installent autrement et ne passent **pas** par l'onglet Améliorations : le Stabilisateur de source (Industrial Fluid Pump) et les modules de l'usine (Petrogenic Synthesis Plant) se posent avec le même clic droit accroupi, mais dans leur propre emplacement dédié plutôt que dans la liste générale des améliorations. Voir la page de chaque machine pour les détails.
+Le Basic Time Overclocker n'accepte aucune amélioration. Certains objets s'installent autrement et ne passent **pas** par l'onglet Améliorations : le Stabilisateur de source (Industrial Fluid Pump) et les modules de l'usine (Petrogenic Synthesis Plant) se posent avec le même clic droit accroupi, mais dans leur propre emplacement dédié plutôt que dans la liste générale des améliorations. Voir la page de chaque machine pour les détails.
 
 ## Sécurité et fréquences
 

@@ -1,4 +1,4 @@
-<!-- source: 320ab884f8b8ea739eb20e894c02535b4e7658c7 -->
+<!-- source: 79b5890491a571d7fca8491e8503f38d51ccfcd9 -->
 # FAQ
 
 ## Pourquoi une machine ne répond-elle pas en mon absence, ou indique-t-elle qu'un chunk n'est pas chargé ?
@@ -15,7 +15,7 @@ Tant que son tampon (ou un ancien stock radioactif laissé sur une fréquence pa
 
 ## Pourquoi ma Quantum Ore Refinery attend-elle au lieu de travailler ?
 
-Avec **Toujours actif** sur OFF (par défaut), elle attend que les réservoirs contiennent tout ce que demande le niveau choisi, et affiche « Attend le niveau » avec ce qui manque. Passer **Toujours actif** sur ON pour la laisser travailler au meilleur niveau que couvrent les réservoirs (jamais en dessous de x2), ou cliquer sur un niveau plus bas pour abaisser le plafond. Voir [Quantum Ore Refinery](Quantum-Ore-Refinery.md#choosing-the-level).
+Avec **Toujours actif** sur OFF (par défaut), elle attend que les réservoirs contiennent tout ce que demande le niveau choisi, et affiche « Attend le x*N* » (le niveau choisi) avec ce qui manque. Passer **Toujours actif** sur ON pour la laisser travailler au meilleur niveau que couvrent les réservoirs (jamais en dessous de x2), ou cliquer sur un niveau plus bas pour abaisser le plafond. Voir [Quantum Ore Refinery](Quantum-Ore-Refinery.md#choosing-the-level).
 
 ## Pourquoi la Quantum Ore Refinery ne se forme-t-elle pas ?
 

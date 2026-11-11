@@ -1,4 +1,4 @@
-<!-- source: 35eb23c74c83aabd0843c1ff4caa34e59a74fdd3 -->
+<!-- source: 468e2c22a01953c9dd20c25179f935824e191c77 -->
 # Quantum Ore Refinery
 
 > Toute la chaîne de traitement du minerai de Mekanism dans un seul multibloc : du minerai en entrée, jusqu'à cinq lingots par minerai en sortie.
@@ -33,20 +33,25 @@ Les chiffres des deux dernières colonnes sont ceux que donnent les recettes de 
 par défaut de Mekanism. Chaque quantité est lue dans les recettes de l'objet à chaque étape, donc un autre minerai a ses propres rapports : trois
 fers bruts, par exemple, donnent 4, 6 et 10 lingots à x2, x3 et x5. Une recette modifiée par Mekanism ou par un modpack modifie
 la raffinerie avec elle. Un niveau pour lequel un minerai n'a pas de recette dans la chaîne n'est tout simplement pas disponible pour ce minerai, et
-rien n'est prélevé.
+rien n'est prélevé. Quand les recettes d'un modpack font passer un minerai par certains des niveaux x3 à x5 mais pas par tous, les niveaux
+laissés de côté restent fermés pour ce minerai, même un niveau du milieu (x2 et x4 définis, x3 absent) : la case de ce niveau indique
+« x3 : pas de recette pour ce minerai », le tableau Statistiques « Fermé », et avec Toujours actif sur OFF et le plafond sur ce niveau, le
+contrôleur indique « Pas de recette ici ».
 
-Ce que la raffinerie accepte comme minerai est le tag d'objet `mekanismengineering:refinery_ores` (les minerais, les métaux bruts et les
-blocs de métal brut de fer, d'or, de cuivre, d'osmium, d'étain, de plomb et d'uranium ; un datapack peut l'étendre ou le réduire), à
-condition que la Chambre d'enrichissement de Mekanism ait une recette pour l'objet.
+Ce que la raffinerie accepte comme minerai est tout objet du tag `mekanismengineering:refinery_ores` (les minerais, les métaux bruts et les
+blocs de métal brut de fer, d'or, de cuivre, d'osmium, d'étain, de plomb et d'uranium) ou des tags communs des minerais, des matières brutes
+et des blocs bruts (`c:ores/*`, `c:raw_materials/*`, `c:storage_blocks/raw_*` ; `forge:` en 1.20.1), à condition que la Chambre
+d'enrichissement de Mekanism ait une recette pour l'objet. Un datapack étend `refinery_ores` ; retirer un minerai de `refinery_ores` ne
+l'écarte plus de la raffinerie quand il figure aussi dans l'un des tags communs. Un minerai n'est écarté que si aucune recette de la
+Chambre d'enrichissement ne le prend.
 
 - **Une pile à la fois.** À l'arrêt, la machine regarde ses neuf emplacements de minerai environ une fois par seconde et prend le
   premier qui contient quelque chose qu'elle peut raffiner. Un travail traite la pile de cet emplacement, **jusqu'à 64 objets**, d'un seul coup.
 - **La même énergie à chaque niveau.** Une recette de minerai coûte la même énergie quels que soient le niveau et la vitesse : 200 ticks de
   la consommation de la Chambre d'enrichissement, soit 10 000 J avec les 50 J/t par défaut de Mekanism. Le coût est payé tick par tick pendant
   le travail (un travail en pause garde ce qu'il a déjà payé). Une pile de 64 recettes de minerai coûte 640 000 J par défaut.
-- **Tout le reste traverse.** Un objet qui n'est pas un minerai que la raffinerie peut traiter n'est pas refusé par un port
-  d'entrée en mode objets : il va à la sortie et repart par le port de sortie, intact et sans frais. Un tapis d'objets
-  mélangés peut alimenter la machine sans filtre. (Sans port de sortie, un tel objet est refusé.)
+- **Tout le reste est refusé.** Un objet qui n'est pas un minerai que la raffinerie peut traiter est refusé en bloc par un port
+  d'entrée, à chaque emplacement : il reste d'où il vient. Un tapis d'objets mélangés doit être trié avant la raffinerie (un filtre ou un trieur).
 - **Les ressources ne sont prélevées qu'à la fin du travail**, dans le même tick que l'apparition des lingots. Si les réservoirs ne contiennent plus
   ce que le niveau demande à ce moment-là, rien n'est prélevé (voir *Choisir le niveau* ci-dessous).
 
@@ -58,7 +63,7 @@ La machine a deux commandes, toutes deux sur l'écran Accueil :
   plafond est x5. La machine ne travaille jamais au-dessus du plafond.
 - **Toujours actif**, OFF ou ON (OFF par défaut).
   - **OFF** : la machine attend que les réservoirs contiennent tout ce que demande le **niveau plafond** pour le minerai en cours, puis
-    travaille exactement à ce niveau. En attendant, le statut indique « Attend le niveau » et l'écran liste ce qui manque
+    travaille exactement à ce niveau. En attendant, le statut indique « Attend le x*N* » (*N* est le niveau attendu : le plafond) et l'écran liste ce qui manque
     (« Manque pour x5 : ... »).
   - **ON** : la machine travaille au **meilleur niveau, jusqu'au plafond, dont les réservoirs couvrent les ressources**. Elle ne descend jamais sous
     x2 (qui ne demande rien aux réservoirs), sauf si le plafond est à x1, si bien qu'elle continue de raffiner pendant que les produits chimiques se remplissent. Un
@@ -111,6 +116,12 @@ chaque recette. En bref :
 Un port appartient à **une seule** raffinerie : un port déjà pris par un autre contrôleur empêche la seconde structure de se former
 (« le port en (x, y, z) sert déjà une autre Quantum Ore Refinery »).
 
+Une pièce appartient aussi à **une seule** raffinerie. Une carcasse, un pilier ou tout autre bloc de la structure dont une Quantum Ore
+Refinery formée a besoin reste à cette raffinerie. Un second contrôleur dont la structure utiliserait le même bloc ne se forme pas : son
+écran, son message dans le chat et l'infobulle Jade/WTHIT indiquent « la pièce en (x, y, z) appartient déjà à une autre Quantum Ore
+Refinery formée ». Éloigner le second contrôleur, ou démonter la première raffinerie : la seconde se forme à sa vérification suivante.
+Les boîtes peuvent se chevaucher là où l'une des deux laisse une case libre.
+
 ## Premiers pas
 
 1. Construire la structure d'après [Structure et pièces](Quantum-Ore-Refinery-Structure.md). L'écran indique « Multibloc formé » quand elle est correcte.
@@ -120,7 +131,7 @@ Un port appartient à **une seule** raffinerie : un port déjà pris par un autr
    x5 (voir *Choisir le niveau*).
 4. Pour x3 et au-delà, régler d'autres Ports d'entrée avec un **Configurateur** (accroupi + clic droit) : un sur **Fluides** pour l'eau, et un sur **Gaz**
    pour l'oxygène, le chlorure d'hydrogène et l'acide sulfurique (un seul port Gaz prend les trois produits chimiques ; chacun va
-   dans son propre réservoir, et tout autre chemical est refusé).
+   dans son propre réservoir, et tout autre produit chimique est refusé).
 5. Récupérer les lingots au Port de sortie avec un tuyau, un entonnoir ou un coffre placé contre lui, ou ajouter le
    [Module quantique](#the-quantum-module) facultatif pour les envoyer plutôt vers une fréquence Quantum ou QIO. **La machine a besoin de l'un
    des deux** : sans Port de sortie ni module lié, elle se forme mais affiche « Pas de sortie » et ne travaille pas.
@@ -137,7 +148,8 @@ structure l'ouvre aussi.
 - Bandeau de **statut** : ce que fait la machine, avec l'énergie qu'elle consomme par tick. Les statuts possibles sont listés dans
   *Conseils et dépannage*.
 - **Cinq cases de niveau** (x1 à x5) : allumée quand le niveau travaille en ce moment, prête quand les réservoirs le couvrent, rouge quand il
-  attend une ressource, grisée au-dessus du plafond. Survoler une case pour voir ce qu'elle demande ; cliquer dessus pour fixer le plafond.
+  attend une ressource, grisée au-dessus du plafond. Une case est aussi grisée, et indique « pas de recette pour ce minerai », quand le minerai
+  en cours n'a pas de recette à ce niveau (les recettes d'un modpack l'omettent) ; elle n'est pas rouge, car aucune ressource ne l'ouvrirait. Survoler une case pour voir ce qu'elle demande ; cliquer dessus pour fixer le plafond.
 - **Toujours actif** avec ses boutons **OFF** et **ON**, et une ligne d'avertissement (« Manque pour x5 : ... ») qui nomme la ressource qui manque au
   niveau plafond.
 - **Neuf emplacements de minerai**, chacun avec une fine barre de progression en dessous, et l'inventaire du joueur.
@@ -150,7 +162,7 @@ Uniquement quand la structure contient le Module quantique. Voir [Le module quan
 ### Réservoirs
 
 Quatre jauges Mekanism (acide sulfurique, eau, chlorure d'hydrogène, oxygène) avec leur nom au-dessus et, sous chacune, le premier
-niveau que ce stock rend possible (« Débloque x3 », ...), en rouge tant que le stock est vide. Survoler une jauge affiche son contenu.
+niveau que ce stock rend possible (« Requis dès le x3 », ...), en rouge tant que le stock est vide. Survoler une jauge affiche son contenu.
 
 ### Statistiques
 
@@ -158,7 +170,8 @@ niveau que ce stock rend possible (« Débloque x3 », ...), en rouge tant que l
   minutes (non sauvegardé avec le monde), le **multiplicateur max** atteignable en ce moment, la **consommation**, et le nombre
   d'**accélérateurs** sur huit.
 - **Multiplicateurs** : un tableau des cinq niveaux face aux quatre stocks. Un stock que le niveau demande mais qui manque dans les réservoirs pour le
-  minerai en cours est encadré de rouge. Chaque niveau indique **Sélectionné**, **Disponible**, **En attente** ou **Indisponible**.
+  minerai en cours est encadré de rouge. Chaque niveau indique **Sélectionné**, **Disponible**, **En attente** (une ressource manque), **Fermé** (le minerai en cours n'a pas de recette à
+  ce niveau), **Au max** (le plafond est plus bas) ou **Indisponible** (cette version ne fournit pas ce niveau).
 
 ## Le module quantique
 
@@ -177,7 +190,7 @@ L'écran du module propose le choix **Quantum | QIO**, la liste des fréquences 
 pleine, absente ou supprimée, les lingots attendent dans le tampon (« Destination pleine », « Produits gardés dans le tampon ») ; rien n'est
 perdu, et ils repartent dès qu'il y a de la place. Un tampon plein empêche la machine de terminer ses travaux, exactement comme une sortie pleine.
 Sans le module, ou sans fréquence, les lingots repartent par le port de sortie, et ce que le tampon contient encore
-les suit. Si la structure a aussi un Port de sortie, il sert de **tampon de secours** : ce que le tampon du module ne peut pas contenir sort par le port. Si elle n'a pas de Port de sortie, un tampon plein fait attendre la machine (« Sortie pleine »). Si elle n'a ni Port de sortie ni module lié, la machine ne travaille pas du tout (« Pas de sortie »). Un objet que la raffinerie ne fait que laisser passer ne passe jamais par le module.
+les suit. Si la structure a aussi un Port de sortie, il sert de **tampon de secours** : ce que le tampon du module ne peut pas contenir sort par le port. Si elle n'a pas de Port de sortie, un tampon plein fait attendre la machine (« Sortie pleine »). Si elle n'a ni Port de sortie ni module lié, la machine ne travaille pas du tout (« Pas de sortie »).
 
 Les boutons **OFF** et **ON** en haut de l'écran du module l'éteignent sans le retirer : sur OFF, le module est ignoré comme s'il n'était pas posé, les lingots (et ce que le tampon contient) sortent par le Port de sortie, rien n'est envoyé et les fréquences choisies sont gardées ; sans Port de sortie, la raffinerie attend. ON est la position par défaut.
 
@@ -221,8 +234,9 @@ d'enrichissement de Mekanism ; les recettes suivent celles de Mekanism.
 | Attend les chunks | Un chunk de la structure n'est pas chargé. |
 | Coupé (redstone) | Le contrôle par redstone de Mekanism arrête la machine. |
 | Pas de sortie | La structure n'a ni Port de sortie ni Module quantique lié. Rien n'est traité ; ajouter un port ou lier le module, et elle reprend. |
-| Pas de minerai | Aucun emplacement de minerai ne contient quelque chose que la raffinerie peut traiter. |
-| Attend le niveau | Toujours actif est sur OFF et les réservoirs ne couvrent pas encore le niveau plafond. |
+| Pas assez de minerai | Aucun emplacement de minerai ne contient assez d'un minerai que la raffinerie peut traiter (une recette prend plusieurs minerais à la fois). |
+| Attend le x*N* | Les réservoirs ne couvrent pas encore le niveau que la machine attend : le niveau plafond avec Toujours actif sur OFF, le x2 avec Toujours actif sur ON. |
+| Pas de recette ici | Toujours actif est sur OFF et le niveau plafond en est un pour lequel le minerai en cours n'a pas de recette ; rien ne tourne et rien n'est prélevé. Cliquer sur un niveau que le minerai a, ou mettre Toujours actif sur ON. |
 | Manque d'énergie | Le travail ne peut pas payer l'énergie de ce tick ; il garde ce qu'il a payé et reprend quand l'énergie arrive. |
 | Attend ressources | Un travail terminé manque des produits chimiques de son niveau ; rien n'a été prélevé. |
 | Sortie pleine | Les produits ne rentrent pas ; le travail attend et réessaie toutes les demi-secondes. |
@@ -234,8 +248,9 @@ d'enrichissement de Mekanism ; les recettes suivent celles de Mekanism.
 - **Seul x2 fonctionne.** Les produits chimiques manquent : vérifier qu'un Port d'entrée est réglé sur Fluides pour l'eau et un sur Gaz, et
   regarder l'écran Réservoirs.
 - **« Pas de sortie » et rien ne se passe.** La structure n'a ni Port de sortie ni Module quantique avec une fréquence. Construire un Port de sortie, ou choisir une fréquence sur l'écran du module.
-- **Bloquée sur « Attend le niveau ».** Toujours actif est sur OFF et le plafond est au-dessus de ce que couvrent les réservoirs. Baisser le plafond en cliquant sur un
+- **Bloquée sur « Pas de recette ici ».** Le plafond est sur un niveau pour lequel le minerai de l'emplacement n'a pas de recette. Cliquer sur un niveau qu'il a (les cases de tels niveaux sont grisées et indiquent « pas de recette pour ce minerai »), ou mettre Toujours actif sur ON pour travailler au meilleur niveau qu'il a.
+- **Bloquée sur « Attend le x*N* ».** Toujours actif est sur OFF et le plafond est au-dessus de ce que couvrent les réservoirs. Baisser le plafond en cliquant sur un
   niveau inférieur, ou mettre Toujours actif sur ON.
-- **Un objet est ressorti du port de sortie sans changement.** Ce n'est pas un minerai que la raffinerie peut traiter, ou la Chambre
-  d'enrichissement de Mekanism n'a pas de recette pour lui : il traverse, c'est voulu.
-- **Deux raffineries ne peuvent pas partager un port**, donc deux structures ne peuvent pas se chevaucher.
+- **Un objet n'est pas pris par un port d'entrée.** Ce n'est pas un minerai que la raffinerie peut traiter, ou la Chambre
+  d'enrichissement de Mekanism n'a pas de recette pour lui : il est refusé, c'est voulu ; le trier avant la raffinerie.
+- **Deux raffineries ne peuvent partager ni un port ni une pièce** : la seconde ne se forme pas et dit quel bloc est pris. Elles ne peuvent se chevaucher que là où l'une des deux laisse une case libre.

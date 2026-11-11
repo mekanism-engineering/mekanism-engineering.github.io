@@ -1,7 +1,7 @@
-<!-- source: 7544acecb789ae39da214c934b00f5060b778fa3 -->
+<!-- source: 7170392a28d2cce1429b22a9c6f07d540d198eb9 -->
 # Quantum Digital Miner
 
-> Évolution de fin de jeu du Mineur digital : mêmes filtres et réglages, rayon jusqu'à 128, vitesse de minage quadruplée,
+> Évolution de fin de jeu du Mineur digital : mêmes filtres et réglages, rayon jusqu'à 128, vitesse de minage octuplée,
 > énergie et objets par fréquences quantiques, et relocalisation vers une zone vierge avec le [Digital Miner
 > Companion](Digital-Miner-Companion.md).
 
@@ -10,6 +10,7 @@
 | | |
 |---|---|
 | Type | Machine |
+| Taille de pile | 1 (en 1.21.1 depuis la 1.2.1, comme en 1.20.1 ; les piles déjà présentes dans un monde gardent leur nombre) |
 | Taille | Emprise de 3 × 3 sur 2 blocs de haut (bloc principal + 17 blocs d'encombrement, même emprise que le Mineur digital de Mekanism) |
 | Énergie | Suit la formule du Mineur digital de Mekanism (`usage.digitalMiner`, `storage.digitalMiner`) × `quantum_miner.energyMultiplier` (4,0 par défaut) : 4 000 J/t et 200 000 J de stockage sans mise à niveau, davantage selon les Mises à niveau de la vitesse et énergétiques, le rayon et la plage de hauteur |
 | Mises à niveau | Vitesse, Énergie, Ancrage, Générateur de Roche (les mises à niveau du Mineur digital de Mekanism) |
@@ -22,7 +23,8 @@ Le Quantum Digital Miner mine les blocs dans un cube autour de lui exactement co
 de minage, et mêmes Mises à niveau de la vitesse, énergétique, d'ancrage et du générateur de roche. Ce qui change :
 
 - **Rayon** : jusqu'à 128 blocs (limite serveur `quantum_miner.maxRadius`), contre une limite de 32 pour le Mineur digital.
-- **Vitesse** : mine quatre fois plus vite qu'un Mineur digital avec les mêmes Mises à niveau de la vitesse (`quantum_miner.speedMultiplier`).
+- **Vitesse** : mine huit fois plus vite qu'un Mineur digital avec les mêmes Mises à niveau de la vitesse (`quantum_miner.speedMultiplier` ; quatre fois avant la 1.3, et une configuration serveur encore à l'ancien 4,0 passe à 8,0 une seule fois, au premier chargement de la 1.3).
+- **Une limite par tick de jeu** : quelle que soit la vitesse et quel que soit le nombre de Mises à niveau de la vitesse ou de [Time Overclockers](Time-Overclocker.md) dont il dispose, un Quantum Digital Miner mine au plus 32 blocs par tick de jeu (`quantum_miner.maxBlocksPerGameTick` ; `maxBlocksPerTick`, 8, limite toujours chaque exécution de son travail).
 - **Énergie et objets par fréquences quantiques** : en plus de ses propres ports et de sa batterie (comme le Mineur digital), il
   peut tirer son énergie d'une fréquence quantique partagée avec d'autres machines (réserve façon Entangloporteur quantique de Mekanism :
   un type d'objet, une réserve d'énergie) ou du réseau QIO, y envoyer les objets minés et y prendre les blocs de remplacement. Choisir
@@ -168,9 +170,10 @@ Configuration serveur, section `quantum_miner` :
 |---|---|---|---|
 | `enabled` | true | – | Désactive entièrement la recherche et le minage |
 | `maxRadius` | 128 | 1–128 | Plus grand rayon de minage que les joueurs peuvent régler |
-| `speedMultiplier` | 4,0 | 1,0–16,0 | Vitesse de minage par rapport à un Mineur digital avec les mêmes Mises à niveau de la vitesse |
+| `speedMultiplier` | 8,0 (4,0 avant la 1.3) | 1,0–16,0 | Vitesse de minage par rapport à un Mineur digital avec les mêmes Mises à niveau de la vitesse |
 | `energyMultiplier` | 4,0 | 0,0–64,0 | Consommation d'énergie et stockage de base par rapport à la configuration du Mineur digital de Mekanism |
 | `maxBlocksPerTick` | 8 | 1–64 | Plafond strict de blocs minés par une machine en un seul tick |
+| `maxBlocksPerGameTick` | 32 | 1–1 024 | Plafond strict de blocs qu'une machine mine en un tick de jeu entier, quel que soit le nombre de fois que son travail y est exécuté (un Time Overclocker l'exécute encore et encore) |
 | `maxChecksPerTick` | 512 | 16–65 536 | Plafond strict de positions examinées en un seul tick |
 | `searchBudgetMicros` | 2 000 | 100–50 000 | Temps du fil serveur par tick partagé entre toutes les recherches en cours |
 | `searchThreads` | 1 | 1–4 | Fils d'exécution en arrière-plan qui analysent les chunks, partagés par tous les Quantum Digital Miners |

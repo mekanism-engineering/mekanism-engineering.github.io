@@ -1,4 +1,4 @@
-<!-- source: dc7ac655b576028a48647c5bff42ac1c3d1a07e8 -->
+<!-- source: 7ab6ddfa74816ec6c4ad763b38d6525e40f0646c -->
 # Configuration
 
 Mekanism: Engineering enregistre une configuration NeoForge **SERVER**, qui contient presque tous les réglages, et une petite configuration **CLIENT** (voir [Réglages client](#client-settings)) ; il n'y a pas de configuration COMMON. La configuration serveur est propre à chaque monde, ici :
@@ -44,9 +44,11 @@ de réseau quantique](Quantum-Network-Tablet.md).
 |---|---|---|---|
 | `enabled` | `true` | s. o. | Active ou désactive le Quantum Digital Miner : désactivé, il ne cherche ni ne mine. |
 | `maxRadius` | `128` | 1 – 128 | Plus grand rayon de minage que les joueurs peuvent régler, en blocs. |
-| `speedMultiplier` | `4.0` | 1,0 – 16,0 | Combien de fois plus vite il mine que le Mineur digital de Mekanism avec les mêmes Mises à niveau de la vitesse. |
+| `speedMultiplier` | `8.0` | 1,0 – 16,0 | Combien de fois plus vite il mine que le Mineur digital de Mekanism avec les mêmes Mises à niveau de la vitesse. Quatre avant la 1.3 : un fichier encore à 4,0 passe à 8,0 une seule fois, au premier chargement de la 1.3. |
+| `speedMultiplierMigrated` | `false` | s. o. | Mis à `true` par le mod une fois ce passage fait ; ne pas y toucher. |
 | `energyMultiplier` | `4.0` | 0,0 – 64,0 | Consommation d'énergie et stockage de base, en multiple des réglages du Mineur digital de Mekanism. |
-| `maxBlocksPerTick` | `8` | 1 – 64 | Nombre maximal de blocs qu'un Quantum Digital Miner peut miner en un seul tick. |
+| `maxBlocksPerTick` | `8` | 1 – 64 | Nombre maximal de blocs qu'un Quantum Digital Miner peut miner en une seule exécution de son travail. |
+| `maxBlocksPerGameTick` | `32` | 1 – 1 024 | Nombre maximal de blocs qu'un Quantum Digital Miner peut miner en un tick de jeu entier, toutes exécutions confondues : un Time Overclocker exécute le travail plusieurs fois par tick et ne peut pas dépasser cette limite. |
 | `maxChecksPerTick` | `512` | 16 – 65 536 | Nombre maximal de positions cibles examinées en un seul tick, y compris celles qui ont changé depuis la recherche. |
 | `searchBudgetMicros` | `2000` | 100 – 50 000 | Temps serveur (microsecondes par tick) partagé entre toutes les recherches en cours. |
 | `searchThreads` | `1` | 1 – 4 | Fils d'exécution en arrière-plan qui analysent les données des chunks pour l'ensemble des Quantum Digital Miners. |
@@ -149,6 +151,31 @@ de réseau quantique](Quantum-Network-Tablet.md).
 | `hydroCondenserEnergyPerMb` | `5.0` J/mB | 0,0 – 1 000 000,0 | Coût en énergie par mB d'eau produite par les Hydro Condenser Upgrades. Les Mises à niveau énergétiques ne le réduisent pas. |
 | `magmaSynthesizerRate` | `1,000` mB/t | 0 – 1 000 000 | Quantité maximale de lave produite par une Magma Synthesizer Upgrade. |
 | `magmaSynthesizerEnergyPerMb` | `1,000.0` J/mB | 0,0 – 1 000 000,0 | Coût en énergie par mB de lave produite par les Magma Synthesizer Upgrades. Les Mises à niveau énergétiques ne le réduisent pas ; il est gardé au-dessus de ce qu'un générateur produirait avec cette lave. |
+
+## Time Overclocker `[overclocker]`
+
+| Clé | Défaut | Plage | Signification |
+|---|---|---|---|
+| `enabled` | `true` | s. o. | Interrupteur général du [Time Overclocker](Time-Overclocker.md). Désactivé, les Overclockers déjà posés ne font rien et leur écran indique que le serveur les a coupés, et la recette de fabrication du Basic Time Overclocker est retirée (au démarrage du serveur et à chaque `/reload`). |
+| `maxMultiplier` | `1024` | 1 – 1 024 | Vitesse maximale qu'un Time Overclocker peut donner, quoi que son palier permette. |
+| `maxExtraTicksPerServerTick` | `20,000` | 0 – 1 000 000 | Nombre maximal de ticks de machine supplémentaires que tous les Time Overclockers ensemble peuvent ajouter en un tick serveur. |
+| `blacklist` | les 5 blocs du réacteur à fission et les 3 générateurs sans combustible | liste d'identifiants de blocs | Identifiants de blocs qu'un Time Overclocker n'accélère jamais, un identifiant par entrée (par exemple `"mekanismgenerators:fission_reactor_casing"`). Par défaut : `"mekanismgenerators:fission_reactor_casing"`, `"mekanismgenerators:fission_reactor_port"`, `"mekanismgenerators:fission_reactor_logic_adapter"`, `"mekanismgenerators:fission_fuel_assembly"` `"mekanismgenerators:control_rod_assembly"`, `"mekanismgenerators:wind_generator"`, `"mekanismgenerators:solar_generator"` et `"mekanismgenerators:advanced_solar_generator"` (ils ne brûlent rien, donc des ticks répétés produiraient de l'énergie gratuite) ; le réacteur à fusion reste accéléré. Un fichier de configuration généré avant ce défaut garde son ancienne valeur (une liste vide) et doit être modifié à la main. Un Overclocker n'est jamais accéléré, quoi que dise cette liste. |
+
+Le coût en énergie de l'Overclocker par tick supplémentaire (100 J) et son stockage (au moins 2 000 000 J, davantage pour le palier Supraquantum) ne figurent pas dans ce fichier en 1.3.
+
+## Alloy Forge `[alloy_forge]`
+
+| Clé | Défaut | Plage | Signification |
+|---|---|---|---|
+| `energyUsage` | `100` J/t | 0 – max | Énergie que l'[Alloy Forge](Alloy-Forge.md) consomme par tick pendant qu'elle travaille. Une usine consomme cette valeur pour chaque ligne qu'elle fait tourner. |
+| `energyStorage` | `80,000` J | 1 – max | Énergie que stocke l'Alloy Forge. Une usine en stocke la moitié par ligne, et jamais moins qu'un tick de sa consommation. |
+
+## Circuit Forge `[circuit_forge]`
+
+| Clé | Défaut | Plage | Signification |
+|---|---|---|---|
+| `energyUsage` | `100` J/t | 0 – max | Énergie que la [Circuit Forge](Circuit-Forge.md) consomme par tick pendant qu'elle travaille. Une usine consomme cette valeur pour chaque ligne. |
+| `energyStorage` | `80,000` J | 1 – max | Énergie que stocke la Circuit Forge. Une usine en stocke la moitié par ligne, et jamais moins qu'un tick de sa consommation. |
 
 ## Contrôleur de réseau quantique `[quantum_network]`
 

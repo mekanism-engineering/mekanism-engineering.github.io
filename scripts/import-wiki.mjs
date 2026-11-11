@@ -260,9 +260,9 @@ function gameTexts(ids) {
 
 // ---------- 5. pages ----------
 // every page is at /wiki/<to>/; the machines are grouped by family in the sidebar (src/data/sidebar.json)
-const FAMILIES = { 'ore-refining': 'Ore refining', mining: 'Mining', 'quantum-network': 'Quantum network', teleportation: 'Teleportation',
+const FAMILIES = { 'ore-refining': 'Ore refining', mining: 'Mining', crafting: 'Crafting', acceleration: 'Acceleration', 'quantum-network': 'Quantum network', teleportation: 'Teleportation',
   charging: 'Charging', 'fluids-and-rocks': 'Fluids and rocks', logistics: 'Logistics' };
-const FAMILIES_FR = { 'ore-refining': 'Raffinage du minerai', mining: 'Minage', 'quantum-network': 'Réseau quantique', teleportation: 'Téléportation',
+const FAMILIES_FR = { 'ore-refining': 'Raffinage du minerai', mining: 'Minage', crafting: 'Fabrication', acceleration: 'Accélération', 'quantum-network': 'Réseau quantique', teleportation: 'Téléportation',
   charging: 'Recharge', 'fluids-and-rocks': 'Fluides et roches', logistics: 'Logistique' };
 // what the French pages say where the English ones are written by this script
 const FR_PAGE = { Home: { title: 'Présentation' }, 'Getting-Started': { title: 'Premiers pas' },
@@ -283,6 +283,9 @@ const PAGES = {
       'ore_refinery_module_smelting', 'ore_refinery_module_quantum'] },
   'Quantum-Digital-Miner': { to: 'quantum-digital-miner', family: 'mining', order: 1, ids: ['quantum_digital_miner'], quantum: true, model: 'quantum_digital_miner' },
   'Digital-Miner-Companion': { to: 'digital-miner-companion', family: 'mining', order: 2, ids: ['digital_miner_surveyor'] },
+  'Alloy-Forge': { to: 'alloy-forge', family: 'crafting', order: 1, ids: ['alloy_forge', 'basic_alloy_forge_factory', 'advanced_alloy_forge_factory', 'elite_alloy_forge_factory', 'ultimate_alloy_forge_factory'], model: 'alloy_forge', isNew: true },
+  'Circuit-Forge': { to: 'circuit-forge', family: 'crafting', order: 2, ids: ['circuit_forge', 'basic_circuit_forge_factory', 'advanced_circuit_forge_factory', 'elite_circuit_forge_factory', 'ultimate_circuit_forge_factory'], model: 'circuit_forge', isNew: true },
+  'Time-Overclocker': { to: 'time-overclocker', family: 'acceleration', order: 1, ids: ['basic_time_overclocker', 'advanced_time_overclocker', 'elite_time_overclocker', 'ultimate_time_overclocker', 'supraquantum_time_overclocker'], model: 'basic_time_overclocker', isNew: true },
   'Quantum-Energy-Receiver': { to: 'quantum-energy-receiver', family: 'quantum-network', order: 1, quantum: true, model: 'ultimate_quantum_energy_receiver',
     ids: ['basic_quantum_energy_receiver', 'advanced_quantum_energy_receiver', 'elite_quantum_energy_receiver', 'ultimate_quantum_energy_receiver'] },
   'Radioactive-Quantum-Entangloporter': { to: 'radioactive-quantum-entangloporter', family: 'quantum-network', order: 2, quantum: true, ids: ['radioactive_quantum_entangloporter'], photo: true },

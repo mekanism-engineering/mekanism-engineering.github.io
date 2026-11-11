@@ -1,21 +1,28 @@
-<!-- source: d22e2c3c398e2d87ebc559e7ac756d4fef288de2 -->
-# JEI, Jade et WTHIT
+<!-- source: c4694e5111419650a1a704562ce4816809d59fb7 -->
+# JEI, EMI, Jade et WTHIT
 
-> Prise en charge facultative de trois mods d'information : des pages de recettes dans JEI, un affichage des machines dans Jade et dans WTHIT.
+> Prise en charge facultative de quatre mods d'information : des pages de recettes dans JEI et dans EMI, un affichage des machines dans Jade et dans WTHIT.
 
 | | |
 |---|---|
 | Type | Intégrations facultatives |
-| Ajouté en | 1.1.0 (lignes de la Quantum Ore Refinery en 1.2.0) |
-| Requis | Non : aucun des trois n'est nécessaire, et aucun n'est fourni avec l'addon |
-| Versions | JEI 19.25.1.332 ou plus récent ; Jade 15.10 ou plus récent ; WTHIT (compilé avec son API NeoForge 12.10.2) |
-| Où il tourne | JEI sur le client ; Jade et WTHIT sur le client et le serveur |
+| Ajouté en | 1.1.0 (lignes de la Quantum Ore Refinery en 1.2.0 ; forges et Overclocker en 1.3 ; EMI en 1.3) |
+| Requis | Non : aucun des quatre n'est nécessaire, et aucun n'est fourni avec l'addon |
+| Versions | En 1.21.1 : JEI 19.25.1.332 ou plus récent ; Jade 15.10 ou plus récent ; WTHIT 12.10.2 ou plus récent. En 1.20.1 : JEI 15.56.0.205 ou plus récent ; Jade 11.12.3 ou plus récent ; WTHIT 8.19.3 ou plus récent. (1.2.1 ; avant, n'importe quelle version se chargeait). EMI : en 1.21.1, aucune version minimale n'est exigée ; en 1.20.1, EMI 1.1.24 ou plus récent (1.3) |
+| Où il tourne | JEI et EMI sur le client ; Jade et WTHIT sur le client et le serveur |
+
+## Anciennes versions de ces mods
+
+JEI, Jade et WTHIT ont chacun une version minimale avec laquelle Mekanism: Engineering a été essayé (celles du tableau ci-dessus). EMI n'en a pas en 1.21.1, et en 1.20.1 sa version minimale est 1.1.24. Si une version plus
+ancienne est installée, Minecraft s'arrête au démarrage et l'écran de chargement nomme le mod et la version qu'il veut ; mettre ce mod à jour, ou
+le retirer, et l'addon fonctionne sans lui. Avant la 1.2.1, un WTHIT trop ancien n'était pas refusé au démarrage et pouvait échouer plus tard, quand
+on regardait une machine.
 
 ## Ce que ça fait
 
-Si JEI, Jade ou WTHIT est installé à côté de Mekanism: Engineering, l'addon ajoute ses propres pages de recettes et ses
+Si JEI, EMI, Jade ou WTHIT est installé à côté de Mekanism: Engineering, l'addon ajoute ses propres pages de recettes et ses
 propres lignes d'affichage. Sans eux, l'addon se comporte exactement comme avant : rien n'est chargé, rien n'est demandé, et rien
-ne change dans les réglages de l'addon. Chacun des trois fonctionne seul ; Jade et WTHIT peuvent être installés ensemble.
+ne change dans les réglages de l'addon. Chacun des quatre fonctionne seul ; Jade et WTHIT peuvent être installés ensemble.
 
 ## JEI
 
@@ -40,8 +47,27 @@ ne change dans les réglages de l'addon. Chacun des trois fonctionne seul ; Jade
 - **Page de la Quantum Ore Refinery.** Une page pour la structure de la
   [Quantum Ore Refinery](Quantum-Ore-Refinery.md) : une vue 3D orientable, les quatre couches une par une, et la
   liste des pièces, plus une fiche d'aide pour chacun des 22 blocs de la structure. La ligne Jade « Voir JEI : couche N sur M » y renvoie.
+- **Forges et Overclocker (1.3).** Chaque nouveau bloc a une page d'information : l'[Alloy Forge](Alloy-Forge.md), la [Circuit Forge](Circuit-Forge.md), leurs quatre usines chacune, et le [Time Overclocker](Time-Overclocker.md) (page « Time Overclocking » : la vitesse de chaque palier et les trois règles).
+- **Catégories Alloy Forging et Circuit Forging** pour les recettes des deux forges.
 - Les recettes de fabrication, le transfert des ingrédients vers une grille de fabrication et les ingrédients fantômes des filtres sont ceux de JEI et
   de Mekanism, laissés tels quels.
+
+## EMI
+
+*Ajouté en 1.3.* EMI montre les mêmes pages que JEI, avec les mêmes chiffres lus au même endroit (les règles propres à la machine et les
+réglages du serveur), présentées pour l'écran de recettes d'EMI :
+
+- **Catégories Alloy Forging et Circuit Forging**, avec les forges et leurs usines comme postes de travail (les « utilisations » d'EMI sur une forge listent les recettes).
+- **Une catégorie pour le [Petrogenic Synthesizer](Petrogenic-Synthesizer.md) et une pour la [Petrogenic Synthesis Plant](Petrogenic-Synthesis-Plant.md)**
+  avec toutes les recettes chargées, les deux sélecteurs de Mises à niveau de la vitesse et énergétiques (consultation seulement) et la machine comme poste de travail.
+- **Pages de la Quantum Ore Refinery** : la structure (vue 3D, grille des pièces et fiche de la pièce choisie ; chaque bloc de la structure l'ouvre)
+  et une page pour chaque minerai que la raffinerie traite, avec les onglets x1 à x5. EMI ne donne pas de molette de souris à une page, donc la vue 3D se zoome avec les
+  deux petits boutons **-** et **+** à côté de Réinitialiser, ou avec les touches - et + tant que le pointeur est dessus. Glisser pour la faire tourner ; R la réinitialise et les
+  flèches la font tourner, comme dans JEI.
+- **Pages d'information** pour les blocs et objets de l'addon, comme dans JEI (les chiffres suivent de la même façon les réglages du serveur).
+- **Le Time Overclocker est masqué** quand le serveur l'a coupé. Un changement de cet interrupteur apparaît à la prochaine connexion ou au prochain rechargement.
+
+Sans JEI, EMI suffit pour ces pages. Les recettes de fabrication et le transfert des ingrédients vers une grille de fabrication sont ceux d'EMI et de Mekanism, laissés tels quels.
 
 ## Jade et WTHIT
 
@@ -64,6 +90,8 @@ Une ligne le signale quand il y a plus à voir.
 | [Precision Logistical Distributor](Precision-Logistical-Distributor.md) | Son état et une barre « Stock » sur la capacité réelle de ses neuf emplacements, rouge à partir de 90 % avec « Stock presque plein » ou « Stock plein » | Le mode et « Attendre chaque sortie : activé » ou « désactivé », le nombre de sorties |
 | [Contrôleur d'améliorations de précision](Precision-Upgrade-Controller.md) | Les améliorations gardées dans son coffre, ou « Aucune amélioration en réserve » | |
 | [Quantum Digital Miner](Quantum-Digital-Miner.md) | Son état (« Prêt à rechercher », « Recherche en cours », « Minage », « En pause », ...), la cause quand le minage est bloqué, les trois premiers filtres actifs (ou « Filtres d'exclusion » en mode inversé, ou « Aucun filtre actif » ; un mineur inversé sans filtre n'affiche aucune ligne de filtre), et, une fois une recherche terminée, une barre de progression et « N blocs restants » | Les filtres par nom (« Minerai de fer »), un tag ou un mod par son identifiant (`#c:ores`, `@create`), « Recherche : N blocs trouvés », « Rayon N · Y a à b » (avec « Toucher de soie » quand il est activé) |
+
+L'Alloy Forge, la Circuit Forge et leurs usines affichent leur état, une barre de progression (ou « Lignes en marche : N sur M » sur une usine), le niveau Choix, une barre d'énergie et une barre par réservoir ; la Circuit Forge ajoute la réserve de chaque alliage. Le Time Overclocker affiche ce qu'il fait (accélère N machines, ou pourquoi il ne le fait pas), sa vitesse (« limitée » quand un plafond de machine s'applique) et une barre d'énergie ; l'énergie utilisée par tick apparaît dans la vue détaillée.
 
 Une jauge montre toujours le stock réel sur la capacité réelle, jamais un zéro à la place d'un chiffre manquant : une jauge dont
 la capacité ne peut pas être lue est omise, et le stock du Distributor indique « Indisponible ». Chaque couleur est doublée par des mots.

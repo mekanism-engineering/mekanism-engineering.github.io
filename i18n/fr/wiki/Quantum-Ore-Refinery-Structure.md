@@ -1,4 +1,4 @@
-<!-- source: 19d029dfdd6932a0ab37bb0298206b8e0c6e2b00 -->
+<!-- source: 373c09cdb0c2e7e26fa6387122048fbb6b9549dc -->
 # Quantum Ore Refinery : structure et pièces
 
 > Le plan fixe de 10 × 4 × 3 de la [Quantum Ore Refinery](Quantum-Ore-Refinery.md), couche par couche, avec chaque bloc et sa recette.

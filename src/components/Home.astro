@@ -3,7 +3,7 @@ import { getCollection } from 'astro:content';
 import source from '../data/source.json';
 import families from '../data/sidebar.json';
 import { tr } from '../lib/i18n.js';
-import { FEATURES, NEWS, hasSection } from '../lib/features.mjs';
+import { NEWS } from '../lib/features.mjs';
 const lng = Astro.locals.starlightRoute?.lang === 'fr' ? 'fr' : 'en';
 const t = (en: string, vars?: Record<string, unknown>) => tr(lng, en, vars);
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
@@ -21,10 +21,13 @@ const byId = (id: string) => docs.find(d => d.id === id || d.id === pre + id);
 const tiles = ([['Overview', 'overview'], ['Basics', 'getting-started'], ...guides.map(g => ['Guide', g.id]), ['Reference', 'crafting'],
   ['Reference', 'in-game-texts'], ['Reference', 'configuration'], ['Help', 'faq']] as [string, string][])
   .map(([k, id]) => [k, byId(id)] as const).filter((t): t is readonly [string, NonNullable<ReturnType<typeof byId>>] => !!t[1]);
-// the big additions of the version (src/lib/features.mjs), each while its section is still on its page
-const spots = FEATURES.map(f => ({ ...f, ...f[lng], doc: byId(f.page) })).filter(f => f.doc && hasSection(f.doc.body, f));
-// the new multiblock, shown first in the "What's new" block, while its page exists
-const mb = { ...NEWS.multiblock, ...NEWS.multiblock[lng], doc: byId(NEWS.multiblock.page) };
+// the version's news (src/lib/features.mjs): a card or a link falls back to the English page while the French one is missing
+const all = await getCollection('docs');
+const page = (id: string) => all.find(d => d.id === pre + id) ?? all.find(d => d.id === id);
+const cards = NEWS.cards.map(c => ({ ...c, ...c[lng], doc: page(c.page), moreDoc: c.more ? page(c.more) : undefined })).filter(c => c.doc);
+const also = NEWS.alsoItems.map(a => a[lng]);
+// the 1.3 changelog when it exists in this language, otherwise the release notes index
+const changelog = all.some(d => d.id === pre + NEWS.changelog) ? NEWS.changelog : 'changelog';
 const news = NEWS[lng];
 const short = (s = '') => (s.length > 110 ? s.slice(0, s.lastIndexOf(' ', 106)) + '…' : s);
 ---
@@ -46,56 +49,46 @@ const short = (s = '') => (s.length > 110 ? s.slice(0, s.lastIndexOf(' ', 106)) 
     </div>
   </section>
 
-  {(mb.doc || spots.length > 0) && (
+  {cards.length > 0 && (
     <section class="me-news" aria-labelledby="me-news-title">
       <div class="me-news-head">
         <div class="me-eyebrow">{news.eyebrow}</div>
         <h2 id="me-news-title">{news.title}</h2>
       </div>
       <div class="me-news-grid">
-        {mb.doc && (
+        {cards.map(c => (
           <article class="me-news-card">
-            <a class="me-news-visual me-news-anim" href={`${base}/${mb.doc.id}/`} tabindex="-1">
-              <picture><source media="(prefers-reduced-motion: reduce)" srcset={`${base}/${mb.screens}-${lng}-1.png`} />
-                <img src={`${base}/${mb.screens}-${lng}.gif`} alt={mb.alt} loading="lazy" width="480" height="462" /></picture>
+            <a class="me-news-visual me-news-anim" href={`${base}/${c.doc.id}/`} tabindex="-1">
+              <picture><source media="(prefers-reduced-motion: reduce)" srcset={`${base}/${c.screens}-${lng}-1.png`} />
+                <img src={`${base}/${c.screens}-${lng}.gif`} alt={c.alt} loading="lazy" width={c.width} height={c.height} /></picture>
             </a>
             <div class="me-news-body">
-              <div class="me-eyebrow"><span class="me-news-badge">{mb.badge}</span> {mb.family}</div>
-              <h3>{mb.title}</h3>
-              <p class="me-news-lead">{mb.lead}</p>
+              <div class="me-eyebrow"><span class="me-news-badge">{c.badge}</span> {c.family}</div>
+              <h3>{c.title}</h3>
+              <p class="me-news-lead">{c.lead}</p>
               <ul class="me-news-points">
-                {mb.points.map(([title, say], i) => (
-                  <li><span class="me-feature-num">{i + 1}</span><div><b>{title}</b><p set:html={say} /></div></li>
+                {c.points.map(([title, say], i) => (
+                  <li><span class="me-feature-num">{i + 1}</span><div><b>{title}</b><p>{say}</p></div></li>
                 ))}
               </ul>
               <div class="me-news-btns">
-                <a class="me-btn primary" href={`${base}/${mb.doc.id}/`}>{mb.open} →</a>
-                <a class="me-btn" href={`${base}/${mb.doc.id}/#how-to-build-it`}>{t('How to build it')} ↓</a>
+                <a class="me-btn primary" href={`${base}/${c.doc.id}/`}>{c.open} →</a>
+                {c.moreDoc && <a class="me-btn" href={`${base}/${c.moreDoc.id}/`}>{c.openMore} →</a>}
               </div>
-            </div>
-          </article>
-        )}
-        {spots.map(f => (
-          <article class="me-news-card">
-            <a class="me-news-visual me-news-anim" href={`${base}/${f.doc.id}/#${f.anchor}`} tabindex="-1">
-              <picture><source media="(prefers-reduced-motion: reduce)" srcset={`${base}/${f.screens}-${lng}-1.png`} />
-                <img src={`${base}/${f.screens}-${lng}.gif`} alt={f.alt} loading="lazy" width="552" height="508" /></picture>
-            </a>
-            <div class="me-news-body">
-              <div class="me-eyebrow"><span class="me-news-badge">{news.filters}</span> {f.machine}</div>
-              <h3>{f.title}</h3>
-              <p class="me-news-lead">{f.lead}</p>
-              <ul class="me-news-points">
-                {f.cards.map(([title, say], i) => (
-                  <li><span class="me-feature-num">{i + 1}</span><div><b>{title}</b><p set:html={say} /></div></li>
-                ))}
-              </ul>
-              <a class="me-btn primary" href={`${base}/${f.doc.id}/#${f.anchor}`}>{f.open} →</a>
             </div>
           </article>
         ))}
       </div>
-      <a class="me-news-all" href={`${base}/${pre}${NEWS.changelog}/`}>{news.all}</a>
+      <div class="me-news-also" role="group" aria-label={news.also}>
+        {also.map(a => (
+          <div>
+            <div class="me-eyebrow"><span class="me-news-badge">{a.badge}</span> {a.family}</div>
+            <h4>{a.title}</h4>
+            <p>{a.say}</p>
+          </div>
+        ))}
+      </div>
+      <a class="me-news-all" href={`${base}/${pre}${changelog}/`}>{news.all}</a>
     </section>
   )}
 
