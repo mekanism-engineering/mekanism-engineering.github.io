@@ -8,12 +8,13 @@
 //       items the recipes use, and copies into public/mc/{mekanism,minecraft} the few files the mod's models borrow
 import fs from 'node:fs';
 import path from 'node:path';
+import { fileURLToPath } from 'node:url';
 import http from 'node:http';
 import { createRequire } from 'node:module';
 
 const require = createRequire(import.meta.url);
 const { chromium } = require('playwright');
-const ROOT = path.resolve(path.dirname(new URL(import.meta.url).pathname), '..');
+const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const NS = 'mekanismengineering';
 const arg = n => { const i = process.argv.indexOf(n); return i > 0 ? process.argv[i + 1] : null; };
 const ASSETS = arg('--assets'), VENDOR = process.argv.includes('--vendor');

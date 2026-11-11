@@ -2,7 +2,7 @@
 // The wiki text stays in GitLab (docs/wiki); this script turns it into Starlight pages, copies the images, the mod's block
 // models and textures (for the 3D views), and builds the crafting grids and the in-game texts from the mod's own data files.
 //
-//   node scripts/import-wiki.mjs                 downloads the public archive of WIKI_REF, or else of the mod's newest branch (below)
+//   node scripts/import-wiki.mjs                 downloads the public archive of WIKI_REF, or else of the newest release tag V<version>-1.21.1 (below)
 //   WIKI_ARCHIVE=path/to/archive.tar.gz node ... uses a local archive instead
 //
 // The site is in English (at the root) and in French (under /fr/). The French text of the wiki pages and release notes is
@@ -11,6 +11,7 @@
 // French language file.
 import fs from 'node:fs';
 import path from 'node:path';
+import { fileURLToPath } from 'node:url';
 import { BASE } from '../site.config.mjs';
 import os from 'node:os';
 import { execFileSync } from 'node:child_process';
@@ -18,39 +19,28 @@ import * as tar from 'tar';
 import crypto from 'node:crypto';
 import GithubSlugger from 'github-slugger';
 
-const ROOT = path.resolve(path.dirname(new URL(import.meta.url).pathname), '..');
+const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const PROJECT = '86415165';
 const API = `https://gitlab.com/api/v4/projects/${PROJECT}`;
 const getJson = url => JSON.parse(execFileSync('curl', ['-sSfL', '--retry', '4', url], { encoding: 'utf8', maxBuffer: 64 << 20 }));
 /**
- * The site follows the mod's newest work with no setting to change at a release: the branch of the 1.21.1 line committed to
- * last (main, wip/* or release/*; the Minecraft 1.20.1 port branches are left out) that has a wiki. The workflow builds every
- * hour, so a push to the mod shows up within the hour. WIKI_REF, when set, picks a branch or tag instead.
+ * The site follows the mod's releases, never its work: the highest release tag of the 1.21.1 line (V<version>-1.21.1, put on
+ * the commit that shipped). Work branches (wip/*, main) are not published until a release tag names them, so an unreleased
+ * version cannot reach the site (it did on 11 November 2026, when wip/1.3/integration was the newest branch). To preview
+ * unreleased work, set WIKI_REF to a branch or tag by hand (never as the repository variable of the deployed site).
  */
 function newestRef() {
-  const branches = [];
+  const tags = [];
   for (let page = 1; ; page++) {
-    const list = getJson(`${API}/repository/branches?per_page=100&page=${page}`);
-    branches.push(...list);
+    const list = getJson(`${API}/repository/tags?per_page=100&page=${page}`);
+    tags.push(...list);
     if (list.length < 100) break;
   }
-  const line = branches.filter(b => /^(main$|wip\/|release\/)/.test(b.name) && !/1201|1\.20\.1|mc1\.20(?!\d)/i.test(b.name))
-    .sort((a, b) => Date.parse(b.commit.committed_date) - Date.parse(a.commit.committed_date));
-  for (const b of line.slice(0, 5)) {
-    // a wiki without the refinery page is an older line's (main carries the 1.1.1 docs): the site cannot be built from it.
-    // The import also reads the mod's language file: at src/main/resources/assets/<ns>/lang, or in the Stonecutter layout of the
-    // 1.2.1 line, at versions/<mc>/src-overrides/main/resources/assets/<ns>/lang (RESOURCE_ROOTS below). A branch with it in neither
-    // place is skipped.
-    try {
-      const ref = encodeURIComponent(b.name);
-      if (!getJson(`${API}/repository/tree?path=docs/wiki&per_page=100&ref=${ref}`).some(f => f.name === 'Quantum-Ore-Refinery.md')) continue;
-      for (const root of RESOURCE_ROOTS)
-        try { if (getJson(`${API}/repository/files/${encodeURIComponent(`${root}/assets/${NS}/lang/en_us.json`)}?ref=${ref}`).file_name) return b.name; }
-        catch { /* not in that layout */ }
-    }
-    catch { /* no docs/wiki on that branch */ }
-  }
-  throw new Error('No branch of the mod has a wiki (docs/wiki)');
+  const version = t => t.match(/^V(\d+)\.(\d+)(?:\.(\d+))?-1\.21\.1$/)?.slice(1).map(n => Number(n || 0));
+  const released = tags.map(t => [t.name, version(t.name)]).filter(([, v]) => v)
+    .sort(([, a], [, b]) => b[0] - a[0] || b[1] - a[1] || b[2] - a[2]);
+  if (!released.length) throw new Error('No release tag (V<version>-1.21.1) in the mod repository');
+  return released[0][0];
 }
 const NS = 'mekanismengineering';
 // Where the mod keeps its resources (lang, recipes, neoforge.mods.toml, models...). Until the 1.2.1 line they sit in

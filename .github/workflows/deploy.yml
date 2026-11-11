@@ -1,7 +1,7 @@
 name: Build and deploy the wiki
 
 # Builds the site from the mod's GitLab repository (text, images, models, recipes) at every push, every pull request,
-# every hour (so the site follows the mod's newest branch by itself) and on demand. It is published to GitHub Pages only from main, and only once the repository variable
+# every hour (so the site follows the mod's newest release tag by itself, never its work branches) and on demand. It is published to GitHub Pages only from main, and only once the repository variable
 # DEPLOY is set to "on" (Settings > Secrets and variables > Actions > Variables).
 on:
   push:
@@ -24,7 +24,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     env:
-      # the branch or tag of the mod whose wiki is published; empty = its newest branch (scripts/import-wiki.mjs)
+      # the branch or tag of the mod whose wiki is published; empty = its newest release tag V<version>-1.21.1 (scripts/import-wiki.mjs)
       WIKI_REF: ${{ vars.WIKI_REF }}
     steps:
       - uses: actions/checkout@v4

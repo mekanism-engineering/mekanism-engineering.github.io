@@ -1,9 +1,10 @@
 // Checks that every link and picture inside the built site (dist/) points to a file that exists.
 import fs from 'node:fs';
 import path from 'node:path';
+import { fileURLToPath } from 'node:url';
 import { BASE } from '../site.config.mjs';
 
-const DIST = path.resolve(path.dirname(new URL(import.meta.url).pathname), '../dist');
+const DIST = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../dist');
 const pages = [];
 const walk = d => { for (const f of fs.readdirSync(d)) { const p = path.join(d, f); fs.statSync(p).isDirectory() ? walk(p) : p.endsWith('.html') && pages.push(p); } };
 walk(DIST);
