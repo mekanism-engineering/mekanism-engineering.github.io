@@ -223,7 +223,8 @@ const MARKS = [
  */
 export async function mountRefinery(host, { blocks: names = {}, mode = 'exploded', markers = true, tags = null } = {}) {
   host.classList.add('me-ref');
-  host.innerHTML = `<div class="me-stage"><span class="me-pill me-hint">${L('⟲ Drag to turn · tap a block')}</span><div class="me-loading">${L('Loading the 3D view…')}</div></div>`
+  // the home page shows nothing until the structure comes in with its intro
+  host.innerHTML = `<div class="me-stage"><span class="me-pill me-hint">${L('⟲ Drag to turn · tap a block')}</span>${tags ? '' : `<div class="me-loading">${L('Loading the 3D view…')}</div>`}</div>`
     + '<div class="me-info" hidden></div>'
     + (markers ? '<ul class="me-legend"></ul>' : '')
     + `<div class="me-ref-bar"><div class="me-seg" role="group" aria-label="${L('View')}">

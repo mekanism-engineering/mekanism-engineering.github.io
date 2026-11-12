@@ -41,7 +41,8 @@ const short = (s = '') => (s.length > 110 ? s.slice(0, s.lastIndexOf(' ', 106)) 
       <a class="me-btn" href="https://www.curseforge.com/minecraft/mc-mods/mekanism-engineering">CurseForge ↗</a>
     </div>
     <div data-me3d data-kind="refinery" data-mode="assembled" data-tags="hero">
-      <div class="me-stage"><img src={`${base}/icons/mekanismengineering/_refinery.png`} alt={t('The Quantum Ore Refinery')} style="width:100%;height:100%;object-fit:contain" /></div>
+      <!-- the still picture only without JavaScript: with it, the 3D view and its intro are the first thing shown -->
+      <div class="me-stage"><noscript><img src={`${base}/icons/mekanismengineering/_refinery.png`} alt={t('The Quantum Ore Refinery')} style="width:100%;height:100%;object-fit:contain" /></noscript></div>
     </div>
   </section>
 
