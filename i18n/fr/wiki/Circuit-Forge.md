@@ -1,4 +1,4 @@
-<!-- source: dfd39f86e126a8c2815d637bf2efb59da20612dd -->
+<!-- source: e543a0ac32635c5d1c03c4b74cdcb66353663aa1 -->
 # Circuit Forge
 
 > Fabrique les quatre circuits de contrôle de Mekanism à partir de lingots d'osmium, de redstone et des trois alliages, et garde les alliages en réserve dans la machine. Existe en quatre usines de 3, 5, 7 et 9 lignes.
@@ -38,6 +38,16 @@ Un réglage se trouve sous les lignes :
 - **Choix** (1 à 4) : le circuit que fabrique la forge. À 1, elle ne fabrique que des Circuits de contrôle de base ; à 4, des circuits ultimes.
   Une nouvelle machine démarre sur le niveau le plus haut. La forge attend que les réserves puissent payer le circuit choisi ; elle ne se rabat jamais
   sur un circuit moins cher, et la bande d'état dit quelle réserve manque.
+
+Un **bloc d'osmium** donne 9 circuits du palier Choix d'un coup, pour 9 fois la redstone et les alliages et deux fois le temps
+d'un lingot : un peu plus lent que de le défaire en lingots à la main, tout en restant rapide.
+
+**Lasers de Mekanism** : la forge et ses usines reçoivent le faisceau d'un Laser au lieu d'être creusées par lui, et un faisceau continu
+les accélère, sans consommer plus d'énergie. Le bonus monte tant que le faisceau dure sans interruption : en 4 minutes, un **faisceau simple** (un
+Laser, ou un Amplificateur laser alimenté par un seul) le porte à +50 % de vitesse, un **faisceau amplifié** (qui vaut deux lasers ou plus : un
+Amplificateur laser alimenté par deux Lasers ou plus, ou deux Lasers pointés sur la machine) à +100 %, deux fois la vitesse. Le premier tick sans
+faisceau fait retomber le bonus à zéro et la montée reprend du début : un amplificateur sur minuterie, qui tire par salves, n'apporte donc rien.
+Le bonus n'est pas gardé quand le chunk se décharge.
 
 Les recettes sont des recettes de datapack de type `mekanismengineering:circuit_forging`, donc un modpack peut les modifier.
 
@@ -106,6 +116,7 @@ Une usine a un onglet **Répartir** à gauche de son écran (désactivé par dé
 - **Lignes** : un emplacement d'entrée, une flèche de progression et un emplacement de sortie pour chaque ligne.
 - **Onglet Répartir** (usines seulement, à gauche) : active ou coupe la répartition de l'osmium entre les lignes (survol : « Répartit les objets d'entrée entre les lignes libres. »).
 - **Barre d'énergie et onglet d'énergie**, et les onglets propres à Mekanism : configuration des faces, améliorations, redstone et sécurité.
+- **Onglet laser** (à droite, sous l'onglet de sécurité) : une jauge de 8 crans qui se remplit avec le bonus laser, un cran par tranche de 12,5 %, donc un faisceau simple s'arrête à la moitié (survol : le faisceau, par exemple « Faisceau laser amplifié : jusqu'à +100 % en 4 minutes », et la vitesse qu'il ajoute maintenant, par exemple « +75 % de vitesse »).
 
 ## Automatisation
 

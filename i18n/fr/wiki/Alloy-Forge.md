@@ -1,4 +1,4 @@
-<!-- source: 5aa9c5a1c737f528a2e0db055edad50147ed5e29 -->
+<!-- source: e553c2f2e4b1bb19f43f6e9bd2974efcb50946a1 -->
 # Alloy Forge
 
 > Un Infuseur métallurgique renforcé pour les alliages : un lingot de cuivre (un lingot de fer en Minecraft 1.20.1) devient un alliage infusé, renforcé ou atomique dans une seule machine, avec trois réservoirs à remplir. Existe en quatre usines de 3, 5, 7 et 9 lignes.
@@ -31,6 +31,16 @@ Un lingot de cuivre placé dans l'emplacement d'entrée passe par trois étapes 
 Les quantités sont celles de Mekanism. Une étape dure 100 ticks sans Mises à niveau de la vitesse, donc un lingot de cuivre mené jusqu'à l'alliage
 atomique demande 300 ticks. Un alliage infusé ou renforcé placé dans l'emplacement d'entrée continue à partir de là où il en est. Un objet déjà au niveau
 **Choix** réglé, ou sans recette, reste dans l'emplacement d'entrée.
+
+Un **bloc de cuivre** (un bloc de fer en 1.20.1) donne 9 alliages d'un coup : chaque étape demande 9 fois l'infusion et deux fois le
+temps d'un lingot (200 ticks), donc le bloc est un peu plus lent que de le défaire en lingots à la main, tout en restant rapide.
+
+**Lasers de Mekanism** : la forge et ses usines reçoivent le faisceau d'un Laser au lieu d'être creusées par lui, et un faisceau continu
+les accélère, sans consommer plus d'énergie. Le bonus monte tant que le faisceau dure sans interruption : en 4 minutes, un **faisceau simple** (un
+Laser, ou un Amplificateur laser alimenté par un seul) le porte à +50 % de vitesse, un **faisceau amplifié** (qui vaut deux lasers ou plus : un
+Amplificateur laser alimenté par deux Lasers ou plus, ou deux Lasers pointés sur la machine) à +100 %, deux fois la vitesse. Le premier tick sans
+faisceau fait retomber le bonus à zéro et la montée reprend du début : un amplificateur sur minuterie, qui tire par salves, n'apporte donc rien.
+Le bonus n'est pas gardé quand le chunk se décharge.
 
 Un réglage se trouve sous les lignes :
 
@@ -101,7 +111,7 @@ Une usine a un onglet **Répartir** à gauche de son écran (désactivé par dé
 
 ## L'interface
 
-- **Bande d'état** (en haut) : « Inactif », « En marche », ou ce qui ne va pas : « Pas assez d'énergie », « Un réservoir est vide : *nom* » ou « Sortie
+- **Bande d'état** (en haut) : « Inactif », « En marche », ou ce qui ne va pas : « Pas assez d'énergie », « Vide : *nom* » ou « Sortie
   pleine ».
 - **Rangée Choix** : des boutons pour le niveau Choix (survol : « Désiré : » et le nom de l'alliage, par exemple « Désiré : Alliage infusé »).
 - **Emplacements orange et barres de réservoir** : trois emplacements, avec une barre pour chaque réservoir empilée à côté. Des silhouettes grises des
@@ -109,6 +119,7 @@ Une usine a un onglet **Répartir** à gauche de son écran (désactivé par dé
 - **Lignes** : un emplacement d'entrée, une flèche de progression et un emplacement de sortie pour chaque ligne.
 - **Onglet Répartir** (usines seulement, à gauche) : active ou coupe la répartition des objets d'entrée entre les lignes (survol : « Répartit les objets d'entrée entre les lignes libres. »).
 - **Barre d'énergie et onglet d'énergie** : l'énergie stockée, avec l'avertissement habituel de Mekanism en cas d'énergie faible ; l'emplacement d'énergie prend un objet rechargeable.
+- **Onglet laser** (à droite, sous l'onglet de sécurité) : une jauge de 8 crans qui se remplit avec le bonus laser, un cran par tranche de 12,5 %, donc un faisceau simple s'arrête à la moitié (survol : le faisceau, par exemple « Faisceau laser amplifié : jusqu'à +100 % en 4 minutes », et la vitesse qu'il ajoute maintenant, par exemple « +75 % de vitesse »).
 - Les onglets propres à Mekanism : configuration des faces, améliorations, redstone et sécurité.
 
 ## Automatisation
@@ -130,7 +141,7 @@ Section `alloy_forge` de `mekanismengineering-server.toml` (voir [Configuration]
 
 ## Conseils et dépannage
 
-- « Un réservoir est vide » nomme le réservoir qui bloque la forge : le remplir par son emplacement orange.
+- « Vide : *nom* » nomme le réservoir qui bloque la forge : le remplir par son emplacement orange.
 - Une usine a un seul niveau Choix pour toutes ses lignes.
 - Si quelques lignes d'une usine travaillent pendant que les autres attendent, activer **Répartir** (voir plus haut).
 - La Circuit Forge garde des alliages en réserve pour ses circuits : voir la [Circuit Forge](Circuit-Forge.md).
