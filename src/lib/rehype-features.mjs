@@ -2,7 +2,7 @@
 // up to the next heading of the same level, go in a section.me-feature with a "New in 1.2" badge above the heading and, after
 // the section's first paragraph, one small card per shortcut, then the real screens of the game with their captions. The wiki
 // text itself is kept as it is, under them.
-import { featuresOf, FILTER_ICON } from './features.mjs';
+import { featuresOf, FILTER_ICON, NEWS } from './features.mjs';
 import { BASE } from '../../site.config.mjs';
 
 const text = n => (n.type === 'text' ? n.value : (n.children || []).map(text).join(''));
@@ -41,7 +41,7 @@ export default function rehypeFeatures() {
       const badge = { type: 'raw', value: `<div class="me-feature-badge not-content"><span class="me-pill">${FILTER_ICON}${esc(f.badge)}</span></div>` };
       kids.splice(start, end - start, {
         type: 'element', tagName: 'section', properties: { className: ['me-feature'] },
-        children: [badge, kids[start], ...body],
+        children: [...(f.version === NEWS.version ? [badge] : []), kids[start], ...body],
       });
     }
   };

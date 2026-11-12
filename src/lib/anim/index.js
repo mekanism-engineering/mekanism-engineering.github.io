@@ -18,6 +18,9 @@ const MODULES = {
   quantum_chargepad: () => import('./chargepad.js'),
   precision_upgrade_controller: () => import('./upgrade-controller.js'),
   ultimate_quantum_energy_receiver: () => import('./receiver.js'),
+  basic_time_overclocker: () => import('./overclocker.js'),
+  // a view about one thing around a block, on a page of its own: block id:focus
+  'alloy_forge:laser': () => import('./forge-laser.js'),
 };
 
 const NS = 'mekanismengineering';
@@ -30,7 +33,8 @@ async function activeModel(base, id) {
 
 export async function animate(id, ctx) {
   const { stage, base } = ctx;
-  const mod = MODULES[id] ? (await MODULES[id]()).default : null;
+  const load = MODULES[`${id}:${ctx.focus}`] || MODULES[id];
+  const mod = load ? (await load()).default : null;
   const hasActive = !!(mod && mod.active);
   const listeners = [];
   const active = { on: false, onChange: fn => listeners.push(fn), set() {} };

@@ -136,6 +136,9 @@ header.header { backdrop-filter: blur(12px); }
 /* a game notification over the top right corner of a 3D view (src/lib/anim/qdm-toast.js): it slides in from the edge, clipped there */
 .me-stage .me-toast { position: absolute; top: 0; right: 0; overflow: hidden; pointer-events: none; z-index: 1; }
 .me-stage .me-toast canvas { cursor: default; image-rendering: pixelated; }
+/* the laser tab of the forges and its tooltip, as the game draws them (src/lib/anim/forge-laser.js), on the right of the view */
+.me-stage .me-lasertab { position: absolute; right: 0.4rem; top: 50%; transform: translateY(-50%); pointer-events: none; z-index: 1; }
+.me-stage .me-lasertab canvas { cursor: default; image-rendering: pixelated; pointer-events: auto; }
 .me-stage .me-hint { position: absolute; left: 50%; bottom: 0.3rem; transform: translateX(-50%); pointer-events: none; white-space: nowrap; transition: opacity 0.4s; }
 .me-stage.touched .me-hint { opacity: 0; }
 .me-mk { position: absolute; transform: translate(-50%, -50%); width: 22px; height: 22px; border-radius: 50%; background: #0a1220; border: 2px solid var(--me-teal);

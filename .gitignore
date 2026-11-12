@@ -6,9 +6,11 @@ src/content/docs/*
 !src/content/docs/index.mdx
 !src/content/docs/guides/
 !src/content/docs/404.md
+!src/content/docs/forge-laser-boost.md
 !src/content/docs/fr/
 src/content/docs/fr/*
 !src/content/docs/fr/index.mdx
+!src/content/docs/fr/forge-laser-boost.md
 !src/content/docs/fr/guides/
 src/data/sidebar.json
 src/data/source.json

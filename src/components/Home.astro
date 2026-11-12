@@ -12,7 +12,7 @@ const pre = lng === 'fr' ? 'fr/' : '';
 const docs = (await getCollection('docs')).filter(d => (lng === 'fr') === d.id.startsWith('fr/'));
 const FAMILIES = families.map((f: any) => (lng === 'fr' && f.translations?.fr) || f.label);
 const machines = docs
-  .filter(d => d.data.machine && !(d.data.machine.structure && d.data.machine.id !== 'ore_refinery_controller'))
+  .filter(d => d.data.machine && !(d.data.machine.structure && d.data.machine.id !== 'ore_refinery_controller') && d.data.machine.id !== 'forge_laser_boost')
   .map(d => ({ d, fam: d.data.machine!.family ?? '', order: d.data.sidebar?.order ?? 9 }))
   .sort((a, b) => FAMILIES.indexOf(a.fam) - FAMILIES.indexOf(b.fam) || a.order - b.order);
 const pic = (m: any) => m.id === 'ore_refinery_controller' ? '_refinery' : (m.model ?? m.id);

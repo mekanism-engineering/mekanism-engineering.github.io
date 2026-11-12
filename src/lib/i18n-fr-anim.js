@@ -145,4 +145,24 @@ export const FR_ANIM = {
     "En marche : la zone est minée. L'écran revient à son image de repos, et le propriétaire reçoit cette notification en haut à droite de l'écran du jeu pendant 5 secondes. Les chiffres sont des exemples.",
   'End of mining': 'Fin du minage',
   'Finish the zone': 'Terminer la zone',
+  // overclocker.js (the tier names stay in English, as in the mod's French names)
+  'Supraquantum': 'Supraquantum',
+  '{name} Time Overclocker: the machine next to it runs {x} times as fast. Every 5 loops of its animation, the view moves to the next tier.':
+    'Time Overclocker {name} : la machine voisine tourne {x} fois plus vite. Toutes les 5 boucles de son animation, la vue passe au palier suivant.',
+  // forge-laser.js
+  'Laser beam': 'Faisceau laser',
+  'No beam': 'Aucun faisceau',
+  'One Laser': 'Un Laser',
+  'Amplified beam': 'Faisceau amplifié',
+  '(The view runs the 4 minutes in 12 seconds.)': '(La vue fait défiler les 4 minutes en 12 secondes.)',
+  'No beam: the forge works at its own speed. A Mekanism Laser speeds it up only through the special face at its back; the first moment without a beam, the boost falls back to zero.':
+    "Aucun faisceau : la forge travaille à sa propre vitesse. Un Laser de Mekanism ne l'accélère que par la face spéciale de son arrière ; au premier instant sans faisceau, l'accélération retombe à zéro.",
+  'One Laser on the back face: the boost climbs for as long as the beam stays on, up to +50% after 4 minutes.':
+    "Un Laser sur la face arrière : l'accélération monte tant que le faisceau reste allumé, jusqu'à +50 % après 4 minutes.",
+  'A Laser Amplifier fed by two Lasers or more, aimed at the back face: the boost climbs twice as fast, up to +100% after 4 minutes.':
+    "Un Laser Amplifier alimenté par deux Lasers ou plus, pointé sur la face arrière : l'accélération monte deux fois plus vite, jusqu'à +100 % après 4 minutes.",
+  'Warmed up: +50% speed for as long as the beam stays on. The forge uses no more energy for it.':
+    "Chaude : +50 % de vitesse tant que le faisceau reste allumé. La forge ne consomme pas plus d'énergie pour cela.",
+  'Warmed up: +100%, twice the speed, for as long as the beam stays on. The forge uses no more energy for it.':
+    "Chaude : +100 %, deux fois plus vite, tant que le faisceau reste allumé. La forge ne consomme pas plus d'énergie pour cela.",
 };

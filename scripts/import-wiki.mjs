@@ -141,7 +141,9 @@ console.log('Source', REF, commit.slice(0, 8));
 // ---------- 2. clean generated folders ----------
 const OUT_DOCS = path.join(ROOT, 'src/content/docs');
 // every page is made here except the home page and the guides, which are written by hand in this repository
-const HAND_WRITTEN = ['index.mdx', 'guides', '404.md', 'fr'];
+// (and the laser boost page of the forges, written for the site's 3D view; it sits with the forges in the sidebar)
+const HAND_WRITTEN = ['index.mdx', 'guides', '404.md', 'fr', 'forge-laser-boost.md'];
+const HAND_PAGES = { crafting: ['forge-laser-boost'] };
 for (const dir of [OUT_DOCS, path.join(OUT_DOCS, 'fr')])
   for (const g of fs.existsSync(dir) ? fs.readdirSync(dir) : []) if (!HAND_WRITTEN.includes(g)) fs.rmSync(path.join(dir, g), { recursive: true, force: true });
 const PUB = path.join(ROOT, 'public');
@@ -177,7 +179,7 @@ const nameOf = id => {
   const l = LANG[LNG];
   return l[`block.${ns}.${p}`] || l[`item.${ns}.${p}`] || VENDOR[LNG][id] || lang[`block.${ns}.${p}`] || lang[`item.${ns}.${p}`] || vendorNames[id] || p.replace(/_/g, ' ');
 };
-// a tag shows as one of its items (the one Mekanism makes), named "any ..."
+// a tag shows as one of its items (the one Mekanism makes), under that item's name
 const TAG_ICON = {
   'c:circuits/basic': 'mekanism:basic_control_circuit', 'c:circuits/advanced': 'mekanism:advanced_control_circuit',
   'c:circuits/elite': 'mekanism:elite_control_circuit', 'c:circuits/ultimate': 'mekanism:ultimate_control_circuit',
@@ -197,8 +199,8 @@ const hasIcon = id => { const [ns, p] = id.split(':');
 const RECIPES = {};
 let recipes;
 const RDIR = path.join(SRC, `src/main/resources/data/${NS}/recipe`);
-// a slot that takes any item of a tag: "any Atomic Alloy", "Alliage atomique (au choix)"
-const anyOf = name => (LNG === 'fr' ? `${name} (au choix)` : 'any ' + name);
+// a slot that takes any item of a tag shows that item's plain name, with no "any" (Enzo, 12 November 2026)
+const anyOf = name => name;
 for (LNG of ['en', 'fr']) {
 recipes = RECIPES[LNG] = {};
 for (const f of fs.readdirSync(RDIR)) {
@@ -276,14 +278,14 @@ const PAGES = {
   'FAQ': { to: 'faq', order: 9, description: 'Answers to the questions players ask most.' },
   'Configuration': { to: 'configuration', order: 1 },
   'JEI-Jade-WTHIT': { to: 'jei-jade-wthit', order: 2 },
-  'Quantum-Ore-Refinery': { to: 'quantum-ore-refinery', family: 'ore-refining', order: 1, ids: ['ore_refinery_controller'], structure: true, quantum: true, isNew: true },
+  'Quantum-Ore-Refinery': { to: 'quantum-ore-refinery', family: 'ore-refining', order: 1, ids: ['ore_refinery_controller'], structure: true, quantum: true },
   'Quantum-Ore-Refinery-Structure': { to: 'quantum-ore-refinery/structure', family: 'ore-refining', order: 2, title: 'Structure and parts', structure: true,
     ids: ['ore_refinery_casing', 'ore_refinery_pillar', 'ore_refinery_girder', 'ore_refinery_conveyor', 'ore_refinery_glass', 'ore_refinery_input_port',
       'ore_refinery_output_port', 'ore_refinery_energy_port', 'ore_refinery_accelerator', 'ore_refinery_tank_sulfuric_acid', 'ore_refinery_tank_water',
       'ore_refinery_tank_hydrogen_chloride', 'ore_refinery_tank_oxygen', 'ore_refinery_module_dissolution', 'ore_refinery_module_washing',
       'ore_refinery_module_crystallization', 'ore_refinery_module_injection', 'ore_refinery_module_purification', 'ore_refinery_module_enrichment',
       'ore_refinery_module_smelting', 'ore_refinery_module_quantum'] },
-  'Quantum-Digital-Miner': { to: 'quantum-digital-miner', family: 'mining', order: 1, ids: ['quantum_digital_miner'], quantum: true, model: 'quantum_digital_miner' },
+  'Quantum-Digital-Miner': { to: 'quantum-digital-miner', family: 'mining', order: 1, ids: ['quantum_digital_miner'], quantum: true, model: 'quantum_digital_miner', isNew: true },
   'Digital-Miner-Companion': { to: 'digital-miner-companion', family: 'mining', order: 2, ids: ['digital_miner_surveyor'] },
   'Alloy-Forge': { to: 'alloy-forge', family: 'crafting', order: 1, ids: ['alloy_forge', 'basic_alloy_forge_factory', 'advanced_alloy_forge_factory', 'elite_alloy_forge_factory', 'ultimate_alloy_forge_factory'], model: 'alloy_forge', isNew: true },
   'Circuit-Forge': { to: 'circuit-forge', family: 'crafting', order: 2, ids: ['circuit_forge', 'basic_circuit_forge_factory', 'advanced_circuit_forge_factory', 'elite_circuit_forge_factory', 'ultimate_circuit_forge_factory'], model: 'circuit_forge', isNew: true },
@@ -292,7 +294,7 @@ const PAGES = {
     ids: ['basic_quantum_energy_receiver', 'advanced_quantum_energy_receiver', 'elite_quantum_energy_receiver', 'ultimate_quantum_energy_receiver'] },
   'Radioactive-Quantum-Entangloporter': { to: 'radioactive-quantum-entangloporter', family: 'quantum-network', order: 2, quantum: true, ids: ['radioactive_quantum_entangloporter'], photo: true },
   'Quantum-Network-Controller': { to: 'quantum-network-controller', family: 'quantum-network', order: 3, quantum: true, ids: ['quantum_network_controller'], photo: true },
-  'Quantum-Network-Tablet': { to: 'quantum-network-tablet', family: 'quantum-network', order: 4, quantum: true, isNew: true, ids: ['quantum_network_tablet'] },
+  'Quantum-Network-Tablet': { to: 'quantum-network-tablet', family: 'quantum-network', order: 4, quantum: true, ids: ['quantum_network_tablet'] },
   'Quantum-Portable-Teleporter': { to: 'quantum-portable-teleporter', family: 'teleportation', order: 1, quantum: true, ids: ['quantum_portable_teleporter'] },
   'Quantum-Chargepad': { to: 'quantum-chargepad', family: 'charging', order: 1, quantum: true, ids: ['quantum_chargepad'], model: 'quantum_chargepad' },
   'Quantum-Fluid-Pump': { to: 'industrial-fluid-pump', family: 'fluids-and-rocks', order: 1, ids: ['quantum_fluid_pump', 'source_stabilizer_upgrade'], model: 'quantum_fluid_pump' },
@@ -574,7 +576,7 @@ for (const from of (process.env.I18N_STAMP || '').split(',').filter(Boolean).fla
 // the sidebar of the machines: one group per family, in the order above, named in both languages
 const machinePages = Object.values(PAGES).filter(p => p.family).sort((a, b) => a.order - b.order);
 write(path.join(ROOT, 'src/data/sidebar.json'), JSON.stringify(Object.entries(FAMILIES).map(([f, label]) =>
-  ({ label, translations: { fr: FAMILIES_FR[f] }, items: machinePages.filter(p => p.family === f).map(p => p.to) })), null, 1));
+  ({ label, translations: { fr: FAMILIES_FR[f] }, items: [...machinePages.filter(p => p.family === f).map(p => p.to), ...(HAND_PAGES[f] || [])] })), null, 1));
 
 // every model, blockstate and texture the 3D views can use, in one file: online, a hundred small files fetched one after
 // the other take far too long (src/lib/mcmodel.js reads this file first)
