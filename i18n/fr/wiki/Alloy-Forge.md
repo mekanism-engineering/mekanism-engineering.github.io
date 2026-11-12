@@ -1,4 +1,4 @@
-<!-- source: 636cbc104ca98264106c4b599acf5c7d74e3376e -->
+<!-- source: 5aa9c5a1c737f528a2e0db055edad50147ed5e29 -->
 # Alloy Forge
 
 > Un Infuseur métallurgique renforcé pour les alliages : un lingot de cuivre (un lingot de fer en Minecraft 1.20.1) devient un alliage infusé, renforcé ou atomique dans une seule machine, avec trois réservoirs à remplir. Existe en quatre usines de 3, 5, 7 et 9 lignes.

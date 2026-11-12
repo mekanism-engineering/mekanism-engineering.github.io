@@ -1,4 +1,4 @@
-<!-- source: 5fe4f39ea22c58f66c49a5c1c35749038c5209e4 -->
+<!-- source: dfd39f86e126a8c2815d637bf2efb59da20612dd -->
 # Circuit Forge
 
 > Fabrique les quatre circuits de contrôle de Mekanism à partir de lingots d'osmium, de redstone et des trois alliages, et garde les alliages en réserve dans la machine. Existe en quatre usines de 3, 5, 7 et 9 lignes.

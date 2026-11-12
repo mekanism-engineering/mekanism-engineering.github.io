@@ -1,4 +1,4 @@
-<!-- source: b43967c3d65dbed305b34cdf7be9b49a8d88bdbd -->
+<!-- source: 1a4b96c96d4b6f6ffd5838396cd2a477d647c7fe -->
 # Time Overclocker
 
 > Accélère les blocs placés contre lui, machines comme cultures : 16 à 1 024 fois plus vite selon son palier. L'Overclocker répète le travail propre de la machine et consomme de l'énergie pour chaque tick ajouté.
