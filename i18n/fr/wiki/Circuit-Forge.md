@@ -1,4 +1,4 @@
-<!-- source: 8137e37fc72fbe647d525f66da6f2a3281e42e98 -->
+<!-- source: 5fe4f39ea22c58f66c49a5c1c35749038c5209e4 -->
 # Circuit Forge
 
 > Fabrique les quatre circuits de contrôle de Mekanism à partir de lingots d'osmium, de redstone et des trois alliages, et garde les alliages en réserve dans la machine. Existe en quatre usines de 3, 5, 7 et 9 lignes.
@@ -46,13 +46,14 @@ Les recettes sont des recettes de datapack de type `mekanismengineering:circuit_
 ```
 C O C
 O S O
-_ M _
+A M A
 ```
 
 - **C**: n'importe quel Circuit de contrôle de base (`c:circuits/basic`), ×2
 - **O**: n'importe quel Lingot d'osmium (`c:ingots/osmium`), ×3
 - **S**: Boîtier en acier, ×1
 - **M**: Infuseur métallurgique, ×1
+- **A**: n'importe quel Alliage infusé (`mekanism:alloys/infused`), ×2
 
 Résultat : 1 Circuit Forge.
 
@@ -61,25 +62,26 @@ Résultat : 1 Circuit Forge.
 Une usine est la Circuit Forge avec plusieurs lignes qui travaillent en même temps. Chaque ligne prend son propre osmium et livre ses propres
 circuits ; toutes les lignes puisent dans **les mêmes réserves d'alliages et la même redstone**.
 
-| Usine | Lignes | Circuits dans la recette | Cube d'énergie |
-|---|---|---|---|
-| Basic Circuit Forge Factory | 3 | Circuit de contrôle avancé | Cube d'énergie de base |
-| Advanced Circuit Forge Factory | 5 | Circuit de contrôle avancé | Cube d'énergie avancé |
-| Elite Circuit Forge Factory | 7 | Circuit de contrôle d'élite | Cube d'énergie d'élite |
-| Ultimate Circuit Forge Factory | 9 | Circuit de contrôle ultime | Cube d'énergie ultime |
+| Usine | Lignes | Circuits dans la recette | Cube d'énergie | Alliages (A) et lingot (I) |
+|---|---|---|---|---|
+| Basic Circuit Forge Factory | 3 | Circuit de contrôle de base | Cube d'énergie de base | Redstone, Lingot de fer |
+| Advanced Circuit Forge Factory | 5 | Circuit de contrôle avancé | Cube d'énergie avancé | Alliage infusé, Lingot d'osmium |
+| Elite Circuit Forge Factory | 7 | Circuit de contrôle d'élite | Cube d'énergie d'élite | Alliage renforcé, Lingot d'or |
+| Ultimate Circuit Forge Factory | 9 | Circuit de contrôle ultime | Cube d'énergie ultime | Alliage atomique, Diamant |
 
 Une usine se fabrique en **améliorant** la machine du palier inférieur dans une grille de fabrication. La Basic prend la Circuit Forge,
 les autres prennent l'usine du dessous.
 
 ```
 C E C
-_ F _
-C _ C
+A F A
+C I C
 ```
 
 - **C**: 4 circuits de contrôle du palier (voir le tableau)
 - **E**: le Cube d'énergie du palier
 - **F**: la machine du dessous (Circuit Forge, puis Basic, Advanced et Elite Circuit Forge Factory)
+- **A**: 2 alliages du palier et **I**: 1 lingot du palier, comme pour les usines de Mekanism (voir le tableau)
 
 Rien n'est perdu dans la fabrication : les objets de la machine, les réserves et l'énergie, ainsi que les améliorations passent à la nouvelle machine.
 Choix repart de sa valeur par défaut dans la nouvelle machine.

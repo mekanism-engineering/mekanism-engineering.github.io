@@ -185,7 +185,9 @@ const TAG_ICON = {
   'c:pellets/antimatter': 'mekanism:pellet_antimatter', 'mekanism:alloys/atomic': 'mekanism:alloy_atomic',
   'mekanism:alloys/infused': 'mekanism:alloy_infused', 'mekanism:alloys/reinforced': 'mekanism:alloy_reinforced',
   'c:gems/diamond': 'minecraft:diamond', 'c:ingots/gold': 'minecraft:gold_ingot', 'c:ingots/iron': 'minecraft:iron_ingot',
-  'c:ingots/osmium': 'mekanism:ingot_osmium',
+  'c:ingots/osmium': 'mekanism:ingot_osmium', 'c:pellets/polonium': 'mekanism:pellet_polonium',
+  // Mekanism's basic alloy tag holds redstone, which is what its own Basic factories take
+  'mekanism:alloys/basic': 'minecraft:redstone',
 };
 const iconUrl = id => { const [ns, p] = id.split(':'); return `${BASE}/icons/${ns}/${p}.png`; };
 // the mod's icons are drawn after the import from its item models (scripts/render-icons.mjs); the others are in the repository

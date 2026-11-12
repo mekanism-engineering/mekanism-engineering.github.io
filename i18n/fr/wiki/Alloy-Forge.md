@@ -1,4 +1,4 @@
-<!-- source: c8ed01181eea9fae49bb67b4ac68d9add10cd5f3 -->
+<!-- source: 636cbc104ca98264106c4b599acf5c7d74e3376e -->
 # Alloy Forge
 
 > Un Infuseur métallurgique renforcé pour les alliages : un lingot de cuivre (un lingot de fer en Minecraft 1.20.1) devient un alliage infusé, renforcé ou atomique dans une seule machine, avec trois réservoirs à remplir. Existe en quatre usines de 3, 5, 7 et 9 lignes.
@@ -46,13 +46,14 @@ et les objets qui remplissent chaque réservoir sont lus dans les recettes Mekan
 ```
 I S I
 C M C
-I _ I
+I A I
 ```
 
 - **I**: n'importe quel Lingot de fer (`c:ingots/iron`), ×4
 - **S**: Boîtier en acier, ×1
 - **C**: n'importe quel Circuit de contrôle de base (`c:circuits/basic`), ×2
 - **M**: Infuseur métallurgique, ×1
+- **A**: n'importe quel Alliage infusé (`mekanism:alloys/infused`), ×1
 
 Résultat : 1 Alloy Forge.
 
@@ -61,12 +62,12 @@ Résultat : 1 Alloy Forge.
 Une usine est l'Alloy Forge avec plusieurs lignes qui travaillent en même temps. Toutes ses lignes puisent dans **un seul jeu de trois
 réservoirs**, qui contiennent une part (1 000 mB) par ligne.
 
-| Usine | Lignes | Circuits dans la recette | Cube d'énergie |
-|---|---|---|---|
-| Basic Alloy Forge Factory | 3 | Circuit de contrôle avancé | Cube d'énergie de base |
-| Advanced Alloy Forge Factory | 5 | Circuit de contrôle avancé | Cube d'énergie avancé |
-| Elite Alloy Forge Factory | 7 | Circuit de contrôle d'élite | Cube d'énergie d'élite |
-| Ultimate Alloy Forge Factory | 9 | Circuit de contrôle ultime | Cube d'énergie ultime |
+| Usine | Lignes | Circuits dans la recette | Cube d'énergie | Alliages (A) et lingot (I) |
+|---|---|---|---|---|
+| Basic Alloy Forge Factory | 3 | Circuit de contrôle de base | Cube d'énergie de base | Redstone, Lingot de fer |
+| Advanced Alloy Forge Factory | 5 | Circuit de contrôle avancé | Cube d'énergie avancé | Alliage infusé, Lingot d'osmium |
+| Elite Alloy Forge Factory | 7 | Circuit de contrôle d'élite | Cube d'énergie d'élite | Alliage renforcé, Lingot d'or |
+| Ultimate Alloy Forge Factory | 9 | Circuit de contrôle ultime | Cube d'énergie ultime | Alliage atomique, Diamant |
 
 Une usine se fabrique en **améliorant** la machine du palier inférieur dans une grille de fabrication. La Basic prend l'Alloy Forge,
 les autres prennent l'usine du dessous.
@@ -74,11 +75,13 @@ les autres prennent l'usine du dessous.
 ```
 C E C
 C P C
+A I A
 ```
 
 - **C**: 4 circuits de contrôle du palier (voir le tableau)
 - **E**: le Cube d'énergie du palier
 - **P**: la machine du dessous (Alloy Forge, puis Basic, Advanced et Elite Alloy Forge Factory)
+- **A**: 2 alliages du palier et **I**: 1 lingot du palier, comme pour les usines de Mekanism (voir le tableau)
 
 Rien n'est perdu dans la fabrication : les objets de la machine (les emplacements orange et les lignes), les réservoirs et l'énergie, ainsi que les
 améliorations passent à la nouvelle machine. Choix repart de sa valeur par défaut dans la nouvelle machine.

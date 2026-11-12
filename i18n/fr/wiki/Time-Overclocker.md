@@ -1,7 +1,7 @@
-<!-- source: 3857f77ada10341049b00fe34c68efed40ca6283 -->
+<!-- source: b43967c3d65dbed305b34cdf7be9b49a8d88bdbd -->
 # Time Overclocker
 
-> Accélère les blocs placés contre lui, machines comme cultures : seize fois avec le palier Basic, jusqu'à 1 024 fois avec le Supraquantum. L'Overclocker répète le travail propre de la machine et consomme de l'énergie pour chaque tick ajouté.
+> Accélère les blocs placés contre lui, machines comme cultures : 16 à 1 024 fois plus vite selon son palier. L'Overclocker répète le travail propre de la machine et consomme de l'énergie pour chaque tick ajouté.
 
 | | |
 |---|---|
@@ -16,7 +16,7 @@
 ## Ce qu'il fait
 
 Le Time Overclocker regarde les six blocs qui le touchent. Pour chacun de ceux qui sont autorisés, il rejoue le travail propre du bloc, dans le
-même tick serveur, de sorte que le bloc fait en un tick ce qu'il ferait en quatre (au palier Basic). La machine voisine n'est modifiée en rien :
+même tick serveur, de sorte que le bloc fait en un tick ce qu'il ferait en seize (au palier Basic). La machine voisine n'est modifiée en rien :
 elle ne sait pas qu'elle est accélérée, et elle cesse de l'être dès que l'Overclocker est retiré ou s'arrête.
 
 Une plante n'a pas de travail propre à répéter : l'Overclocker lui donne donc des ticks aléatoires supplémentaires, le même genre de tick que le jeu donne à une culture ou à une pousse pour la faire grandir. La règle de jeu `randomTickSpeed` s'applique toujours : à 0, les plantes sont laissées tranquilles.
@@ -73,30 +73,29 @@ L'Overclocker ne travaille que tant qu'il y est autorisé. Son écran nomme la r
 ## Fabrication
 
 ```
-U P U
+U O U
 T C T
-U P U
+U A U
 ```
 
 - **U**: Circuit de contrôle ultime (`c:circuits/ultimate`), ×4
-- **P**: Pastille d'antimatière, ×2
+- **O**: Pastille de polonium (`c:pellets/polonium`), ×1
 - **T**: Noyau de téléportation, ×2
 - **C**: Cube d'énergie ultime, ×1
+- **A**: Alliage atomique (`mekanism:alloys/atomic`), ×1
 
-Résultat : 1 Basic Time Overclocker. C'est volontairement un bloc de fin de jeu.
+Résultat : 1 Basic Time Overclocker. C'est volontairement un bloc de fin de jeu ; l'antimatière n'arrive qu'avec le palier Advanced.
 
 Chaque palier supérieur se fabrique à partir du palier inférieur, gardé au milieu de la grille (`X`) :
 
 | Palier | Vitesse | Motif | Ingrédients |
 |---|---|---|---|
-| Advanced | x32 | `ATA / UXU / ATA` | Alliage atomique (A) x4, Noyau de téléportation (T) x2, Circuit de contrôle ultime (U) x2, Basic Overclocker (X) |
+| Advanced | x32 | `APA / UXU / ATA` | Alliage atomique (A) x4, Pastille d'antimatière (P) x1, Noyau de téléportation (T) x1, Circuit de contrôle ultime (U) x2, Basic Overclocker (X) |
 | Elite | x64 | `TUT / PXP / TUT` | Noyau de téléportation (T) x4, Circuit de contrôle ultime (U) x2, Pastille d'antimatière (P) x2, Advanced Overclocker (X) |
 | Ultimate | x256 | `PQP / TXT / PQP` | Pastille d'antimatière (P) x4, Entangloporteur quantique (Q) x2, Noyau de téléportation (T) x2, Elite Overclocker (X) |
-| Supraquantum | x1024 | `PLP / QXQ / PQP` | Pastille d'antimatière (P) x4, Entangloporteur quantique (Q) x3, Matrice de focalisation laser (L), Ultimate Overclocker (X) |
+| Supraquantum | x1024 | `PLP / QXQ / PZP` | Pastille d'antimatière (P) x4, Entangloporteur quantique (Q) x2, Disque OQO dilateur de temps (Z) x1, Matrice de focalisation laser (L), Ultimate Overclocker (X) |
 
-> **Note :** les ingrédients des quatre paliers supérieurs sont provisoires jusqu'à confirmation du propriétaire.
->
-> La Matrice de focalisation laser vient de Mekanism Generators. Un Entangloporteur quantique déjà configuré (fréquence, réglages des faces) peut quand même servir dans ces recettes ; il est consommé. Sans Mekanism Generators, la recette du Supraquantum prend à la place le Verre structurel de Mekanism (le jeu charge l'une des deux recettes, jamais les deux).
+> La Matrice de focalisation laser vient de Mekanism Generators. Un Entangloporteur quantique déjà configuré (fréquence, réglages des faces) peut quand même servir dans ces recettes ; il est consommé. Le Disque OQO dilateur de temps du Supraquantum est consommé lui aussi : **utilisez un disque vide**, les objets qu'il contient seraient perdus. Sans Mekanism Generators, la recette du Supraquantum prend à la place le Verre structurel de Mekanism (le jeu charge l'une des deux recettes, jamais les deux).
 
 ## Configuration
 
