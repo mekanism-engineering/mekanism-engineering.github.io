@@ -61,23 +61,23 @@ export const NEWS = {
       width: 560, height: 503,
       en: {
         badge: 'New machine', family: 'Acceleration', title: 'Time Overclocker',
-        lead: 'Place it next to a machine or a crop and it works several times as fast, for energy. The machine itself is not changed.',
+        lead: 'Accelerates the six blocks around it, machines and crops alike, by up to 1,024 times. It runs on energy and leaves the accelerated block unchanged.',
         alt: 'The Time Overclocker in game, beside a machine',
         points: [
-          ['Five tiers, x16 to x1024', 'Basic x16, Advanced x32, Elite x64, Ultimate x256, Supraquantum x1024. Pick any speed up to the tier’s own on its screen.'],
-          ['Machines and crops', 'A machine repeats its own work in the same tick; plants get extra random ticks, and beside a Supraquantum crops are fully grown at once.'],
-          ['Safe by default', 'Six faces you can switch off, a server limit on extra ticks, a blacklist of blocks never sped up.'],
+          ['Five tiers, x16 to x1024', 'Basic x16, Advanced x32, Elite x64, Ultimate x256 and Supraquantum x1024. Each tier can also run at a lower speed, selected on its screen.'],
+          ['Machines and crops', 'Machines complete several operations per tick. Crops receive additional growth ticks and mature instantly beside a Supraquantum.'],
+          ['Built for servers', 'Each face can be disabled individually. Servers set a global cap on extra ticks and a blacklist of blocks that are never accelerated.'],
         ],
         open: 'Discover the Time Overclocker',
       },
       fr: {
         badge: 'Nouvelle machine', family: 'Accélération', title: 'Time Overclocker',
-        lead: 'Posez-le à côté d’une machine ou d’une culture : elle travaille plusieurs fois plus vite, contre de l’énergie. La machine elle-même n’est pas modifiée.',
+        lead: 'Accélère les six blocs qui l’entourent, machines comme cultures, jusqu’à 1 024 fois. Il consomme de l’énergie et ne modifie pas le bloc accéléré.',
         alt: 'Le Time Overclocker en jeu, à côté d’une machine',
         points: [
-          ['Cinq paliers, de x16 à x1024', 'Basic x16, Advanced x32, Elite x64, Ultimate x256, Supraquantum x1024. Choisissez sur son écran n’importe quelle vitesse jusqu’à celle du palier.'],
-          ['Machines et cultures', 'Une machine répète son propre travail dans le même tick ; les plantes reçoivent des ticks aléatoires supplémentaires, et à côté d’un Supraquantum les cultures arrivent aussitôt à maturité.'],
-          ['Sûr par défaut', 'Six faces que l’on peut désactiver, une limite serveur sur les ticks supplémentaires, une liste noire de blocs jamais accélérés.'],
+          ['Cinq paliers, de x16 à x1024', 'Basic x16, Advanced x32, Elite x64, Ultimate x256 et Supraquantum x1024. Chaque palier peut aussi fonctionner à une vitesse inférieure, réglable depuis son écran.'],
+          ['Machines et cultures', 'Les machines effectuent plusieurs opérations par tick. Les cultures reçoivent des ticks de croissance supplémentaires et arrivent à maturité instantanément à côté d’un Supraquantum.'],
+          ['Pensé pour les serveurs', 'Chaque face se désactive individuellement. Le serveur fixe un plafond global de ticks supplémentaires et une liste noire de blocs jamais accélérés.'],
         ],
         open: 'Découvrir le Time Overclocker',
       },
@@ -89,24 +89,24 @@ export const NEWS = {
       width: 560, height: 388,
       en: {
         badge: 'New machines', family: 'Crafting', title: 'Alloy Forge and Circuit Forge',
-        lead: 'Mekanism’s alloys and control circuits, made in one machine each, and in chains of 3, 5, 7 or 9 lines.',
+        lead: 'Two dedicated machines for Mekanism’s alloys and control circuits, each available as a factory with 3, 5, 7 or 9 parallel lines.',
         alt: 'The Alloy Forge and the Circuit Forge in game',
         points: [
-          ['Alloy Forge', 'A copper ingot becomes an infused, a reinforced or an atomic alloy, up to the Desired level you pick, from three reservoirs.'],
-          ['Circuit Forge', 'Basic to Ultimate control circuits from osmium, redstone and the three alloys, which it keeps in reserve.'],
-          ['Four factories each', 'Basic, Advanced, Elite and Ultimate, upgraded step by step without losing what the machine holds.'],
+          ['Alloy Forge', 'Produces infused, reinforced and atomic alloy in a single machine. The target alloy is selected on its screen; three internal reservoirs hold the materials.'],
+          ['Circuit Forge', 'Produces all four control circuits, Basic to Ultimate, from osmium, redstone and the three alloys held in its internal reserves.'],
+          ['Four factory tiers', 'Basic, Advanced, Elite and Ultimate. Upgrading to the next tier preserves the machine’s contents, energy and upgrades.'],
         ],
         open: 'Discover the Alloy Forge',
         openMore: 'Discover the Circuit Forge',
       },
       fr: {
         badge: 'Nouvelles machines', family: 'Fabrication', title: 'Alloy Forge et Circuit Forge',
-        lead: 'Les alliages et les circuits de contrôle de Mekanism, fabriqués chacun dans une seule machine, et en chaînes de 3, 5, 7 ou 9 lignes.',
+        lead: 'Deux machines dédiées aux alliages et aux circuits de contrôle de Mekanism, chacune déclinée en usines de 3, 5, 7 ou 9 lignes parallèles.',
         alt: 'L’Alloy Forge et la Circuit Forge en jeu',
         points: [
-          ['Alloy Forge', 'Un lingot de cuivre devient un alliage infusé, renforcé ou atomique, jusqu’au niveau souhaité que vous choisissez, à partir de trois réservoirs.'],
-          ['Circuit Forge', 'Les circuits de contrôle de base à ultime, à partir d’osmium, de redstone et des trois alliages, qu’elle garde en réserve.'],
-          ['Quatre usines chacune', 'Basic, Advanced, Elite et Ultimate, améliorées pas à pas sans perdre ce que contient la machine.'],
+          ['Alloy Forge', 'Produit les alliages infusé, renforcé et atomique dans une seule machine. L’alliage voulu se sélectionne sur son écran ; trois réservoirs internes stockent les matériaux.'],
+          ['Circuit Forge', 'Produit les quatre circuits de contrôle, de base à ultime, à partir d’osmium, de redstone et des trois alliages stockés dans ses réserves internes.'],
+          ['Quatre paliers d’usine', 'Basic, Advanced, Elite et Ultimate. Le passage au palier supérieur conserve le contenu, l’énergie et les améliorations de la machine.'],
         ],
         open: 'Découvrir l’Alloy Forge',
         openMore: 'Découvrir la Circuit Forge',
@@ -116,16 +116,16 @@ export const NEWS = {
   // the small strip under the cards
   alsoItems: [
     {
-      en: { badge: 'New', family: 'Recipe viewers', title: 'EMI support', say: 'Optional, like JEI: forging categories, the refinery’s 3D view and an information page for every block.' },
-      fr: { badge: 'Nouveau', family: 'Visionneuses de recettes', title: 'Prise en charge d’EMI', say: 'Facultative, comme JEI : catégories des forges, vue 3D de la raffinerie et une page d’information pour chaque bloc.' },
+      en: { badge: 'New', family: 'Recipe viewers', title: 'EMI support', say: 'Optional, alongside JEI: recipe categories for both forges, the refinery’s 3D view and an information page for every block.' },
+      fr: { badge: 'Nouveau', family: 'Visionneuses de recettes', title: 'Prise en charge d’EMI', say: 'Facultative, au même titre que JEI : catégories de recettes des deux forges, vue 3D de la raffinerie et page d’information pour chaque bloc.' },
     },
     {
-      en: { badge: 'Faster', family: 'Quantum Digital Miner', title: 'Twice as fast', say: 'Eight times Mekanism’s Digital Miner, at half the energy per block. Existing worlds are moved once.' },
-      fr: { badge: 'Plus rapide', family: 'Quantum Digital Miner', title: 'Deux fois plus rapide', say: 'Huit fois le Mineur digital de Mekanism, pour moitié moins d’énergie par bloc. Les mondes existants sont migrés une seule fois.' },
+      en: { badge: 'Faster', family: 'Quantum Digital Miner', title: 'Twice as fast', say: 'Now eight times the speed of Mekanism’s Digital Miner, at half the previous energy per block. Existing worlds keep any custom setting.' },
+      fr: { badge: 'Plus rapide', family: 'Quantum Digital Miner', title: 'Deux fois plus rapide', say: 'Désormais huit fois plus rapide que le Mineur digital de Mekanism, pour deux fois moins d’énergie par bloc qu’avant. Les mondes existants conservent leurs réglages personnalisés.' },
     },
     {
-      en: { badge: 'Polish', family: 'Visuals', title: 'Visual fixes', say: 'Refinery home tab, closed port plates on the Entangloporter and the Controller, Fluid Pump and Synthesis Plant models.' },
-      fr: { badge: 'Finitions', family: 'Visuels', title: 'Corrections visuelles', say: 'Onglet Accueil de la raffinerie, plaques de ports fermées sur l’Entangloporter et le Contrôleur, modèles de la pompe à fluide et de la Synthesis Plant.' },
+      en: { badge: 'Polish', family: 'Visuals', title: 'Visual fixes', say: 'A cleaner Home tab on the refinery, flush port plates on the Entangloporter and the Network Controller, and refined Fluid Pump and Synthesis Plant models.' },
+      fr: { badge: 'Finitions', family: 'Visuels', title: 'Corrections visuelles', say: 'Onglet Accueil de la raffinerie plus net, ports affleurants sur l’Entangloporter et le Contrôleur de réseau, modèles de la pompe à fluide et de la Synthesis Plant retravaillés.' },
     },
   ],
 };

@@ -374,13 +374,32 @@ function rewrite(md, from, pageIds = null) {
     return recipes[rid] ? recipeHtml(rid) + '\n' : all;
   });
   // a pattern block alone: the page's recipes with exactly that pattern (several tiers share one)
-  md = md.replace(/```\n((?:[A-Z ]{1,3}\n){1,3})```\n((?:\n?- `.`: .*\n)*)/g, (all, block, legend) => {
-    const pattern = block.trim().split('\n').join('|');
+  // (the 1.3 pages space the letters and write an empty slot "_": "I _ I"; their legend is "- **I**: ...")
+  md = md.replace(/```\n((?:[A-Z_ ]{1,5}\n){1,3})```\n((?:\n?- (?:`.`|\*\*.\*\*) ?: .*\n)*)/g, (all, block, legend) => {
+    const lines = block.replace(/\n$/, '').split('\n');
+    // ponytail: a spaced block is known by a "_" or a line over 3 characters; a spaced two-column block with no empty slot would be missed
+    const spaced = lines.some(l => l.length > 3 || l.includes('_'));
+    const pattern = lines.map(l => (spaced ? l.replace(/ /g, '').replace(/_/g, ' ') : l)).join('|');
     const ids = (pageIds || []).filter(i => recipes[i] && recipes[i].pattern.join('|') === pattern);
     if (!ids.length) return all;
     if (ids.length === 1) return recipeHtml(ids[0]) + '\n';
     return ids.map(i => `**${nameOf(recipes[i].result)}**\n\n${recipeHtml(i)}\n`).join('\n') + legend;
   });
+  // a table with one recipe per row, its pattern written `ATA / UXU / ATA`: one crafting grid per row (kept as a table if a row has no recipe)
+  md = md.replace(/((?:^\|.*\|\n)+)/gm, table => {
+    const rows = [...table.matchAll(/^.*`([A-Z ]{1,3}) \/ ([A-Z ]{1,3})(?: \/ ([A-Z ]{1,3}))?`.*$/gm)];
+    if (!rows.length) return table;
+    // an item with two recipes (one of them for when another mod is installed) shows the one whose ingredients the row names
+    const named = (i, row) => Object.values(recipes[i].key).filter(k => row.toLowerCase().includes(k.name.toLowerCase())).length;
+    const ids = rows.map(r => {
+      const id = (pageIds || []).find(i => recipes[i] && recipes[i].pattern.join('|') === r.slice(1).filter(Boolean).join('|'));
+      const same = Object.keys(recipes).filter(i => id && recipes[i].result === recipes[id].result && recipes[i].pattern.join('|') === recipes[id].pattern.join('|'));
+      return same.sort((x, y) => named(y, r[0]) - named(x, r[0]))[0] ?? id;
+    });
+    return ids.every(Boolean) ? '\n' + ids.map(i => `**${nameOf(recipes[i].result)}**\n\n${recipeHtml(i)}\n`).join('\n') : table;
+  });
+  // the sentence above those grids no longer points at a letter of the pattern: "... in the middle of the grid (`X`):"
+  md = md.replace(/ \(`[A-Z]`\)( ?:\n+\*\*[^\n]+\*\*\n\n<div class="me-recipe)/g, '$1');
   return md;
 }
 

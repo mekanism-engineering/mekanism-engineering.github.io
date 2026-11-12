@@ -1,7 +1,7 @@
 <!-- source: 3857f77ada10341049b00fe34c68efed40ca6283 -->
 # Time Overclocker
 
-> Le poser à côté d'une machine, ou d'une culture, et elle travaille plusieurs fois plus vite (seize fois avec le palier Basic, jusqu'à 1 024 fois avec le Supraquantum). L'Overclocker répète le travail propre de la machine, contre de l'énergie.
+> Accélère les blocs placés contre lui, machines comme cultures : seize fois avec le palier Basic, jusqu'à 1 024 fois avec le Supraquantum. L'Overclocker répète le travail propre de la machine et consomme de l'énergie pour chaque tick ajouté.
 
 | | |
 |---|---|
