@@ -73,7 +73,7 @@ const short = (s = '') => (s.length > 110 ? s.slice(0, s.lastIndexOf(' ', 106)) 
               </ul>
               <div class="me-news-btns">
                 <a class="me-btn primary" href={`${base}/${c.doc.id}/`}>{c.open} →</a>
-                {c.moreDoc && <a class="me-btn" href={`${base}/${c.moreDoc.id}/`}>{c.openMore} →</a>}
+                {c.moreDoc && <a class="me-btn primary" href={`${base}/${c.moreDoc.id}/`}>{c.openMore} →</a>}
               </div>
             </div>
           </article>
