@@ -44,3 +44,5 @@ The boost climbs slowly while the beam stays on, and it needs **4 minutes withou
 
 The forge's screen has a red laser tab on its right side. Its gauge has 8 notches that light from the bottom, one for each
 12.5% of boost, so a single beam stops at half. Hover over the tab to read the beam and the speed it adds now.
+
+<p class="me-gui not-content"><img src="/screens/gui/alloy_forge-laser-en.png" alt="The laser tab of the Alloy Forge, hovered: No laser beam, +0% speed" width="622" height="390" loading="lazy" decoding="async"></p>

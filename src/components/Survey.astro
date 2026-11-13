@@ -1,0 +1,86 @@
+---
+// The players' survey, at the bottom of the home page: a rating, two free answers and one yes/no. The answers go straight to a
+// Google Form (SURVEY in site.config.mjs), which keeps them in one place with its own charts and a spreadsheet. Nothing of
+// Google is loaded by the page: the only request leaves when the visitor sends, with the answers and nothing else (no cookie,
+// no e-mail). Without JavaScript the form posts by itself and Google's own "response recorded" page opens in a new tab.
+import { SURVEY } from '../../site.config.mjs';
+import { tr } from '../lib/i18n.js';
+const lng = Astro.locals.starlightRoute?.lang === 'fr' ? 'fr' : 'en';
+const t = (en: string, vars?: Record<string, unknown>) => tr(lng, en, vars);
+const name = (q: keyof typeof SURVEY) => `entry.${SURVEY[q]}`;
+---
+
+{SURVEY.form && (
+  <section class="me-survey" id="survey" aria-labelledby="me-survey-title">
+    <h2 id="me-survey-title">{t('Your opinion')}</h2>
+    <p class="me-sub">{t('Four quick questions, one minute. Anonymous: no account, no e-mail, no cookie.')}</p>
+    <form class="me-glass" action={`https://docs.google.com/forms/d/e/${SURVEY.form}/formResponse`} method="post" target="_blank">
+      <fieldset class="me-stars">
+        <legend>{t('Do you like the mod?')}</legend>
+        {[1, 2, 3, 4, 5].map(n => (
+          <label><input type="radio" name={name('rating')} value={n} required /><span aria-hidden="true">★</span><span class="sr-only">{t('{n} out of 5', { n })}</span></label>
+        ))}
+      </fieldset>
+      <label>{t('Did you run into a bug that annoys you? Or is there a mod you would like us to support?')}
+        <textarea name={name('bug')} rows="3" maxlength="2000"></textarea></label>
+      <fieldset class="me-yesno">
+        <legend>{t('Do you play on Minecraft 1.20.1?')}</legend>
+        {/* the values are the choices of the Google Form, in English whatever the language of the page */}
+        <label><input type="radio" name={name('plays1201')} value="Yes" /> {t('Yes')}</label>
+        <label><input type="radio" name={name('plays1201')} value="No" /> {t('No')}</label>
+      </fieldset>
+      <label>{t('Anything else to tell us?')}
+        <textarea name={name('remarks')} rows="3" maxlength="2000"></textarea></label>
+      <button class="me-btn primary" type="submit">{t('Send my answers')}</button>
+      <p class="me-survey-error" role="alert" hidden>{t('The answers could not be sent. Check your connection or your content blocker, then try again.')}</p>
+      <p class="me-survey-thanks" role="status"><b>{t('Thank you!')}</b> {t('Your answers are recorded. They help decide what comes next in the mod.')}</p>
+    </form>
+  </section>
+)}
+
+<script>
+  const form = document.querySelector<HTMLFormElement>('.me-survey form');
+  if (form) {
+    // remembered in this browser only, so that the same visitor does not count twice
+    const seen = { get: () => { try { return localStorage.getItem('me-survey'); } catch { return null; } }, set: () => { try { localStorage.setItem('me-survey', '1'); } catch {} } };
+    if (seen.get()) form.dataset.sent = '';
+    form.addEventListener('submit', async e => {
+      e.preventDefault();
+      const btn = form.querySelector('button')!, error = form.querySelector<HTMLElement>('.me-survey-error')!;
+      btn.disabled = true; error.hidden = true;
+      try {
+        // Google's answer cannot be read from another site (no-cors): only a request that never left shows up here
+        await fetch(form.action, { method: 'POST', mode: 'no-cors', body: new URLSearchParams(new FormData(form) as any) });
+        form.dataset.sent = ''; seen.set();
+      } catch { error.hidden = false; btn.disabled = false; }
+    });
+  }
+</script>
+
+<style>
+  form { display: grid; gap: 1.1rem; max-width: 44rem; }
+  fieldset { border: 0; padding: 0; margin: 0; min-width: 0; }
+  legend, form > label { font-weight: 650; font-size: 0.95rem; color: var(--sl-color-white); padding: 0; }
+  form > label { display: grid; gap: 0.45rem; }
+  textarea { width: 100%; resize: vertical; font: inherit; font-weight: 400; font-size: 0.9rem; color: var(--sl-color-white); padding: 0.6rem 0.75rem;
+    border-radius: 12px; border: 1px solid var(--me-line); background: var(--sl-color-bg); }
+  textarea:focus-visible { outline: 2px solid var(--me-teal); outline-offset: 1px; }
+  /* five radio buttons drawn as stars: the chosen one and those before it light up, so do the ones under the pointer */
+  .me-stars label { display: inline-block; cursor: pointer; font-size: 2.1rem; line-height: 1; padding: 0.25rem 0.1rem 0; color: var(--sl-color-gray-4); transition: color 0.12s, transform 0.12s; }
+  .me-stars input { position: absolute; opacity: 0; width: 1px; height: 1px; }
+  .me-stars label:has(input:checked), .me-stars label:has(~ label input:checked) { color: var(--me-g-ink); }
+  .me-stars:hover label { color: var(--sl-color-gray-4); }
+  .me-stars label:hover, .me-stars label:has(~ label:hover) { color: var(--me-g-ink); }
+  .me-stars label:hover { transform: scale(1.12); }
+  .me-stars label:has(input:focus-visible) { outline: 2px solid var(--me-teal); outline-offset: 1px; border-radius: 8px; }
+  .me-yesno label { display: inline-flex; align-items: center; gap: 0.4rem; margin: 0.45rem 1.4rem 0 0; font-size: 0.92rem; cursor: pointer; }
+  .me-yesno input { accent-color: var(--me-teal); width: 1.05rem; height: 1.05rem; margin: 0; }
+  button { justify-self: start; cursor: pointer; font-family: inherit; }
+  button:disabled { opacity: 0.6; cursor: progress; }
+  .me-survey-error, .me-survey-thanks { margin: 0; font-size: 0.92rem; }
+  .me-survey-error { color: var(--me-g-ink); }
+  .me-survey-thanks { display: none; color: var(--sl-color-white); }
+  form[data-sent] > * { display: none; }
+  form[data-sent] > .me-survey-thanks { display: block; }
+  @media (prefers-reduced-motion: reduce) { .me-stars label { transition: none; } }
+</style>

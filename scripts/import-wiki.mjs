@@ -303,6 +303,26 @@ const PAGES = {
   'Precision-Logistical-Distributor': { to: 'precision-logistical-distributor', family: 'logistics', order: 1, ids: ['precision_logistical_distributor'], model: 'precision_logistical_distributor' },
   'Precision-Upgrade-Controller': { to: 'precision-upgrade-controller', family: 'logistics', order: 2, ids: ['precision_upgrade_controller'], model: 'precision_upgrade_controller' },
 };
+// The screens of the 1.3 machines, whose wiki text has no picture of them yet: real captures of the game (the client bench of
+// the released commit), cut to the screen and its tabs like the wiki's own <id>-gui.png and kept in public/screens/gui, one
+// per language. They go where the older pages have theirs: at the top of the section that describes the screen (`at`,
+// English then French). A section that already starts with a picture is left alone, so the wiki's own image wins when it comes.
+const GUI = {
+  'Alloy-Forge': { at: ['The interface', "L'interface"], shots: [['alloy_forge', 'Alloy Forge interface', "Interface de l'Alloy Forge"],
+    ['basic_alloy_forge_factory', 'Basic Alloy Forge Factory interface', 'Interface de la Basic Alloy Forge Factory']] },
+  'Circuit-Forge': { at: ['The interface', "L'interface"], shots: [['circuit_forge', 'Circuit Forge interface', 'Interface de la Circuit Forge'],
+    ['basic_circuit_forge_factory', 'Basic Circuit Forge Factory interface', 'Interface de la Basic Circuit Forge Factory']] },
+  'Time-Overclocker': { at: ['Faces and speed', 'Faces et vitesse'], shots: [['basic_time_overclocker', 'Basic Time Overclocker interface', 'Interface du Basic Time Overclocker']] },
+};
+function guiShots(from) {
+  const imgs = GUI[from].shots.map(([id, en, fr]) => {
+    const file = `screens/gui/${id}-${LNG}.png`, png = fs.readFileSync(path.join(PUB, file));
+    // the captures are at 3 screen pixels per pixel of the game; they show at 2, the scale of the wiki's own images
+    const [w, h] = [16, 20].map(at => Math.round(png.readUInt32BE(at) * 2 / 3));
+    return `<img src="${BASE}/${file}" alt="${esc(LNG === 'fr' ? fr : en)}" width="${w}" height="${h}" loading="lazy" decoding="async">`;
+  });
+  return `<p class="me-gui not-content">${imgs.join('')}</p>`;
+}
 // the recipe of each item, by the id the wiki uses for its recipe image (images/<id>-recipe.png)
 const RECIPE_FOR_IMAGE = { digital_miner_companion: 'digital_miner_companion', quantum_energy_receiver: 'basic_quantum_energy_receiver' };
 let link = {};
@@ -436,6 +456,7 @@ for (const [from, p0] of Object.entries(PAGES)) {
   if (from === 'Quantum-Ore-Refinery-Structure') {
     md = md.replace(/(## (Reading the drawing|Lire le plan))/, `<div class="not-content" data-me3d data-kind="refinery" data-mode="layers"></div>\n\n$1`);
   }
+  if (GUI[from]) md = md.replace(new RegExp(`^(## ${GUI[from].at[fr ? 1 : 0]}\\n+)(?!!\\[)`, 'm'), `$1${guiShots(from)}\n\n`);
   if (p.ids) md += gameTexts(p.ids.map(i => `${NS}:${i}`));
   const fm = ['---', `title: ${JSON.stringify(title)}`, description && `description: ${JSON.stringify(description)}`,
     `sidebar:\n  order: ${p.order}${p.isNew ? `\n  badge:\n    text: ${fr ? 'Nouveau' : 'New'}\n    variant: tip` : ''}`,

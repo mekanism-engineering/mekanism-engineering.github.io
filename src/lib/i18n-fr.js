@@ -156,7 +156,6 @@ export const FR = {
   '{n} machines and tools. Blue: Quantum. Copper: Mekanism style.': '{n} machines et outils. Bleu pour Quantum, cuivre pour le style Mekanism.',
   'Previous machines': 'Machines précédentes',
   'Next machines': 'Machines suivantes',
-  'new': 'nouveau',
   'Start here': 'Commencer ici',
   'New to the mod? These pages take you from your first machine to a working setup.':
     'Nouveau sur le mod ? Ces pages vous guident de la première machine jusqu’à une installation qui tourne.',
@@ -173,4 +172,19 @@ export const FR = {
     'Les images des blocs et des objets sont dessinées à partir des modèles et des textures du jeu ; celles de Mekanism sont sous licence MIT.',
   'Not an official Minecraft product, not approved by or associated with Mojang or Microsoft.':
     'Produit non officiel de Minecraft, ni approuvé par Mojang ou Microsoft, ni associé à eux.',
+  // the survey of the home page (src/components/Survey.astro)
+  'Your opinion': 'Votre avis',
+  'Four quick questions, one minute. Anonymous: no account, no e-mail, no cookie.': 'Quatre questions rapides, une minute. Anonyme : ni compte, ni e-mail, ni cookie.',
+  'Do you like the mod?': 'Aimez-vous le mod ?',
+  '{n} out of 5': '{n} sur 5',
+  'Did you run into a bug that annoys you? Or is there a mod you would like us to support?': 'Un bug vous agace ? Ou aimeriez-vous la prise en charge d’un mod en particulier ?',
+  'Do you play on Minecraft 1.20.1?': 'Jouez-vous en Minecraft 1.20.1 ?',
+  'Yes': 'Oui',
+  'No': 'Non',
+  'Anything else to tell us?': 'Autre chose à nous dire ?',
+  'Send my answers': 'Envoyer mes réponses',
+  'The answers could not be sent. Check your connection or your content blocker, then try again.': 'Les réponses n’ont pas pu être envoyées. Vérifiez votre connexion ou votre bloqueur de contenu, puis réessayez.',
+  'Thank you!': 'Merci !',
+  'Your answers are recorded. They help decide what comes next in the mod.': 'Vos réponses sont enregistrées. Elles aident à choisir la suite du mod.',
+  'Do you like the mod? Four quick questions →': 'Vous aimez le mod ? Quatre questions rapides →',
 };

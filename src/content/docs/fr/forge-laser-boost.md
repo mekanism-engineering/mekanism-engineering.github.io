@@ -51,3 +51,5 @@ atteindre son maximum :
 L'écran de la forge a un onglet laser rouge sur sa droite. Sa jauge a 8 crans qui s'allument par le bas, un pour chaque
 12,5 % d'accélération : un faisceau simple s'arrête donc à la moitié. Survolez l'onglet pour lire le faisceau et la
 vitesse qu'il ajoute en ce moment.
+
+<p class="me-gui not-content"><img src="/screens/gui/alloy_forge-fr.png" alt="L'onglet laser de l'Alloy Forge, à droite de son interface" width="456" height="390" loading="lazy" decoding="async"></p>

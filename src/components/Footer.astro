@@ -1,6 +1,7 @@
 ---
 import Default from '@astrojs/starlight/components/Footer.astro';
 import source from '../data/source.json';
+import { SURVEY, BASE } from '../../site.config.mjs';
 import { tr } from '../lib/i18n.js';
 const lng = Astro.locals.starlightRoute?.lang === 'fr' ? 'fr' : 'en';
 const t = (en: string, vars?: Record<string, unknown>) => tr(lng, en, vars);
@@ -8,6 +9,7 @@ const date = new Date(source.imported).toISOString().slice(0, 10);
 ---
 
 <Default><slot /></Default>
+{SURVEY.form && <p class="me-foot-note"><a href={`${BASE}/${lng === 'fr' ? 'fr/' : ''}#survey`}>{t('Do you like the mod? Four quick questions →')}</a></p>}
 <p class="me-foot-note">
   {t('Written from the mod\'s own wiki and data files')} (<a href={`https://gitlab.com/enzodr/mekanism-engineering/-/commit/${source.commit}`}>{source.commit.slice(0, 8)}</a>, {date}).
   {t('Mod v{v} for {builds}.', { v: source.modVersion, builds: source.builds.map(b => t('Minecraft {mc} ({loader}, Mekanism {mek})', { mc: b.minecraft, loader: b.loader, mek: b.mekanism })).join(t(' and ')) })}

@@ -192,17 +192,16 @@ export async function mountBlock(host) {
   const obj = await itemObject(id);
   stage.root.add(obj);
   stage.resize(); stage.frame();
-  // a view about one thing around the block (data-focus) builds that scene before it shows, so that nothing pops in after the block
-  const run = () => import('./anim/index.js').then(({ animate }) =>
+  // the block's own animation (src/lib/anim: what the game shows when the machine works) is built before the view shows, behind
+  // the still picture: the block comes in already moving, and nothing pops in or starts after it (it used to stand still for
+  // the second of the turn below, then start)
+  await import('./anim/index.js').then(({ animate }) =>
     animate(id, { stage, host, obj, focus, base: MC, still: still(), tween, easeOut, easeInOut, easeBack, icon, BASE })).catch(e => console.warn('animation', id, e));
-  if (focus === 'laser') await run();
   host.querySelector(':scope > img')?.remove();
   const end = camState(stage);
   host.__stage = stage; // for the tests of the animations
   host.classList.add('me-live');
   await tween(1100, t => { const k = easeOut(t); turn(stage, end, -70 * (1 - k)); stage.cam.zoom = 0.82 + 0.18 * k; stage.cam.updateProjectionMatrix(); stage.draw(); });
-  // the block's own animation (src/lib/anim): what the game shows when the machine works
-  if (focus !== 'laser') await run();
   return stage;
 }
 
