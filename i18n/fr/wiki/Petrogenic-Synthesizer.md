@@ -1,4 +1,4 @@
-<!-- source: c3c31bbb4e6df4ac25003b89f2c9720521f7a3f0 -->
+<!-- source: fd6243a4d1765ce4fa077487d6965f93e4fe7d95 -->
 # Petrogenic Synthesizer
 
 > Fabrique la roche, l'obsidienne, le basalte, le granite et les autres roches à partir d'eau et de lave, un produit à la fois.
@@ -54,8 +54,8 @@ C P C
 ```
 
 - **T** : Réservoir de fluide de base, ×2
-- **C** : n'importe quel Circuit de contrôle avancé (`c:circuits/advanced`), ×3
-- **A** : n'importe quel Alliage infusé (`mekanism:alloys/infused`), ×2
+- **C** : Circuit de contrôle avancé (`c:circuits/advanced`), ×3
+- **A** : Alliage infusé (`mekanism:alloys/infused`), ×2
 - **S** : Boîtier en acier, ×1
 - **P** : Pompe électrique, ×1
 

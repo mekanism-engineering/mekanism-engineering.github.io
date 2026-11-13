@@ -1,4 +1,4 @@
-<!-- source: 9409644be3a83e637227dea27c765bd3725187fd -->
+<!-- source: 34fbabd2a76a9178f82675d9f3c171c1fae3e408 -->
 # Digital Miner Companion
 
 > Lier un Mineur digital, voir ce qu'il minerait, préparer ses filtres, le démarrer, le mettre en pause et le réinitialiser depuis n'importe où.
@@ -61,9 +61,9 @@ AEA
 UTU
 ```
 
-- **U** (×4): n'importe quel Circuit de contrôle ultime
-- **G**: n'importe quelle vitre
-- **A** (×2): n'importe quel Alliage atomique
+- **U** (×4): Circuit de contrôle ultime
+- **G**: Vitre
+- **A** (×2): Alliage atomique
 - **E**: Tablette d'énergie
 - **T**: Noyau de téléportation
 

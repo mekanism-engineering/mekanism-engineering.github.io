@@ -1,4 +1,4 @@
-<!-- source: ef2efe4a7dc7aaf25eb9818447faae548a12a42a -->
+<!-- source: f59280a8962186bfe1af0159acb37ca05495ad89 -->
 # Petrogenic Synthesis Plant
 
 > Usine endgame de 3 × 3 × 3 blocs, posée en une fois : huit lignes de production côte à côte, chacune avec son
@@ -50,9 +50,9 @@ S U S
 ```
 
 - **S**: Petrogenic Synthesizer, ×4
-- **U**: n'importe quel Circuit de contrôle ultime (`c:circuits/ultimate`), ×2
+- **U**: Circuit de contrôle ultime (`c:circuits/ultimate`), ×2
 - **T**: Réservoir de fluide ultime, ×2
-- **A**: n'importe quel Alliage atomique (`mekanism:alloys/atomic`), ×1
+- **A**: Alliage atomique (`mekanism:alloys/atomic`), ×1
 
 Résultat : 1 Petrogenic Synthesis Plant.
 
@@ -71,9 +71,9 @@ R C R
 I E I
 ```
 
-- **I**: n'importe quel Lingot d'acier (`c:ingots/steel`), ×4
-- **E**: n'importe quel Circuit de contrôle d'élite (`c:circuits/elite`), ×2
-- **R**: n'importe quel Alliage renforcé (`mekanism:alloys/reinforced`), ×2
+- **I**: Lingot d'acier (`c:ingots/steel`), ×4
+- **E**: Circuit de contrôle d'élite (`c:circuits/elite`), ×2
+- **R**: Alliage renforcé (`mekanism:alloys/reinforced`), ×2
 - **C**: Condensateur rotatif, ×1
 
 Résultat : 1 Hydro Condenser Upgrade.
@@ -93,11 +93,11 @@ H S H
 A   A
 ```
 
-- **U**: n'importe quel Circuit de contrôle ultime (`c:circuits/ultimate`), ×2
+- **U**: Circuit de contrôle ultime (`c:circuits/ultimate`), ×2
 - **P**: Pastille de Polonium, ×1
 - **H**: Élément de surchauffe, ×2
 - **S**: [Stabilisateur de source](Quantum-Fluid-Pump.md), ×1
-- **A**: n'importe quel Alliage atomique (`mekanism:alloys/atomic`), ×2
+- **A**: Alliage atomique (`mekanism:alloys/atomic`), ×2
 
 Résultat : 1 Magma Synthesizer Upgrade.
 

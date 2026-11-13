@@ -1,4 +1,4 @@
-<!-- source: e553c2f2e4b1bb19f43f6e9bd2974efcb50946a1 -->
+<!-- source: 757e3cb8c7b70d6cba630d28503577edcca0df9f -->
 # Alloy Forge
 
 > Un Infuseur métallurgique renforcé pour les alliages : un lingot de cuivre (un lingot de fer en Minecraft 1.20.1) devient un alliage infusé, renforcé ou atomique dans une seule machine, avec trois réservoirs à remplir. Existe en quatre usines de 3, 5, 7 et 9 lignes.
@@ -35,10 +35,11 @@ atomique demande 300 ticks. Un alliage infusé ou renforcé placé dans l'emplac
 Un **bloc de cuivre** (un bloc de fer en 1.20.1) donne 9 alliages d'un coup : chaque étape demande 9 fois l'infusion et deux fois le
 temps d'un lingot (200 ticks), donc le bloc est un peu plus lent que de le défaire en lingots à la main, tout en restant rapide.
 
-**Lasers de Mekanism** : la forge et ses usines reçoivent le faisceau d'un Laser au lieu d'être creusées par lui, et un faisceau continu
-les accélère, sans consommer plus d'énergie. Le bonus monte tant que le faisceau dure sans interruption : en 4 minutes, un **faisceau simple** (un
-Laser, ou un Amplificateur laser alimenté par un seul) le porte à +50 % de vitesse, un **faisceau amplifié** (qui vaut deux lasers ou plus : un
-Amplificateur laser alimenté par deux Lasers ou plus, ou deux Lasers pointés sur la machine) à +100 %, deux fois la vitesse. Le premier tick sans
+**Lasers de Mekanism** : la forge et ses usines ne reçoivent le faisceau d'un Laser que sur leur **face arrière**, la face faite pour
+cela, et aucun laser ne peut les creuser, quelle que soit la face touchée : un faisceau sur une autre face est absorbé et ne donne rien. Un
+faisceau continu sur l'arrière les accélère, sans consommer plus d'énergie. Le bonus monte tant que le faisceau dure sans interruption : en
+4 minutes, un **faisceau simple** (un Laser, ou un Amplificateur laser alimenté par un seul) le porte à +50 % de vitesse, un **faisceau amplifié**
+(un Amplificateur laser alimenté par deux Lasers ou plus, pointé sur la face arrière) à +100 %, deux fois la vitesse. Le premier tick sans
 faisceau fait retomber le bonus à zéro et la montée reprend du début : un amplificateur sur minuterie, qui tire par salves, n'apporte donc rien.
 Le bonus n'est pas gardé quand le chunk se décharge.
 
@@ -59,11 +60,11 @@ C M C
 I A I
 ```
 
-- **I**: n'importe quel Lingot de fer (`c:ingots/iron`), ×4
+- **I**: Lingot de fer (`c:ingots/iron`), ×4
 - **S**: Boîtier en acier, ×1
-- **C**: n'importe quel Circuit de contrôle de base (`c:circuits/basic`), ×2
+- **C**: Circuit de contrôle de base (`c:circuits/basic`), ×2
 - **M**: Infuseur métallurgique, ×1
-- **A**: n'importe quel Alliage infusé (`mekanism:alloys/infused`), ×1
+- **A**: Alliage infusé (`mekanism:alloys/infused`), ×1
 
 Résultat : 1 Alloy Forge.
 

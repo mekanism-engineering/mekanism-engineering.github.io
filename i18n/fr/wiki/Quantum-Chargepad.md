@@ -1,4 +1,4 @@
-<!-- source: a8c48fd9577cc4ec3e9dd6d94356797aea518b83 -->
+<!-- source: a49849dfd92f85108dc0f30e6dfb71b9f25e68cf -->
 # Quantum Chargepad
 
 > La Plaque de rechargement de Mekanism au rythme de l'endgame : il suffit de monter dessus pour que tous les objets à énergie portés se rechargent en même temps, avec l'énergie d'un câble ou d'une fréquence quantique.
@@ -55,9 +55,9 @@ APA
 UXU
 ```
 
-- **U** : n'importe quel Circuit de contrôle ultime (`c:circuits/ultimate`), ×4
+- **U** : Circuit de contrôle ultime (`c:circuits/ultimate`), ×4
 - **Q** : Entangloporteur quantique, ×1
-- **A** : n'importe quel Alliage atomique (`mekanism:alloys/atomic`), ×2
+- **A** : Alliage atomique (`mekanism:alloys/atomic`), ×2
 - **P** : Plaque de rechargement (Mekanism), ×1
 - **X** : Cube d'énergie ultime, ×1
 

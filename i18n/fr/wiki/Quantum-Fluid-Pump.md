@@ -1,4 +1,4 @@
-<!-- source: 07c8c4594d58cb140fd3af361be5510f0d30df9d -->
+<!-- source: e8bb8512e3a6573c692d7a94575cf3aede426acf -->
 # Industrial Fluid Pump
 
 > Une seule pompe endgame de 3 × 3 × 3 au lieu d'une centaine de Pompes électriques.
@@ -43,9 +43,9 @@ A E A
 U T U
 ```
 
-- **U** : tout Circuit de contrôle ultime (`c:circuits/ultimate`), ×4
+- **U** : Circuit de contrôle ultime (`c:circuits/ultimate`), ×4
 - **Q** : Entangloporteur quantique, ×1
-- **A** : tout Alliage atomique (`mekanism:alloys/atomic`), ×2
+- **A** : Alliage atomique (`mekanism:alloys/atomic`), ×2
 - **E** : Pompe électrique, ×1
 - **T** : Réservoir de fluide ultime, ×1
 
@@ -72,7 +72,7 @@ A T A
 ```
 
 - **P** : Pastille de Polonium, ×2
-- **A** : tout Alliage atomique (`mekanism:alloys/atomic`), ×2
+- **A** : Alliage atomique (`mekanism:alloys/atomic`), ×2
 - **T** : Noyau de téléportation, ×1
 
 Résultat : 1 Stabilisateur de source.

@@ -1,4 +1,4 @@
-<!-- source: 373c09cdb0c2e7e26fa6387122048fbb6b9549dc -->
+<!-- source: 95d1fd170715df05a343dc4ec8bcd314685f0674 -->
 # Quantum Ore Refinery : structure et pièces
 
 > Le plan fixe de 10 × 4 × 3 de la [Quantum Ore Refinery](Quantum-Ore-Refinery.md), couche par couche, avec chaque bloc et sa recette.
@@ -111,27 +111,27 @@ est au choix** dans le cadre de ces règles :
 ## Recettes
 
 La raffinerie est une construction de fin de jeu, donc ses recettes demandent des pièces de fin de jeu de Mekanism. Toutes les recettes sont des crafts avec forme.
-« N'importe quel » désigne un tag : n'importe quel **Alliage atomique** (`mekanism:alloys/atomic`), n'importe quel **Circuit de contrôle ultime**
-(`c:circuits/ultimate`). La Carcasse de raffinerie de minerai se fabrique en premier, car elle sert à presque tout le reste.
+**Alliage atomique** (`mekanism:alloys/atomic`) et **Circuit de contrôle ultime** (`c:circuits/ultimate`) acceptent
+tous les objets de leur tag. La Carcasse de raffinerie de minerai se fabrique en premier, car elle sert à presque tout le reste.
 
 | Bloc | Motif | Ingrédients | Donne |
 |---|---|---|---|
-| Carcasse de raffinerie de minerai | ` X ` / `XAX` / ` X ` | X Boîtier en acier ×4, A n'importe quel Alliage atomique | 4 |
-| Pilier de raffinerie de minerai | `X` / `A` / `X` | X Boîtier en acier ×2, A n'importe quel Alliage atomique | 2 |
-| Poutre de raffinerie de minerai | `X` / `A` | X Boîtier en acier, A n'importe quel Alliage atomique | 4 |
+| Carcasse de raffinerie de minerai | ` X ` / `XAX` / ` X ` | X Boîtier en acier ×4, A Alliage atomique | 4 |
+| Pilier de raffinerie de minerai | `X` / `A` / `X` | X Boîtier en acier ×2, A Alliage atomique | 2 |
+| Poutre de raffinerie de minerai | `X` / `A` | X Boîtier en acier, A Alliage atomique | 4 |
 | Tapis de raffinerie de minerai | `TNT` | T Transporteur logistique ultime ×2, N Carcasse de raffinerie de minerai | 2 |
 | Vitre de raffinerie de minerai | `XGX` | X Boîtier en acier ×2, G Verre structurel | 4 |
-| Accélérateur de raffinerie de minerai | `AUA` / `SNS` / `AUA` | A n'importe quel Alliage atomique ×4, U n'importe quel Circuit de contrôle ultime ×2, S Mise à niveau de la vitesse ×2, N Carcasse de raffinerie de minerai | 1 |
-| Port d'entrée de raffinerie de minerai | `UTU` / `PSG` / `ANA` | U n'importe quel Circuit de contrôle ultime ×2, T Transporteur logistique ultime, P Tuyau mécanique ultime, S Trieur logistique, G Tube pressurisé ultime, A n'importe quel Alliage atomique ×2, N Carcasse de raffinerie de minerai | 1 |
-| Port de sortie de raffinerie de minerai | `UTU` / `AXA` / `ANA` | U n'importe quel Circuit de contrôle ultime ×2, T Transporteur logistique ultime, X Exporteur du OQO, A n'importe quel Alliage atomique ×4, N Carcasse de raffinerie de minerai | 1 |
-| Port d'énergie de raffinerie de minerai | `UIU` / `APA` / `ANA` | U n'importe quel Circuit de contrôle ultime ×2, I Cellule à induction ultime, P Port à induction, A n'importe quel Alliage atomique ×4, N Carcasse de raffinerie de minerai | 1 |
-| Contrôleur de la Quantum Ore Refinery | `UTU` / `AEA` / `MNM` | U n'importe quel Circuit de contrôle ultime ×2, T Noyau de téléportation, A n'importe quel Alliage atomique ×2, E Cube d'énergie ultime, M Chambre d'enrichissement ×2, N Carcasse de raffinerie de minerai | 1 |
-| Réservoir d'acide sulfurique de raffinerie de minerai | `GNG` / `ACA` / `GNG` | G Verre structurel ×4, N Carcasse de raffinerie de minerai ×2, A n'importe quel Alliage atomique ×2, C Réservoir chimique Ultime | 1 |
-| Réservoir d'eau de raffinerie de minerai | `GNG` / `AFA` / `GNG` | G Verre structurel ×4, N Carcasse de raffinerie de minerai ×2, A n'importe quel Alliage atomique ×2, F Réservoir de fluide ultime | 1 |
-| Réservoir de chlorure d'hydrogène de raffinerie de minerai | `NGN` / `ACA` / `GGG` | G Verre structurel ×4, N Carcasse de raffinerie de minerai ×2, A n'importe quel Alliage atomique ×2, C Réservoir chimique Ultime | 1 |
-| Réservoir d'oxygène de raffinerie de minerai | `GNG` / `ACA` / `GGG` | G Verre structurel ×5, N Carcasse de raffinerie de minerai, A n'importe quel Alliage atomique ×2, C Réservoir chimique Ultime | 1 |
+| Accélérateur de raffinerie de minerai | `AUA` / `SNS` / `AUA` | A Alliage atomique ×4, U Circuit de contrôle ultime ×2, S Mise à niveau de la vitesse ×2, N Carcasse de raffinerie de minerai | 1 |
+| Port d'entrée de raffinerie de minerai | `UTU` / `PSG` / `ANA` | U Circuit de contrôle ultime ×2, T Transporteur logistique ultime, P Tuyau mécanique ultime, S Trieur logistique, G Tube pressurisé ultime, A Alliage atomique ×2, N Carcasse de raffinerie de minerai | 1 |
+| Port de sortie de raffinerie de minerai | `UTU` / `AXA` / `ANA` | U Circuit de contrôle ultime ×2, T Transporteur logistique ultime, X Exporteur du OQO, A Alliage atomique ×4, N Carcasse de raffinerie de minerai | 1 |
+| Port d'énergie de raffinerie de minerai | `UIU` / `APA` / `ANA` | U Circuit de contrôle ultime ×2, I Cellule à induction ultime, P Port à induction, A Alliage atomique ×4, N Carcasse de raffinerie de minerai | 1 |
+| Contrôleur de la Quantum Ore Refinery | `UTU` / `AEA` / `MNM` | U Circuit de contrôle ultime ×2, T Noyau de téléportation, A Alliage atomique ×2, E Cube d'énergie ultime, M Chambre d'enrichissement ×2, N Carcasse de raffinerie de minerai | 1 |
+| Réservoir d'acide sulfurique de raffinerie de minerai | `GNG` / `ACA` / `GNG` | G Verre structurel ×4, N Carcasse de raffinerie de minerai ×2, A Alliage atomique ×2, C Réservoir chimique Ultime | 1 |
+| Réservoir d'eau de raffinerie de minerai | `GNG` / `AFA` / `GNG` | G Verre structurel ×4, N Carcasse de raffinerie de minerai ×2, A Alliage atomique ×2, F Réservoir de fluide ultime | 1 |
+| Réservoir de chlorure d'hydrogène de raffinerie de minerai | `NGN` / `ACA` / `GGG` | G Verre structurel ×4, N Carcasse de raffinerie de minerai ×2, A Alliage atomique ×2, C Réservoir chimique Ultime | 1 |
+| Réservoir d'oxygène de raffinerie de minerai | `GNG` / `ACA` / `GGG` | G Verre structurel ×5, N Carcasse de raffinerie de minerai, A Alliage atomique ×2, C Réservoir chimique Ultime | 1 |
 
-Chacun des sept modules de traitement utilise `UAU` / `LXR` / `ANA` : **U** n'importe quel Circuit de contrôle ultime ×2, **A** n'importe quel Alliage atomique ×3,
+Chacun des sept modules de traitement utilise `UAU` / `LXR` / `ANA` : **U** Circuit de contrôle ultime ×2, **A** Alliage atomique ×3,
 **N** Carcasse de raffinerie de minerai, et trois machines Mekanism : **X** la machine propre au module au centre, **L** et **R** les
 machines de ses deux voisins dans la ligne (le Module de fonte, dernier de la ligne, prend la Chambre d'enrichissement à gauche
 et la Chambre de purification à droite).
@@ -146,8 +146,8 @@ et la Chambre de purification à droite).
 | Module d'enrichissement de raffinerie de minerai | Chambre d'enrichissement | Chambre de purification | Fonderie électrique |
 | Module de fonte de raffinerie de minerai | Fonderie électrique | Chambre d'enrichissement | Chambre de purification |
 
-Le **Module quantique de raffinerie de minerai** facultatif utilise `UTU` / `IQX` / `ANA` : U n'importe quel Circuit de contrôle ultime ×2, T Noyau de
-téléportation, I Importeur du OQO, Q Entangloporteur quantique, X Exporteur du OQO, A n'importe quel Alliage atomique ×2, N Carcasse de raffinerie de minerai.
+Le **Module quantique de raffinerie de minerai** facultatif utilise `UTU` / `IQX` / `ANA` : U Circuit de contrôle ultime ×2, T Noyau de
+téléportation, I Importeur du OQO, Q Entangloporteur quantique, X Exporteur du OQO, A Alliage atomique ×2, N Carcasse de raffinerie de minerai.
 
 Les blocs de réservoir ne servent qu'à la forme : c'est le contrôleur qui contient l'eau et les trois produits chimiques. Tous les blocs sont dans l'onglet
 créatif du mod, et chacun a une courte description dans son infobulle.

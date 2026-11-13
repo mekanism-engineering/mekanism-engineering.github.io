@@ -1,4 +1,4 @@
-<!-- source: a5910ff640a44ee71e313f060049fb6c92d60edc -->
+<!-- source: 346e0f8c13e07d8f8257960291eed5a45f55ce8e -->
 # Contrôleur de réseau quantique
 
 > Vue en lecture seule des fréquences, tampons et appareils quantiques accessibles dans toutes les dimensions.
@@ -32,12 +32,12 @@ ABA
 SRS
 ```
 
-- `G`: n'importe quelle vitre (tag `c:glass_panes`) ×2
-- `C`: n'importe quel Circuit de contrôle avancé (tag `c:circuits/advanced`) ×1
-- `A`: n'importe quel Alliage infusé (tag `mekanism:alloys/infused`) ×2
+- `G`: Vitre (tag `c:glass_panes`) ×2
+- `C`: Circuit de contrôle avancé (tag `c:circuits/advanced`) ×1
+- `A`: Alliage infusé (tag `mekanism:alloys/infused`) ×2
 - `B`: Boîtier en acier ×1
-- `S`: n'importe quel Lingot d'acier (tag `c:ingots/steel`) ×2
-- `R`: n'importe quelle Poudre de redstone (tag `c:dusts/redstone`) ×1
+- `S`: Lingot d'acier (tag `c:ingots/steel`) ×2
+- `R`: Poudre de redstone (tag `c:dusts/redstone`) ×1
 
 Pour transformer un Contrôleur en [Tablette de réseau quantique](Quantum-Network-Tablet.md) (et inversement), voir cette page.
 

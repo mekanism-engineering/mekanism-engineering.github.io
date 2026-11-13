@@ -1,4 +1,4 @@
-<!-- source: 56ea3fda13461a35c1a06e8099723b50e8b1d90c -->
+<!-- source: 094627f2c6131a7f8008b65d4b0ca3341df21d78 -->
 # Tablette de réseau quantique
 
 > Le Contrôleur de réseau quantique dans la main : le même écran, les mêmes droits, où que l'on soit.
@@ -32,12 +32,12 @@ ABA
 SCS
 ```
 
-- `G` : toute vitre (tag `c:glass_panes`) ×2
-- `R` : toute poudre de redstone (tag `c:dusts/redstone`) ×1
-- `A` : tout Alliage infusé (tag `mekanism:alloys/infused`) ×2
+- `G` : Vitre (tag `c:glass_panes`) ×2
+- `R` : Poudre de redstone (tag `c:dusts/redstone`) ×1
+- `A` : Alliage infusé (tag `mekanism:alloys/infused`) ×2
 - `B` : Boîtier en acier ×1
-- `S` : tout lingot d'acier (tag `c:ingots/steel`) ×2
-- `C` : tout Circuit de contrôle avancé (tag `c:circuits/advanced`) ×1
+- `S` : Lingot d'acier (tag `c:ingots/steel`) ×2
+- `C` : Circuit de contrôle avancé (tag `c:circuits/advanced`) ×1
 
 Les mêmes ingrédients que le Contrôleur, avec le circuit et la redstone intervertis.
 

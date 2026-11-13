@@ -1,4 +1,4 @@
-<!-- source: ad21deb6d356039dbb1cc41f6abdf60e115a8ce2 -->
+<!-- source: 09c8c360a08f5924056459539ec962eb66237088 -->
 # Quantum Portable Teleporter
 
 > Le Téléporteur portable, en version adulte : sauter vers un Téléporteur de Mekanism, vers des coordonnées ou vers un endroit sûr au hasard.
@@ -60,11 +60,11 @@ TPT
 AQA
 ```
 
-- **H** (×2) : toute Pastille d'antimatière (`c:pellets/antimatter`)
-- **U** : tout Circuit de contrôle ultime (`c:circuits/ultimate`)
+- **H** (×2) : Pastille d'antimatière (`c:pellets/antimatter`)
+- **U** : Circuit de contrôle ultime (`c:circuits/ultimate`)
 - **T** (×2) : Noyau de téléportation
 - **P** : Téléporteur portable
-- **A** (×2) : tout Alliage atomique (`mekanism:alloys/atomic`)
+- **A** (×2) : Alliage atomique (`mekanism:alloys/atomic`)
 - **Q** : Entangloporteur quantique
 
 Résultat : 1 Quantum Portable Teleporter.

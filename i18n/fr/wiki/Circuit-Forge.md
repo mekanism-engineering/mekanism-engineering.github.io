@@ -1,4 +1,4 @@
-<!-- source: e543a0ac32635c5d1c03c4b74cdcb66353663aa1 -->
+<!-- source: afa8eea9675429f4474d4d2a4eec54d9fedbf061 -->
 # Circuit Forge
 
 > Fabrique les quatre circuits de contrôle de Mekanism à partir de lingots d'osmium, de redstone et des trois alliages, et garde les alliages en réserve dans la machine. Existe en quatre usines de 3, 5, 7 et 9 lignes.
@@ -42,10 +42,11 @@ Un réglage se trouve sous les lignes :
 Un **bloc d'osmium** donne 9 circuits du palier Choix d'un coup, pour 9 fois la redstone et les alliages et deux fois le temps
 d'un lingot : un peu plus lent que de le défaire en lingots à la main, tout en restant rapide.
 
-**Lasers de Mekanism** : la forge et ses usines reçoivent le faisceau d'un Laser au lieu d'être creusées par lui, et un faisceau continu
-les accélère, sans consommer plus d'énergie. Le bonus monte tant que le faisceau dure sans interruption : en 4 minutes, un **faisceau simple** (un
-Laser, ou un Amplificateur laser alimenté par un seul) le porte à +50 % de vitesse, un **faisceau amplifié** (qui vaut deux lasers ou plus : un
-Amplificateur laser alimenté par deux Lasers ou plus, ou deux Lasers pointés sur la machine) à +100 %, deux fois la vitesse. Le premier tick sans
+**Lasers de Mekanism** : la forge et ses usines ne reçoivent le faisceau d'un Laser que sur leur **face arrière**, la face faite pour
+cela, et aucun laser ne peut les creuser, quelle que soit la face touchée : un faisceau sur une autre face est absorbé et ne donne rien. Un
+faisceau continu sur l'arrière les accélère, sans consommer plus d'énergie. Le bonus monte tant que le faisceau dure sans interruption : en
+4 minutes, un **faisceau simple** (un Laser, ou un Amplificateur laser alimenté par un seul) le porte à +50 % de vitesse, un **faisceau amplifié**
+(un Amplificateur laser alimenté par deux Lasers ou plus, pointé sur la face arrière) à +100 %, deux fois la vitesse. Le premier tick sans
 faisceau fait retomber le bonus à zéro et la montée reprend du début : un amplificateur sur minuterie, qui tire par salves, n'apporte donc rien.
 Le bonus n'est pas gardé quand le chunk se décharge.
 
@@ -59,11 +60,11 @@ O S O
 A M A
 ```
 
-- **C**: n'importe quel Circuit de contrôle de base (`c:circuits/basic`), ×2
-- **O**: n'importe quel Lingot d'osmium (`c:ingots/osmium`), ×3
+- **C**: Circuit de contrôle de base (`c:circuits/basic`), ×2
+- **O**: Lingot d'osmium (`c:ingots/osmium`), ×3
 - **S**: Boîtier en acier, ×1
 - **M**: Infuseur métallurgique, ×1
-- **A**: n'importe quel Alliage infusé (`mekanism:alloys/infused`), ×2
+- **A**: Alliage infusé (`mekanism:alloys/infused`), ×2
 
 Résultat : 1 Circuit Forge.
 

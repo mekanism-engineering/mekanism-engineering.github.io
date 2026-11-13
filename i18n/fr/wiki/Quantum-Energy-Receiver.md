@@ -1,4 +1,4 @@
-<!-- source: fc11d1c5a3d876e8a3bae2ac377fc2546e542cfa -->
+<!-- source: 1c46bcef766e210e5845a06f2101ed2ec34b2b62 -->
 # Récepteur d'énergie quantique
 
 > Prélève l'énergie d'une fréquence Quantum existante et l'injecte dans la machine sur sa face de fixation.
@@ -46,11 +46,11 @@ EBE
 RIR
 ```
 
-- `R` : n'importe quelle Poudre de redstone (tag `c:dusts/redstone`) ×4
+- `R` : Poudre de redstone (tag `c:dusts/redstone`) ×4
 - `T` : Noyau de téléportation ×1
 - `E` : Tablette d'énergie ×2
 - `B` : Cube énergétique de base ×1
-- `I` : n'importe quel Lingot de fer (tag `c:ingots/iron`) ×1
+- `I` : Lingot de fer (tag `c:ingots/iron`) ×1
 
 Advanced, Elite et Ultimate utilisent le même motif, fabriqués avec le Récepteur du palier précédent pour que ses données (faces, mode
 redstone, énergie en transit) soient conservées ; sa fréquence ne l'est pas (voir [Automatisation](#automation)) :

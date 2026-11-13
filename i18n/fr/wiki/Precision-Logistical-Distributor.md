@@ -1,4 +1,4 @@
-<!-- source: 015acec8869f92460ef887e82165503eb3797fcd -->
+<!-- source: 8a88784438202970f596471b1ac43f89490af9aa -->
 # Precision Logistical Distributor
 
 > Répartit les objets en attente entre ses faces de sortie, en parts équilibrées ou pondérées, exactes dans la durée.
@@ -67,8 +67,8 @@ TXT
 RSR
 ```
 
-- `R` : tout Alliage renforcé (tag `mekanism:alloys/reinforced`) ×4
-- `E` : tout Circuit de contrôle d'élite (tag `c:circuits/elite`) ×1
+- `R` : Alliage renforcé (tag `mekanism:alloys/reinforced`) ×4
+- `E` : Circuit de contrôle d'élite (tag `c:circuits/elite`) ×1
 - `T` : Transporteur logistique d'élite ×2
 - `X` : Boîtier en acier ×1
 - `S` : Trieur logistique ×1
