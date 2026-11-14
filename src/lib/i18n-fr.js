@@ -187,4 +187,5 @@ export const FR = {
   'Thank you!': 'Merci !',
   'Your answers are recorded. They help decide what comes next in the mod.': 'Vos réponses sont enregistrées. Elles aident à choisir la suite du mod.',
   'Do you like the mod? Four quick questions →': 'Vous aimez le mod ? Quatre questions rapides →',
+  'Four quick questions, one minute →': 'Quatre questions rapides, une minute →',
 };

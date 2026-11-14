@@ -6,13 +6,51 @@ import { tr } from '../lib/i18n.js';
 const lng = Astro.locals.starlightRoute?.lang === 'fr' ? 'fr' : 'en';
 const t = (en: string, vars?: Record<string, unknown>) => tr(lng, en, vars);
 const date = new Date(source.imported).toISOString().slice(0, 10);
+const survey = `${BASE}/${lng === 'fr' ? 'fr/' : ''}#survey`;
 ---
 
 <Default><slot /></Default>
-{SURVEY.form && <p class="me-foot-note"><a href={`${BASE}/${lng === 'fr' ? 'fr/' : ''}#survey`}>{t('Do you like the mod? Four quick questions →')}</a></p>}
+{SURVEY.form && <p class="me-foot-note me-survey-link"><a href={survey}>{t('Do you like the mod? Four quick questions →')}</a></p>}
+{/* the survey's notice, in a corner of every page; on the home page, only while the survey itself (src/components/Survey.astro) is off screen */}
+{SURVEY.form && (
+  <div class="me-nudge not-content" hidden>
+    <a href={survey}><span class="me-nudge-stars" aria-hidden="true">★★★★★</span><b>{t('Do you like the mod?')}</b><span>{t('Four quick questions, one minute →')}</span></a>
+    <button type="button" aria-label={t('Close')}>×</button>
+  </div>
+)}
 <p class="me-foot-note">
   {t('Written from the mod\'s own wiki and data files')} (<a href={`https://gitlab.com/enzodr/mekanism-engineering/-/commit/${source.commit}`}>{source.commit.slice(0, 8)}</a>, {date}).
   {t('Mod v{v} for {builds}.', { v: source.modVersion, builds: source.builds.map(b => t('Minecraft {mc} ({loader}, Mekanism {mek})', { mc: b.minecraft, loader: b.loader, mek: b.mekanism })).join(t(' and ')) })}
   {t('Block and item pictures are drawn from the game\'s models and textures; Mekanism\'s are under the MIT licence.')}
   {t('Not an official Minecraft product, not approved by or associated with Mojang or Microsoft.')}
 </p>
+
+<script>
+  // the notice shows until the visitor answers the survey or closes it; both are remembered in this browser only
+  const get = (k: string) => { try { return localStorage.getItem(k); } catch { return null; } };
+  const nudge = document.querySelector<HTMLElement>('.me-nudge');
+  if (get('me-survey')) for (const a of document.querySelectorAll<HTMLElement>('.me-survey-link')) a.hidden = true;
+  else if (nudge && !get('me-survey-nudge')) {
+    // moved to the end of the page: left in the footer, it would sit under the "On this page" column, which takes the clicks
+    document.body.append(nudge); nudge.hidden = false;
+    nudge.querySelector('button')!.addEventListener('click', () => { nudge.hidden = true; try { localStorage.setItem('me-survey-nudge', '1'); } catch {} });
+    const card = document.querySelector('.me-survey');
+    if (card) new IntersectionObserver(([e]) => nudge.classList.toggle('me-off', e.isIntersecting)).observe(card);
+  }
+</script>
+
+<style>
+  .me-nudge { position: fixed; right: 1rem; bottom: 1rem; z-index: 9; display: flex; align-items: flex-start; max-width: calc(100vw - 2rem); border-radius: 16px;
+    background: var(--sl-color-bg); border: 1px solid var(--me-teal); box-shadow: 0 14px 40px -14px rgba(0, 0, 0, 0.55), 0 0 30px -10px var(--me-teal);
+    animation: me-nudge-in 0.5s 0.8s both; }
+  .me-nudge[hidden], .me-nudge.me-off { display: none; }
+  .me-nudge a { display: grid; gap: 0.15rem; padding: 0.75rem 0.3rem 0.8rem 1rem; text-decoration: none; color: var(--sl-color-white); font-size: 0.95rem; }
+  .me-nudge-stars { color: var(--me-g-ink); font-size: 1.3rem; letter-spacing: 0.12em; line-height: 1.1; }
+  .me-nudge a span:last-child { color: var(--sl-color-accent); font-size: 0.84rem; font-weight: 600; }
+  .me-nudge a:hover span:last-child { text-decoration: underline; }
+  .me-nudge button { border: 0; background: none; color: var(--sl-color-gray-3); font-size: 1.4rem; line-height: 1; padding: 0.55rem 0.8rem; cursor: pointer; }
+  .me-nudge button:hover { color: var(--sl-color-white); }
+  @keyframes me-nudge-in { from { opacity: 0; transform: translateY(1.2rem); } }
+  @media (prefers-reduced-motion: reduce) { .me-nudge { animation: none; } }
+  @media print { .me-nudge { display: none; } }
+</style>

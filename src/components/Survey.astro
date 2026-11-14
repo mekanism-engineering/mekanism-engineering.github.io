@@ -1,8 +1,10 @@
 ---
-// The players' survey, at the bottom of the home page: a rating, two free answers and one yes/no. The answers go straight to a
+// The players' survey, a wide card right under the hero of the home page: a rating, two free answers and one yes/no. It
+// opens on the five stars alone; the three other questions unfold once a star is chosen. The answers go straight to a
 // Google Form (SURVEY in site.config.mjs), which keeps them in one place with its own charts and a spreadsheet. Nothing of
 // Google is loaded by the page: the only request leaves when the visitor sends, with the answers and nothing else (no cookie,
 // no e-mail). Without JavaScript the form posts by itself and Google's own "response recorded" page opens in a new tab.
+// The notice of Footer.astro leads here, from the other pages and from the home page while this card is off screen.
 import { SURVEY } from '../../site.config.mjs';
 import { tr } from '../lib/i18n.js';
 const lng = Astro.locals.starlightRoute?.lang === 'fr' ? 'fr' : 'en';
@@ -12,15 +14,15 @@ const name = (q: keyof typeof SURVEY) => `entry.${SURVEY[q]}`;
 
 {SURVEY.form && (
   <section class="me-survey" id="survey" aria-labelledby="me-survey-title">
-    <h2 id="me-survey-title">{t('Your opinion')}</h2>
-    <p class="me-sub">{t('Four quick questions, one minute. Anonymous: no account, no e-mail, no cookie.')}</p>
-    <form class="me-glass" action={`https://docs.google.com/forms/d/e/${SURVEY.form}/formResponse`} method="post" target="_blank">
-      <fieldset class="me-stars">
-        <legend>{t('Do you like the mod?')}</legend>
+    <div class="me-eyebrow">{t('Your opinion')}</div>
+    <h2 id="me-survey-title">{t('Do you like the mod?')}</h2>
+    <form action={`https://docs.google.com/forms/d/e/${SURVEY.form}/formResponse`} method="post" target="_blank">
+      <fieldset class="me-stars" aria-labelledby="me-survey-title">
         {[1, 2, 3, 4, 5].map(n => (
-          <label><input type="radio" name={name('rating')} value={n} required /><span aria-hidden="true">★</span><span class="sr-only">{t('{n} out of 5', { n })}</span></label>
+          <label style={`--n:${n}`}><input type="radio" name={name('rating')} value={n} required /><span aria-hidden="true">★</span><span class="sr-only">{t('{n} out of 5', { n })}</span></label>
         ))}
       </fieldset>
+      <p class="me-survey-hint">{t('Four quick questions, one minute. Anonymous: no account, no e-mail, no cookie.')}</p>
       <label>{t('Did you run into a bug that annoys you? Or is there a mod you would like us to support?')}
         <textarea name={name('bug')} rows="3" maxlength="2000"></textarea></label>
       <fieldset class="me-yesno">
@@ -41,9 +43,9 @@ const name = (q: keyof typeof SURVEY) => `entry.${SURVEY[q]}`;
 <script>
   const form = document.querySelector<HTMLFormElement>('.me-survey form');
   if (form) {
-    // remembered in this browser only, so that the same visitor does not count twice
+    // remembered in this browser only, so that the same visitor does not count twice: the card is gone on the next visit
     const seen = { get: () => { try { return localStorage.getItem('me-survey'); } catch { return null; } }, set: () => { try { localStorage.setItem('me-survey', '1'); } catch {} } };
-    if (seen.get()) form.dataset.sent = '';
+    if (seen.get()) form.closest('section')!.hidden = true;
     form.addEventListener('submit', async e => {
       e.preventDefault();
       const btn = form.querySelector('button')!, error = form.querySelector<HTMLElement>('.me-survey-error')!;
@@ -58,7 +60,10 @@ const name = (q: keyof typeof SURVEY) => `entry.${SURVEY[q]}`;
 </script>
 
 <style>
-  form { display: grid; gap: 1.1rem; max-width: 44rem; }
+  .me-survey { margin-top: 2.4rem; padding: 1.5rem 1.2rem 1.4rem; border-radius: 24px; text-align: center; scroll-margin-top: 5rem;
+    background: linear-gradient(135deg, var(--me-t1), var(--me-q1)); border: 1px solid var(--me-teal); box-shadow: 0 0 46px -18px var(--me-teal); }
+  .me-survey h2 { margin: 0.35rem 0 0; font-size: clamp(1.8rem, 6vw, 2.6rem); line-height: 1.1; }
+  form { display: grid; gap: 1.1rem; max-width: 40rem; margin: 0 auto; text-align: left; }
   fieldset { border: 0; padding: 0; margin: 0; min-width: 0; }
   legend, form > label { font-weight: 650; font-size: 0.95rem; color: var(--sl-color-white); padding: 0; }
   form > label { display: grid; gap: 0.45rem; }
@@ -66,21 +71,27 @@ const name = (q: keyof typeof SURVEY) => `entry.${SURVEY[q]}`;
     border-radius: 12px; border: 1px solid var(--me-line); background: var(--sl-color-bg); }
   textarea:focus-visible { outline: 2px solid var(--me-teal); outline-offset: 1px; }
   /* five radio buttons drawn as stars: the chosen one and those before it light up, so do the ones under the pointer */
-  .me-stars label { display: inline-block; cursor: pointer; font-size: 2.1rem; line-height: 1; padding: 0.25rem 0.1rem 0; color: var(--sl-color-gray-4); transition: color 0.12s, transform 0.12s; }
+  .me-stars { text-align: center; white-space: nowrap; }
+  .me-stars label { display: inline-block; cursor: pointer; font-size: clamp(2.7rem, 13vw, 4rem); line-height: 1; padding: 0.3rem 0.12rem 0; color: var(--sl-color-gray-4); transition: color 0.12s, transform 0.12s; }
   .me-stars input { position: absolute; opacity: 0; width: 1px; height: 1px; }
   .me-stars label:has(input:checked), .me-stars label:has(~ label input:checked) { color: var(--me-g-ink); }
   .me-stars:hover label { color: var(--sl-color-gray-4); }
   .me-stars label:hover, .me-stars label:has(~ label:hover) { color: var(--me-g-ink); }
   .me-stars label:hover { transform: scale(1.12); }
   .me-stars label:has(input:focus-visible) { outline: 2px solid var(--me-teal); outline-offset: 1px; border-radius: 8px; }
+  /* until a star is chosen, the five light up one after the other, to catch the eye; then the other questions unfold */
+  @keyframes me-star-wink { 0%, 30%, 100% { color: var(--sl-color-gray-4); transform: none; } 10% { color: var(--me-g-ink); transform: scale(1.14); } }
+  .me-stars:not(:hover):not(:has(:checked)) label { animation: me-star-wink 2.6s calc(var(--n) * 0.13s) infinite; }
+  form:not(:has(.me-stars :checked)) > :not(.me-stars, .me-survey-hint) { display: none; }
+  .me-survey-hint { margin: -0.5rem 0 0; text-align: center; font-size: 0.9rem; color: var(--sl-color-gray-2); }
   .me-yesno label { display: inline-flex; align-items: center; gap: 0.4rem; margin: 0.45rem 1.4rem 0 0; font-size: 0.92rem; cursor: pointer; }
   .me-yesno input { accent-color: var(--me-teal); width: 1.05rem; height: 1.05rem; margin: 0; }
-  button { justify-self: start; cursor: pointer; font-family: inherit; }
+  button { justify-self: center; cursor: pointer; font-family: inherit; }
   button:disabled { opacity: 0.6; cursor: progress; }
   .me-survey-error, .me-survey-thanks { margin: 0; font-size: 0.92rem; }
   .me-survey-error { color: var(--me-g-ink); }
-  .me-survey-thanks { display: none; color: var(--sl-color-white); }
+  .me-survey-thanks { display: none; text-align: center; font-size: 1.05rem; color: var(--sl-color-white); }
   form[data-sent] > * { display: none; }
   form[data-sent] > .me-survey-thanks { display: block; }
-  @media (prefers-reduced-motion: reduce) { .me-stars label { transition: none; } }
+  @media (prefers-reduced-motion: reduce) { .me-stars label { transition: none; animation: none !important; } }
 </style>

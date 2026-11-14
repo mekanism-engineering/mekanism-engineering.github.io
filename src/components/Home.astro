@@ -51,6 +51,8 @@ const short = (s = '') => (s.length > 110 ? s.slice(0, s.lastIndexOf(' ', 106)) 
     </div>
   </section>
 
+  <Survey />
+
   {cards.length > 0 && (
     <section class="me-news" aria-labelledby="me-news-title">
       <div class="me-news-head">
@@ -119,8 +121,6 @@ const short = (s = '') => (s.length > 110 ? s.slice(0, s.lastIndexOf(' ', 106)) 
       <a class="me-tile" href={`${base}/${d.id}/`}><div class="me-eyebrow">{t(kind)}</div><h3>{d.data.title}</h3><p>{short(d.data.description)}</p></a>
     ))}
   </div>
-
-  <Survey />
 </div>
 
 <script>
