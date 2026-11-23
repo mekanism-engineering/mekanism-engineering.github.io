@@ -1,4 +1,4 @@
-<!-- source: afa8eea9675429f4474d4d2a4eec54d9fedbf061 -->
+<!-- source: d2fcc409f896dd257f46f7f4d3a6ef8532e88438 -->
 # Circuit Forge
 
 > Fabrique les quatre circuits de contrôle de Mekanism à partir de lingots d'osmium, de redstone et des trois alliages, et garde les alliages en réserve dans la machine. Existe en quatre usines de 3, 5, 7 et 9 lignes.
@@ -37,7 +37,7 @@ Un réglage se trouve sous les lignes :
 
 - **Choix** (1 à 4) : le circuit que fabrique la forge. À 1, elle ne fabrique que des Circuits de contrôle de base ; à 4, des circuits ultimes.
   Une nouvelle machine démarre sur le niveau le plus haut. La forge attend que les réserves puissent payer le circuit choisi ; elle ne se rabat jamais
-  sur un circuit moins cher, et la bande d'état dit quelle réserve manque.
+  sur un circuit moins cher, et l'écran d'état dit quelle réserve manque.
 
 Un **bloc d'osmium** donne 9 circuits du palier Choix d'un coup, pour 9 fois la redstone et les alliages et deux fois le temps
 d'un lingot : un peu plus lent que de le défaire en lingots à la main, tout en restant rapide.

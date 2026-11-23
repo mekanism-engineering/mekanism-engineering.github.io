@@ -1,4 +1,4 @@
-<!-- source: 757e3cb8c7b70d6cba630d28503577edcca0df9f -->
+<!-- source: 99a6e1fe2b85dec8c3e8f403ead2da510bdd01a3 -->
 # Alloy Forge
 
 > Un Infuseur métallurgique renforcé pour les alliages : un lingot de cuivre (un lingot de fer en Minecraft 1.20.1) devient un alliage infusé, renforcé ou atomique dans une seule machine, avec trois réservoirs à remplir. Existe en quatre usines de 3, 5, 7 et 9 lignes.
@@ -47,7 +47,7 @@ Un réglage se trouve sous les lignes :
 
 - **Choix** (1 à 3) : la dernière étape que la forge accomplit. À 1, elle s'arrête à l'alliage infusé ; à 3, elle va jusqu'à l'alliage atomique. Une nouvelle
   machine démarre sur le niveau le plus haut. La forge ne travaille que si les réservoirs contiennent tout ce que demande le niveau Choix ; elle ne s'arrête jamais
-  en deçà, et la bande d'état dit quel réservoir manque.
+  en deçà, et l'écran d'état dit quel réservoir manque.
 
 Les recettes sont des recettes de datapack de type `mekanismengineering:alloy_forging`, donc un modpack peut les modifier. La famille de l'entrée
 et les objets qui remplissent chaque réservoir sont lus dans les recettes Mekanism du pack lui-même, pas écrits dans la machine.

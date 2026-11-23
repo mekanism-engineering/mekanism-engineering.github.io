@@ -55,10 +55,10 @@ const SITE_REPO = 'https://github.com/mekanism-engineering/mekanism-engineering.
 // The 1.2 also ships for Minecraft 1.20.1, with NeoForge's 1.20.1 build (neo_version 1.20.1-47.1.106, ModDevGradle legacyforge), from a
 // branch of its own whose wiki text is the same. Its requirements, read from that branch's gradle.properties and META-INF/mods.toml
 // (wip/1.2/port-1201, 25 Oct 2026):
-const MC_1201 = { minecraft: '1.20.1', loader: 'NeoForge', mekanism: '1.20.1-10.4.16.80', ranges: {
-  'Minecraft Java Edition': '1.20.1 exactly', Java: '17', 'Mod loader': 'NeoForge 47.1.106 up to, but excluding, 47.2 (not Forge)',
+const MC_1201 = { minecraft: '1.20.1', loader: 'Forge / NeoForge', mekanism: '1.20.1-10.4.16.80', ranges: {
+  'Minecraft Java Edition': '1.20.1 exactly', Java: '17', 'Mod loader': 'Forge 47.2.0 or later (tested on 47.2.0 and 47.4.28), or NeoForge 47.1.106 (Forge 47.1.x is not supported)',
   Mekanism: '10.4.13 up to, but excluding, 10.4.17' }, rangesFr: {
-  'Minecraft Java Edition': '1.20.1 exactement', Java: '17', 'Chargeur de mods': 'NeoForge 47.1.106 jusqu\'à 47.2 exclu (pas Forge)',
+  'Minecraft Java Edition': '1.20.1 exactement', Java: '17', 'Chargeur de mods': 'Forge 47.2.0 ou plus récent (testé sur 47.2.0 et 47.4.28), ou NeoForge 47.1.106 (Forge 47.1.x n\'est pas pris en charge)',
   Mekanism: '10.4.13 jusqu\'à 10.4.17 exclu' } };
 // The accepted Mekanism range of the 1.21.1 line is the one the jar declares (neoforge.mods.toml), never a copy typed in the wiki text:
 // the overview page once said "up to, but excluding, 10.7.20" while the jar accepted everything below 10.7.24.
@@ -111,6 +111,12 @@ const addMc1201 = (md, lng = 'en') => {
     return `| ${T.head} | Minecraft ${mc} | Minecraft ${MC_1201.minecraft} |\n|---|---|---|\n${out.join('\n')}\n\n${T.jar}\n`;
   });
 };
+// The overview of the 1.3.1 tag still names the 1.3 notes as "the current version" and does not list the 1.3.1 ones. Until the
+// mod's own wiki says so, the English sentence is corrected here (the French one, in i18n/fr/wiki/Home.md, already says it);
+// once GitLab has the 1.3.1 notes in that sentence, this finds nothing to change.
+const fixReleaseNotes = md => md.replace(
+  /the \[1\.3 notes\]\(\.\.\/releases\/1\.3\.md\) list what changed in the current version, and the \[1\.2\.1 notes\]\(\.\.\/releases\/1\.2\.1\.md\) and \[1\.2\.0 notes\]\(\.\.\/releases\/1\.2\.md\) the ones before;/,
+  'the [1.3.1 notes](../releases/1.3.1.md) list what changed in the current version, and the [1.3 notes](../releases/1.3.md), the [1.2.1 notes](../releases/1.2.1.md) and the [1.2.0 notes](../releases/1.2.md) the ones before;');
 // edit and source links point to a lasting branch, not to the work branch being imported
 const EDIT_REF = process.env.WIKI_EDIT_REF || 'main';
 
@@ -447,7 +453,7 @@ for (const [from, p0] of Object.entries(PAGES)) {
   // the main render of a machine page moves into the page header (3D view or render)
   if (p.ids) md = md.replace(/^!\[[^\]]*\]\(images\/[a-z_]+\.png\)\n+/m, '');
   md = rewrite(md, from, p.ids);
-  if (from === 'Home') md = addMc1201(fixMekanismRange(md, LNG), LNG);
+  if (from === 'Home') md = addMc1201(fixMekanismRange(LNG === 'en' ? fixReleaseNotes(md) : md, LNG), LNG);
   if (from === 'Quantum-Ore-Refinery') {
     // the speed calculator comes after the paragraph that gives the formula
     md = fr ? md.replace(/(^[^\n]*`200 × 50\^\(−n\/8\)`[^\n]*\n(?:[^\n]+\n)*)/m, `$1\n<div class="me-qor-calc not-content"></div>\n`)
@@ -469,8 +475,12 @@ for (const [from, p0] of Object.entries(PAGES)) {
 
 // ---------- 6. changelog: only versions whose public notes are final ----------
 let order = 2;
+// The 1.3.1 text in the mod's repository opens with a paragraph on the future of 1.20.1 ("The 1.4 line will also come to 1.20.1 ...").
+// The public release notes do not announce that (Enzo, 23 November 2026), so the site leaves the paragraph out; once the
+// repository no longer has it, this finds nothing to remove.
+const NOT_ANNOUNCED = /^The 1\.4 line will also come to 1\.20\.1[^\n]*\n+/m;
 const notes = v => {
-  if (!fr) return published.includes(v) ? rd(`docs/publication/CURSEFORGE_CHANGELOG_${v}.md`) : null;
+  if (!fr) return published.includes(v) ? rd(`docs/publication/CURSEFORGE_CHANGELOG_${v}.md`).replace(NOT_ANNOUNCED, '') : null;
   const f = path.join(FR_SRC, 'changelog', v + '.md');
   return published.includes(v) && fs.existsSync(f) ? fs.readFileSync(f, 'utf8') : null;
 };

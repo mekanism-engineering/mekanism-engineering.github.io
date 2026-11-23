@@ -702,6 +702,8 @@ starlight-lang-select select { width: 8.4rem; }
 .me-news-also .me-eyebrow { display: flex; flex-wrap: wrap; align-items: center; gap: 0.3rem 0.55rem; font-size: 0.66rem; letter-spacing: 0.12em; }
 .me-news-also h4 { margin: 0.3rem 0 0.2rem; font: 650 1rem/1.25 var(--me-head); color: var(--sl-color-white); }
 .me-news-also p { margin: 0; color: var(--me-card-text); font-size: 0.84rem; line-height: 1.5; }
+.me-update-lead { margin: 0.55rem 0 0; max-width: 46rem; color: var(--sl-color-gray-2); font-size: 0.95rem; line-height: 1.55; }
+.me-update .me-news-also { margin-top: 1.1rem; }
 .me-news-all { display: flex; width: fit-content; margin: 1rem auto 0; padding: 0.45rem 0.9rem; border-radius: 99px; border: 1px solid var(--me-f-line);
   font: 600 0.78rem var(--sl-font-mono); letter-spacing: 0.04em; color: var(--sl-color-accent); text-decoration: none; background: var(--me-glass); transition: border-color 0.15s, transform 0.15s; }
 .me-news-all:hover { border-color: var(--me-teal); transform: translateY(-1px); color: var(--sl-color-accent); }

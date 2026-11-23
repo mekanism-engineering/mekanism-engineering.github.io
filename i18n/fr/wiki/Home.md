@@ -1,4 +1,4 @@
-<!-- source: 9d78c9b91ccff3a2d340aff416a8a53da99dbb7d -->
+<!-- source: a9f36e2b5b8a0f88aa4709806b88c8eb5c62b00d -->
 # Mekanism: Engineering
 
 > Des outils d'ingénierie pour les usines Mekanism : minage à distance, raffinage du minerai sur toute la chaîne, distribution précise des objets, améliorations d'usine, pompage de fluides à grande échelle, synthèse de roches, forge d'alliages et de circuits, et suraccélération des machines.
@@ -15,7 +15,7 @@ Installer ces éléments **à la fois sur le client et sur le serveur** : ce n'e
 |---|---|---|
 | Minecraft Java Edition | 1.21.1 exactement | 1.20.1 exactement |
 | Java | 21 | 17 |
-| Chargeur | NeoForge 21.1.200 jusqu'à 21.2 exclu | Forge 47.2.0 ou plus récent, ou NeoForge 47.1.106 (Forge 47.1.x n'est pas pris en charge) |
+| Chargeur | NeoForge 21.1.200 jusqu'à 21.2 exclu | Forge 47.2.0 ou plus récent (testé sur 47.2.0 et 47.4.28), ou NeoForge 47.1.106 (Forge 47.1.x n'est pas pris en charge) |
 | Mekanism | 10.7.15 jusqu'à 10.7.24 exclu | 10.4.13 à 10.4.16 |
 
 Chaque version de Minecraft a son propre fichier. Le fichier 1.21.1 ne vise que NeoForge, comme Mekanism.
@@ -24,7 +24,7 @@ Mettre les jars de Mekanism et de Mekanism: Engineering dans `mods/`. Ne garder 
 
 La prise en charge de [JEI, EMI, Jade et WTHIT](JEI-Jade-WTHIT.md) est **facultative** elle aussi : si l'un d'eux est installé, l'addon y ajoute ses recettes et ses affichages ; sans eux, rien ne change.
 
-Notes de version : les [notes de la 1.2.1](../releases/1.2.1.md) listent ce qui a changé dans la version actuelle, et les [notes de la 1.2.0](../releases/1.2.md) celle d'avant ; les [notes de la 1.1.0](../releases/1.1.0.md) listent les builds de Mekanism, JEI, Jade et WTHIT avec lesquels cette version a été testée. Les [notes de la 1.0.0](../releases/1.0.0.md) retracent la première version stable.
+Notes de version : les [notes de la 1.3.1](../releases/1.3.1.md) listent ce qui a changé dans la version actuelle, et les [notes de la 1.3](../releases/1.3.md), de la [1.2.1](../releases/1.2.1.md) et de la [1.2.0](../releases/1.2.md) celles d'avant ; les [notes de la 1.1.0](../releases/1.1.0.md) listent les builds de Mekanism, JEI, Jade et WTHIT avec lesquels cette version a été testée. Les [notes de la 1.0.0](../releases/1.0.0.md) retracent la première version stable.
 
 ## Ce qu'il ajoute
 
