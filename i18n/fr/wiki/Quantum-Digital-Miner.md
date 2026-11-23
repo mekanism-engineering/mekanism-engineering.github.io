@@ -1,4 +1,4 @@
-<!-- source: 7170392a28d2cce1429b22a9c6f07d540d198eb9 -->
+<!-- source: e95a27fd819a8e19819e5019f5812ea513a5669e -->
 # Quantum Digital Miner
 
 > Évolution de fin de jeu du Mineur digital : mêmes filtres et réglages, rayon jusqu'à 128, vitesse de minage octuplée,
@@ -172,9 +172,9 @@ Configuration serveur, section `quantum_miner` :
 | `maxRadius` | 128 | 1–128 | Plus grand rayon de minage que les joueurs peuvent régler |
 | `speedMultiplier` | 8,0 (4,0 avant la 1.3) | 1,0–16,0 | Vitesse de minage par rapport à un Mineur digital avec les mêmes Mises à niveau de la vitesse |
 | `energyMultiplier` | 4,0 | 0,0–64,0 | Consommation d'énergie et stockage de base par rapport à la configuration du Mineur digital de Mekanism |
-| `maxBlocksPerTick` | 8 | 1–64 | Plafond strict de blocs minés par une machine en un seul tick |
+| `maxBlocksPerTick` | 8 | 1–64 | Plafond strict de blocs minés par une machine en une exécution de son travail (voir la ligne suivante pour un tick de jeu entier) |
 | `maxBlocksPerGameTick` | 32 | 1–1 024 | Plafond strict de blocs qu'une machine mine en un tick de jeu entier, quel que soit le nombre de fois que son travail y est exécuté (un Time Overclocker l'exécute encore et encore) |
-| `maxChecksPerTick` | 512 | 16–65 536 | Plafond strict de positions examinées en un seul tick |
+| `maxChecksPerTick` | 512 | 16–65 536 | Plafond strict de positions examinées en un tick de jeu entier, toutes les exécutions confondues |
 | `searchBudgetMicros` | 2 000 | 100–50 000 | Temps du fil serveur par tick partagé entre toutes les recherches en cours |
 | `searchThreads` | 1 | 1–4 | Fils d'exécution en arrière-plan qui analysent les chunks, partagés par tous les Quantum Digital Miners |
 | `searchMaxPendingChunks` | 8 | 1–64 | Avec une Mise à niveau d'ancrage, chunks qu'une recherche peut charger à la fois (brièvement, sans jamais bloquer) |
@@ -191,6 +191,10 @@ pour tout le mod. Le serveur continue de les envoyer.
 Une relocalisation va jusqu'au bout ou est annulée, en laissant le monde tel qu'il était. Si une **annulation elle-même ne peut pas remettre un bloc en place**, le
 serveur **s'arrête par sécurité** et **rejoue son journal au redémarrage suivant**, au lieu de perdre silencieusement la trace de ce qui a été
 déplacé. C'est voulu ; c'est le comportement depuis la 1.1.1.
+
+### Limites de la relocalisation
+
+L'annulation d'une relocalisation ne restaure que **les blocs** : elle remet en place les chunks qu'elle a modifiés, mais pas les entités (animaux, objets au sol, cadres et autres) ni les données supplémentaires que d'autres mods stockent sur des blocs. Si une relocalisation échoue ou est interrompue, ils peuvent rester là où ils se sont retrouvés. Avant de relocaliser une zone qui contient des entités ou des machines d'autres mods qui comptent, faites une sauvegarde de votre monde. Cette limite pourra être améliorée dans une prochaine version majeure.
 
 ## Astuces et dépannage
 

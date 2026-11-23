@@ -1,4 +1,4 @@
-<!-- source: e8bb8512e3a6573c692d7a94575cf3aede426acf -->
+<!-- source: e92df09a0eace53a02af337151624f31408aae5c -->
 # Industrial Fluid Pump
 
 > Une seule pompe endgame de 3 × 3 × 3 au lieu d'une centaine de Pompes électriques.
@@ -27,8 +27,10 @@ comme n'importe quel fluide de Mekanism, jusqu'au réservoir de la pompe.
 - **La lave** est normalement consommée : chaque bloc source prélevé modifie réellement le monde, donc la pompe limite le nombre
   de sources prises en un tick et en cherche d'autres dans un rayon autour de l'aspiration.
 - **La lave gardée par le Stabilisateur de source** reste en place au lieu d'être consommée, et ne s'épuise jamais.
-- **Les fluides d'autres mods** sont traités comme la lave : leurs blocs sources sont consommés, cherchés et limités
-  de la même façon.
+- **Les fluides d'autres mods** (tout fluide qu'un seau peut ramasser, y compris la Soul Lava) sont traités comme la lave : leurs blocs
+  sources sont consommés, cherchés et limités de la même façon. Un Tuyau mécanique ne peut contenir que de l'eau ou de la lave, donc ces
+  fluides amorcent la pompe autrement : une source du fluide doit toucher une face libre du **dernier tuyau** de la ligne d'aspiration.
+  Un serveur peut couper cela (`otherFluids`) ou interdire certains fluides (`fluidBlacklist`).
 
 Le réservoir ne contient jamais qu'un seul fluide à la fois ; rien n'est mélangé, rien n'est détruit. Si le fluide de l'aspiration
 change alors que le réservoir contient encore l'ancien, la pompe vide ce qu'elle contient avant de changer.
@@ -161,15 +163,18 @@ Section `quantum_fluid_pump` de `mekanismengineering-server.toml` :
 | `intakeMaxPipes` | 2 048 | 1–65 536 | Plus grand réseau de tuyaux d'aspiration que la pompe parcourt. |
 | `intakePipesPerTick` | 64 | 1–4 096 | Tuyaux du réseau d'aspiration parcourus en un tick. |
 | `intakeRecheckTicks` | 20 | 1–1 200 | Ticks entre deux vérifications que l'aspiration est toujours en place. |
-| `fluidloggedPipeIntake` | true | n/a | Autorise un Tuyau mécanique immergé (ou rempli au seau) à amorcer la pompe. |
-| `otherFluids` | true | n/a | Pompe les fluides autres que l'eau et la lave, prélevés comme les sources de lave. |
+| `fluidloggedPipeIntake` | true | n/a | Autorise un Tuyau mécanique immergé (ou rempli au seau) à amorcer la pompe avec de l'eau ou de la lave. |
+| `otherFluids` | true | n/a | Pompe les fluides autres que l'eau et la lave : une source qui touche une face libre du dernier tuyau amorce la pompe, et ses sources sont prélevées comme celles de la lave. À `false`, la pompe ne gère que l'eau et la lave. |
+
+La configuration serveur a aussi une section `[fluids]` : `fluidBlacklist` (une liste d'identifiants de fluides, vide par défaut) nomme les fluides que le mod ne prélève jamais dans le monde, eau et lave comprises. Elle s'applique pour l'instant à cette pompe.
 | `stabilizedLavaEnergyPerMb` | 50,0 J | 0,0–1 000 000,0 | Énergie minimale coûtée par chaque mB de lave gardée par le Stabilisateur, quelles que soient les Mises à niveau énergétiques. |
 
 ## Astuces et dépannage
 
 - « Entrée : recherche » ou « Entrée : aucune aspiration » : vérifier qu'un réseau de Tuyaux mécaniques va de la face d'aspiration jusqu'à une
-  source, et que le dernier tuyau de la ligne est posé dans la source (ou rempli avec un seau) : un tuyau sec
-  qui touche ou surplombe simplement la source ne compte pas.
+  source. Pour l'eau et la lave, le dernier tuyau doit être posé dans la source (ou rempli avec un seau) : un tuyau sec
+  qui touche ou surplombe simplement la source ne compte pas. Pour un fluide d'un autre mod, une source doit toucher une face libre
+  du dernier tuyau de la ligne (pas d'un tuyau du milieu). Un fluide que le serveur liste dans `fluidBlacklist` n'amorce jamais la pompe.
 - « Freinée par les tuyaux » : la capacité totale des tuyaux du réseau d'aspiration est inférieure à ce que la pompe pourrait envoyer. Les
   niveaux de tuyaux de Mekanism s'additionnent par réseau (de base 2 000 mB, avancé 8 000 mB, d'élite 32 000 mB, ultime 128 000 mB) ; utiliser
   des tuyaux plus grands ou plus nombreux sur cette ligne.

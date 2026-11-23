@@ -45,6 +45,46 @@ export const FEATURES = [
   },
 ];
 
+// The home page's block for the current point release (1.3.1): no new machine, so no card with a picture, only a short strip of what
+// changed, then a link to its release notes. Every text only repeats the 1.3.1 release notes (changelog/1-3-1), and only its gains.
+// The block is shown while the notes page exists (the French one when translated, otherwise the English one).
+export const UPDATE = {
+  version: '1.3.1',
+  changelog: 'changelog/1-3-1',
+  en: { eyebrow: 'Updated in 1.3.1', title: 'Sturdier Machines, Sharper Screens',
+    lead: 'No new machine this time. The forges, the Time Overclocker, the Quantum machines and the refinery were corrected and tested again, on Minecraft 1.21.1 and 1.20.1.',
+    all: 'Read the 1.3.1 release notes →' },
+  fr: { eyebrow: 'Mis à jour en 1.3.1', title: 'Sturdier Machines, Sharper Screens',
+    lead: 'Pas de nouvelle machine cette fois. Les forges, le Time Overclocker, les machines Quantum et la raffinerie ont été corrigés et retestés, sur Minecraft 1.21.1 et 1.20.1.',
+    all: 'Lire les notes de la 1.3.1 →' },
+  items: [
+    {
+      en: { badge: 'New', family: 'Industrial Fluid Pump', title: 'Fluids of other mods', say: 'Any fluid a bucket can pick up can now be pumped. A server can switch this off, or forbid single fluids.' },
+      fr: { badge: 'Nouveau', family: 'Industrial Fluid Pump', title: 'Les fluides des autres mods', say: 'Tout fluide qu’un seau peut ramasser peut désormais être pompé. Un serveur peut couper cela, ou interdire certains fluides.' },
+    },
+    {
+      en: { badge: 'New', family: 'Quantum machines', title: 'Several windows at once', say: 'The frequency and faces windows of the Receiver, the Chargepad and the Entangloporter, and the Miner’s source windows, can stay open together.' },
+      fr: { badge: 'Nouveau', family: 'Machines Quantum', title: 'Plusieurs fenêtres à la fois', say: 'Les fenêtres de fréquence et de faces du Receiver, du Chargepad et de l’Entangloporter, et les fenêtres de sources du Miner, peuvent rester ouvertes ensemble.' },
+    },
+    {
+      en: { badge: 'New', family: 'JEI and EMI', title: 'Recipes one click away', say: 'Click the progress arrow of a forge or a factory to open its recipes. In EMI, each part of the refinery structure is a slot of its own.' },
+      fr: { badge: 'Nouveau', family: 'JEI et EMI', title: 'Les recettes à un clic', say: 'Cliquez sur la flèche de progression d’une forge ou d’une usine pour ouvrir ses recettes. Dans EMI, chaque partie de la structure de la raffinerie a son propre emplacement.' },
+    },
+    {
+      en: { badge: 'Improved', family: 'Time Overclocker', title: 'Only works when it should', say: 'An idle machine is neither repeated nor paid for, a second Overclocker says the block is already served, and a mod that forbids crop growth is respected.' },
+      fr: { badge: 'Amélioré', family: 'Time Overclocker', title: 'Il n’agit que quand il faut', say: 'Une machine inactive n’est ni répétée ni payée, un second Overclocker dit que le bloc est déjà servi, et un mod qui interdit la croissance des cultures est respecté.' },
+    },
+    {
+      en: { badge: 'Faster', family: 'Performance', title: 'Lighter on the server', say: 'Measured against 1.3.0 on 1.21.1: an idle Upgrade Controller costs 85 to 91 % less, an idle Industrial Fluid Pump about 35 % less.' },
+      fr: { badge: 'Plus rapide', family: 'Performances', title: 'Plus léger pour le serveur', say: 'Mesuré contre la 1.3.0 en 1.21.1 : un Upgrade Controller au repos coûte 85 à 91 % de moins, une Industrial Fluid Pump au repos environ 35 % de moins.' },
+    },
+    {
+      en: { badge: 'Polish', family: 'Screens', title: 'Sharper screens', say: 'The refinery’s tabs are in place from the first frame, forge messages fit their strip, and the configuration screen has readable names on 1.21.1.' },
+      fr: { badge: 'Finitions', family: 'Écrans', title: 'Des écrans plus nets', say: 'Les onglets de la raffinerie sont en place dès la première image, les messages des forges tiennent dans leur bande, et l’écran de configuration a des noms lisibles en 1.21.1.' },
+    },
+  ],
+};
+
 // The home page's "What's new" block: big cards for the new machines, a strip of smaller items, then a link to the version's
 // changelog. Every text only repeats the machines' own pages and the 1.3 changelog. A card is shown while its page exists
 // (the French one when translated, otherwise the English one); `more` is an optional second page of the same card.

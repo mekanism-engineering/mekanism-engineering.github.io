@@ -3,7 +3,7 @@ import { getCollection } from 'astro:content';
 import source from '../data/source.json';
 import families from '../data/sidebar.json';
 import { tr } from '../lib/i18n.js';
-import { NEWS } from '../lib/features.mjs';
+import { NEWS, UPDATE } from '../lib/features.mjs';
 import { Badge } from '@astrojs/starlight/components';
 import Survey from './Survey.astro';
 const lng = Astro.locals.starlightRoute?.lang === 'fr' ? 'fr' : 'en';
@@ -31,6 +31,9 @@ const also = NEWS.alsoItems.map(a => a[lng]);
 // the 1.3 changelog when it exists in this language, otherwise the release notes index
 const changelog = all.some(d => d.id === pre + NEWS.changelog) ? NEWS.changelog : 'changelog';
 const news = NEWS[lng];
+// the current point release's strip (src/lib/features.mjs): its notes page in this language, otherwise the English one
+const updateNotes = all.some(d => d.id === pre + UPDATE.changelog) ? pre + UPDATE.changelog : all.some(d => d.id === UPDATE.changelog) ? UPDATE.changelog : null;
+const update = UPDATE[lng], updateItems = UPDATE.items.map(i => i[lng]);
 const short = (s = '') => (s.length > 110 ? s.slice(0, s.lastIndexOf(' ', 106)) + '…' : s);
 ---
 
@@ -52,6 +55,26 @@ const short = (s = '') => (s.length > 110 ? s.slice(0, s.lastIndexOf(' ', 106)) 
   </section>
 
   <Survey />
+
+  {updateNotes && (
+    <section class="me-news me-update" aria-labelledby="me-update-title">
+      <div class="me-news-head">
+        <div class="me-eyebrow">{update.eyebrow}</div>
+        <h2 id="me-update-title">{update.title}</h2>
+        <p class="me-update-lead">{update.lead}</p>
+      </div>
+      <div class="me-news-also" role="group" aria-label={update.eyebrow}>
+        {updateItems.map(a => (
+          <div>
+            <div class="me-eyebrow"><span class="me-news-badge">{a.badge}</span> {a.family}</div>
+            <h4>{a.title}</h4>
+            <p>{a.say}</p>
+          </div>
+        ))}
+      </div>
+      <a class="me-news-all" href={`${base}/${updateNotes}/`}>{update.all}</a>
+    </section>
+  )}
 
   {cards.length > 0 && (
     <section class="me-news" aria-labelledby="me-news-title">

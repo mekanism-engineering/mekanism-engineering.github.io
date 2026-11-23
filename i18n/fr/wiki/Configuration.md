@@ -1,4 +1,4 @@
-<!-- source: 7ab6ddfa74816ec6c4ad763b38d6525e40f0646c -->
+<!-- source: 8fb87a881f647c1eb24187dd1e14f524980cd23a -->
 # Configuration
 
 Mekanism: Engineering enregistre une configuration NeoForge **SERVER**, qui contient presque tous les réglages, et une petite configuration **CLIENT** (voir [Réglages client](#client-settings)) ; il n'y a pas de configuration COMMON. La configuration serveur est propre à chaque monde, ici :
@@ -44,12 +44,12 @@ de réseau quantique](Quantum-Network-Tablet.md).
 |---|---|---|---|
 | `enabled` | `true` | s. o. | Active ou désactive le Quantum Digital Miner : désactivé, il ne cherche ni ne mine. |
 | `maxRadius` | `128` | 1 – 128 | Plus grand rayon de minage que les joueurs peuvent régler, en blocs. |
-| `speedMultiplier` | `8.0` | 1,0 – 16,0 | Combien de fois plus vite il mine que le Mineur digital de Mekanism avec les mêmes Mises à niveau de la vitesse. Quatre avant la 1.3 : un fichier encore à 4,0 passe à 8,0 une seule fois, au premier chargement de la 1.3. |
-| `speedMultiplierMigrated` | `false` | s. o. | Mis à `true` par le mod une fois ce passage fait ; ne pas y toucher. |
+| `speedMultiplier` | `8.0` | 1,0 – 16,0 | Combien de fois plus vite il mine que le Mineur digital de Mekanism avec les mêmes Mises à niveau de la vitesse. Quatre avant la 1.3 : un fichier encore à 4,0 passe à 8,0 une seule fois par monde, au premier démarrage de la 1.3 sur lui. |
+| `speedMultiplierMigrated` | `false` | s. o. | Obsolète, en lecture seule, retiré en 1.4. Le monde enregistre désormais ce passage ; `true` ici indique seulement qu'un monde de la 1.3.0 a déjà été migré. |
 | `energyMultiplier` | `4.0` | 0,0 – 64,0 | Consommation d'énergie et stockage de base, en multiple des réglages du Mineur digital de Mekanism. |
 | `maxBlocksPerTick` | `8` | 1 – 64 | Nombre maximal de blocs qu'un Quantum Digital Miner peut miner en une seule exécution de son travail. |
 | `maxBlocksPerGameTick` | `32` | 1 – 1 024 | Nombre maximal de blocs qu'un Quantum Digital Miner peut miner en un tick de jeu entier, toutes exécutions confondues : un Time Overclocker exécute le travail plusieurs fois par tick et ne peut pas dépasser cette limite. |
-| `maxChecksPerTick` | `512` | 16 – 65 536 | Nombre maximal de positions cibles examinées en un seul tick, y compris celles qui ont changé depuis la recherche. |
+| `maxChecksPerTick` | `512` | 16 – 65 536 | Nombre maximal de positions cibles examinées en un tick de jeu entier, toutes les exécutions confondues, y compris celles qui ont changé depuis la recherche. |
 | `searchBudgetMicros` | `2000` | 100 – 50 000 | Temps serveur (microsecondes par tick) partagé entre toutes les recherches en cours. |
 | `searchThreads` | `1` | 1 – 4 | Fils d'exécution en arrière-plan qui analysent les données des chunks pour l'ensemble des Quantum Digital Miners. |
 | `searchMaxPendingChunks` | `8` | 1 – 64 | Avec une Mise à niveau d'ancrage, nombre de chunks qu'une recherche peut charger en même temps. |
@@ -131,9 +131,15 @@ de réseau quantique](Quantum-Network-Tablet.md).
 | `intakeMaxPipes` | `2,048` | 1 – 65 536 | Plus grand réseau de tuyaux de prise que la pompe suit ; un réseau plus grand est signalé au lieu d'être parcouru. |
 | `intakePipesPerTick` | `64` | 1 – 4 096 | Tuyaux du réseau de prise suivis en un tick. |
 | `intakeRecheckTicks` | `20` | 1 – 1 200 | Ticks entre deux vérifications que la prise est toujours en place. |
-| `fluidloggedPipeIntake` | `true` | s. o. | Permet à un Tuyau mécanique immergé (placé dans une source de fluide, ou rempli avec un seau) d'amorcer la pompe. `false` désactive les nouvelles prises de ce type. |
-| `otherFluids` | `true` | s. o. | Autorise le pompage d'autres fluides que l'eau et la lave (venant d'autres mods) ; leurs sources sont prélevées comme celles de la lave. |
+| `fluidloggedPipeIntake` | `true` | s. o. | Permet à un Tuyau mécanique immergé (placé dans une source d'eau ou de lave, ou rempli avec un seau) d'amorcer la pompe. `false` désactive les nouvelles prises de ce type. |
+| `otherFluids` | `true` | s. o. | Autorise le pompage d'autres fluides que l'eau et la lave (venant d'autres mods) : une source qui touche une face libre du dernier tuyau de la ligne d'aspiration amorce la pompe, et ses sources sont prélevées comme celles de la lave. `false` limite la pompe à l'eau et à la lave. |
 | `stabilizedLavaEnergyPerMb` | `50.0` J/mB | 0,0 – 1 000 000,0 | Coût minimal en énergie par mB de lave maintenue par le Stabilisateur de source, quelles que soient les Mises à niveau énergétiques, gardé au-dessus de ce qu'un générateur produirait avec cette lave. |
+
+## Fluides `[fluids]`
+
+| Clé | Défaut | Plage | Signification |
+|---|---|---|---|
+| `fluidBlacklist` | `[]` | liste d'identifiants de fluides | Fluides que le mod ne prélève jamais dans le monde, un identifiant par entrée (par exemple `"minecraft:lava"`). L'eau et la lave peuvent aussi y figurer. S'applique pour l'instant à l'Industrial Fluid Pump : un fluide listé n'amorce jamais la pompe, et une source déjà acceptée n'est plus prélevée dès que son fluide est listé. Les entrées invalides ou inconnues sont ignorées, avec un seul avertissement dans le journal. |
 
 ## Petrogenic Synthesizer et Petrogenic Synthesis Plant `[petrogenic_synthesis]`
 
@@ -158,8 +164,8 @@ de réseau quantique](Quantum-Network-Tablet.md).
 |---|---|---|---|
 | `enabled` | `true` | s. o. | Interrupteur général du [Time Overclocker](Time-Overclocker.md). Désactivé, les Overclockers déjà posés ne font rien et leur écran indique que le serveur les a coupés, et la recette de fabrication du Basic Time Overclocker est retirée (au démarrage du serveur et à chaque `/reload`). |
 | `maxMultiplier` | `1024` | 1 – 1 024 | Vitesse maximale qu'un Time Overclocker peut donner, quoi que son palier permette. |
-| `maxExtraTicksPerServerTick` | `20,000` | 0 – 1 000 000 | Nombre maximal de ticks de machine supplémentaires que tous les Time Overclockers ensemble peuvent ajouter en un tick serveur. |
-| `blacklist` | les 5 blocs du réacteur à fission et les 3 générateurs sans combustible | liste d'identifiants de blocs | Identifiants de blocs qu'un Time Overclocker n'accélère jamais, un identifiant par entrée (par exemple `"mekanismgenerators:fission_reactor_casing"`). Par défaut : `"mekanismgenerators:fission_reactor_casing"`, `"mekanismgenerators:fission_reactor_port"`, `"mekanismgenerators:fission_reactor_logic_adapter"`, `"mekanismgenerators:fission_fuel_assembly"` `"mekanismgenerators:control_rod_assembly"`, `"mekanismgenerators:wind_generator"`, `"mekanismgenerators:solar_generator"` et `"mekanismgenerators:advanced_solar_generator"` (ils ne brûlent rien, donc des ticks répétés produiraient de l'énergie gratuite) ; le réacteur à fusion reste accéléré. Un fichier de configuration généré avant ce défaut garde son ancienne valeur (une liste vide) et doit être modifié à la main. Un Overclocker n'est jamais accéléré, quoi que dise cette liste. |
+| `maxExtraTicksPerServerTick` | `20,000` | 0 – 100 000 | Nombre maximal de ticks de machine supplémentaires que tous les Time Overclockers ensemble peuvent ajouter en un tick serveur. |
+| `blacklist` | les 5 blocs du réacteur à fission et les 3 générateurs sans combustible | liste d'identifiants de blocs | Identifiants de blocs qu'un Time Overclocker n'accélère jamais, un identifiant par entrée (par exemple `"mekanismgenerators:fission_reactor_casing"`). Par défaut : `"mekanismgenerators:fission_reactor_casing"`, `"mekanismgenerators:fission_reactor_port"`, `"mekanismgenerators:fission_reactor_logic_adapter"`, `"mekanismgenerators:fission_fuel_assembly"`, `"mekanismgenerators:control_rod_assembly"`, `"mekanismgenerators:wind_generator"`, `"mekanismgenerators:solar_generator"` et `"mekanismgenerators:advanced_solar_generator"` (ils ne brûlent rien, donc des ticks répétés produiraient de l'énergie gratuite) ; le réacteur à fusion reste accéléré. Un fichier de configuration généré avant ce défaut garde son ancienne valeur (une liste vide) et doit être modifié à la main. Un Overclocker n'est jamais accéléré, quoi que dise cette liste. |
 
 Le coût en énergie de l'Overclocker par tick supplémentaire (100 J) et son stockage (au moins 2 000 000 J, davantage pour le palier Supraquantum) ne figurent pas dans ce fichier en 1.3.
 
@@ -192,3 +198,5 @@ Une petite configuration **CLIENT**, `mekanismengineering-client.toml`, dans le 
 | Clé | Défaut | Signification |
 |---|---|---|
 | `notifications` | `true` | Affiche une notification, avec le son de notification de Minecraft, quand un [Quantum Digital Miner](Quantum-Digital-Miner.md#notifications) du joueur a fini de miner, est bloqué ou s'est déplacé. Désactivé : aucune notification ni aucun son pour toutes les notifications du mod. Le serveur continue de les envoyer. |
+| `routing_hide_neighbours` | `false` | Masque les blocs autour d'un [Precision Logistical Distributor](Precision-Logistical-Distributor.md) dans sa fenêtre de routage et affiche à leur place un petit carré de la couleur de la face. On le règle normalement avec le bouton en forme d'œil de la fenêtre. |
+| `windows.<nom>` avec `x`, `y` et `pinned` | non défini, non épinglé | L'endroit où vous avez laissé une fenêtre du mod, et si vous l'avez épinglée. Le jeu écrit ces valeurs quand vous déplacez ou épinglez une fenêtre ; il n'y a rien à modifier. Quatre fenêtres sont mémorisées, les mêmes dans les deux versions de Minecraft : `distributor_routing`, `receiver_faces`, `receiver_frequency` et `chargepad_frequency`. |

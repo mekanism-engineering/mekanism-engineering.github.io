@@ -1,4 +1,4 @@
-<!-- source: 346e0f8c13e07d8f8257960291eed5a45f55ce8e -->
+<!-- source: 2e19ffbbcf2270788ed0e0011066e30c16c81e8f -->
 # Contrôleur de réseau quantique
 
 > Vue en lecture seule des fréquences, tampons et appareils quantiques accessibles dans toutes les dimensions.
@@ -114,6 +114,11 @@ Le Contrôleur **ne charge jamais de chunk** pour trouver ou lire des appareils.
 un chunk chargé. Un appareil qui n'est pas **actuellement chargé et accessible au joueur** ne compte jamais dans les débits, les parts
 ou le bilan affichés : seuls les appareils actifs et joignables sont mesurés. Un appareil du joueur dans un chunk non chargé est compté comme
 non chargé ; celui d'un autre joueur n'est pas affiché du tout, pour que personne ne puisse apprendre où se trouve la base de quelqu'un d'autre.
+
+Limites connues :
+
+- Un appareil quantique posé **sans pose de bloc normale** (une commande comme `/setblock` ou `/fill`, ou un autre mod qui place des blocs directement) n'est catalogué qu'au prochain chargement de son chunk : le Contrôleur ne le liste pas avant.
+- Le Contrôleur ne fixe **aucun plafond** au nombre de fréquences ou d'appareils qu'il liste ; un monde qui en a un très grand nombre rend l'instantané plus gros, et son coût croît avec ce nombre.
 
 ## Automatisation
 

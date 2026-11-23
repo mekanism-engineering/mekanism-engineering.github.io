@@ -1,4 +1,4 @@
-<!-- source: c4694e5111419650a1a704562ce4816809d59fb7 -->
+<!-- source: c9043f0a119de18b3f1d0200464e7c361cf9bfae -->
 # JEI, EMI, Jade et WTHIT
 
 > Prise en charge facultative de quatre mods d'information : des pages de recettes dans JEI et dans EMI, un affichage des machines dans Jade et dans WTHIT.
@@ -130,7 +130,7 @@ installer le mod : rien dans l'addon n'en dépend.
 ### Quantum Ore Refinery
 
 
-Chaque bloc d'une raffinerie formée répond à Jade et à WTHIT avec les lignes propres à la raffinerie ; le tableau ci-dessus les liste. Les règles
+Sur les 22 blocs de la raffinerie, le Contrôleur et les trois sortes de ports (Entrée, Sortie et Énergie) répondent à Jade et à WTHIT avec les lignes propres à la raffinerie ; le tableau ci-dessus les liste. Dans Jade en 1.21.1, le Module de sortie Quantum/QIO répond aussi (sa ligne vient du Contrôleur qui le contient) ; en 1.20.1 et dans WTHIT, il n'a pas de carte. Les autres blocs (carcasse, pilier, poutre, convoyeur, verre, accélérateur, réservoirs et autres modules) n'ont pas de ligne de notre part. Les règles
 d'accès de Mekanism s'appliquent comme pour les autres machines.
 
 ## Conseils et dépannage
